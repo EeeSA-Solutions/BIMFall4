@@ -11,16 +11,14 @@
                 "dbo.Budgets",
                 c => new
                     {
-                        BudgetID = c.Int(nullable: false, identity: true),
-                        Fixedcost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Groceries = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Entertainment = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Other = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        User_UserID = c.Int(),
+                        BudgetId = c.Int(nullable: false, identity: true),
+                        Category = c.String(),
+                        Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        UserID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.BudgetID)
-                .ForeignKey("dbo.Users", t => t.User_UserID)
-                .Index(t => t.User_UserID);
+                .PrimaryKey(t => t.BudgetId)
+                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .Index(t => t.UserID);
             
             CreateTable(
                 "dbo.Users",
@@ -29,10 +27,11 @@
                         UserID = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, maxLength: 80),
                         LastName = c.String(nullable: false, maxLength: 80),
-                        Email = c.String(),
+                        Email = c.String(maxLength: 80),
                         Password = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.UserID);
+                .PrimaryKey(t => t.UserID)
+                .Index(t => t.Email, unique: true);
             
             CreateTable(
                 "dbo.Expenses",
@@ -40,6 +39,7 @@
                     {
                         ExpenseID = c.Int(nullable: false, identity: true),
                         ExpenseName = c.String(nullable: false, maxLength: 80),
+                        Category = c.String(),
                         TransactionDate = c.DateTime(nullable: false),
                         ExpenseAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         UserID = c.Int(nullable: false),
@@ -56,11 +56,11 @@
                         IncomeName = c.String(nullable: false, maxLength: 80),
                         IncomeAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         TransactionDate = c.DateTime(nullable: false),
-                        User_UserID = c.Int(),
+                        UserID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.IncomeID)
-                .ForeignKey("dbo.Users", t => t.User_UserID)
-                .Index(t => t.User_UserID);
+                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .Index(t => t.UserID);
             
             CreateTable(
                 "dbo.SavingGoals",
@@ -71,24 +71,25 @@
                         ReachDate = c.DateTime(nullable: false),
                         GoalName = c.String(nullable: false, maxLength: 80),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        User_UserID = c.Int(),
+                        UserID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.SavingGoalID)
-                .ForeignKey("dbo.Users", t => t.User_UserID)
-                .Index(t => t.User_UserID);
+                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .Index(t => t.UserID);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.SavingGoals", "User_UserID", "dbo.Users");
-            DropForeignKey("dbo.Incomes", "User_UserID", "dbo.Users");
+            DropForeignKey("dbo.Budgets", "UserID", "dbo.Users");
+            DropForeignKey("dbo.SavingGoals", "UserID", "dbo.Users");
+            DropForeignKey("dbo.Incomes", "UserID", "dbo.Users");
             DropForeignKey("dbo.Expenses", "UserID", "dbo.Users");
-            DropForeignKey("dbo.Budgets", "User_UserID", "dbo.Users");
-            DropIndex("dbo.SavingGoals", new[] { "User_UserID" });
-            DropIndex("dbo.Incomes", new[] { "User_UserID" });
+            DropIndex("dbo.SavingGoals", new[] { "UserID" });
+            DropIndex("dbo.Incomes", new[] { "UserID" });
             DropIndex("dbo.Expenses", new[] { "UserID" });
-            DropIndex("dbo.Budgets", new[] { "User_UserID" });
+            DropIndex("dbo.Users", new[] { "Email" });
+            DropIndex("dbo.Budgets", new[] { "UserID" });
             DropTable("dbo.SavingGoals");
             DropTable("dbo.Incomes");
             DropTable("dbo.Expenses");

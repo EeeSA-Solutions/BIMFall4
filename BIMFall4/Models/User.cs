@@ -18,7 +18,7 @@ namespace BIMFall4.Models
         [Required(AllowEmptyStrings = false), MaxLength(80)]
         public string LastName { get; set; }
 
-        [Index(IsClustered = false, IsUnique = true)]
+        [Index(IsUnique = true), MaxLength(80)]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -29,5 +29,6 @@ namespace BIMFall4.Models
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }
         public virtual ICollection<SavingGoal> SavingGoals { get; set; }
+        
     }
 }
