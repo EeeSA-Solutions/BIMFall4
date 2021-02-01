@@ -27,9 +27,11 @@ namespace BIMFall4.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody] User value)
+        public string Post([FromBody] User value)
         {
             UserManager.CreateUser(value);
+            string text = "det gick bra";
+            return text;
         }
 
         // PUT api/values/5
