@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BIMFall4.Manager
 {
-    public class ExpenseManager
+    public static class ExpenseManager
     {
-        public void CreateExpense(Expense expense)
+        public static void CreateExpense(Expense expense)
         {
             using (var db = new BIMFall4Context())
             {
@@ -18,7 +18,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public void DeleteExpense(int id)
+        public static void DeleteExpense(int id)
         {
             using (var db = new BIMFall4Context())
             {
@@ -30,13 +30,23 @@ namespace BIMFall4.Manager
             }
         }
 
-        public Expense GetExpensesById(int id)
+        public static Expense GetExpensesById(int id)
         {
             using (var db = new BIMFall4Context())
             {
                 var expense = db.Expenses.Find(id);
                 return expense;
             }
+        }
+
+        public static IEnumerable<Expense> GetExpenseList(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var expenselist = db.Expenses.Where(expense => expense.UserID == id).ToList();
+                return expenselist;
+            }
+
         }
 
 
