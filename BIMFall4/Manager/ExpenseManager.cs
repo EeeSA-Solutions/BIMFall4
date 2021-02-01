@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace BIMFall4.Manager
 {
@@ -39,15 +40,27 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<Expense> GetExpenseList(int id)
+        public static IEnumerable<Expense> GetExpenseList()
         {
             using (var db = new BIMFall4Context())
             {
-                var expenselist = db.Expenses.Where(expense => expense.UserID == id).ToList();
-                return expenselist;
+                return db.Expenses.ToList();
             }
-
         }
+
+        //ville egenligen använda detta nedan.....
+
+        //    List<Expense> expenseList = db.Expenses.Select(x => new Expense
+        //    {
+        //        ExpenseID = x.ExpenseID,
+        //        ExpenseName = x.ExpenseName,
+        //        Category = x.Category,
+        //        TransactionDate = x.TransactionDate,
+        //        ExpenseAmount = x.ExpenseAmount,
+        //        UserID = x.UserID
+        //    }).ToList();
+        //    return expenseList;
+        //}
 
 
     }
