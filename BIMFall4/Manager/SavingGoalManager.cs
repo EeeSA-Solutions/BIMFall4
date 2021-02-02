@@ -6,7 +6,7 @@ namespace BIMFall4.Manager
     public class SavingGoalManager
     {
 
-        public void CreateSavingGoal(SavingGoal savingGoal)
+        public static void CreateSavingGoal(SavingGoal savingGoal)
         {
             using (var db = new BIMFall4Context())
             {
@@ -15,7 +15,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public void DeleteSavingGoal(int id)
+        public static void DeleteSavingGoal(int id)
         {
             using (var db = new BIMFall4Context())
             {
@@ -27,7 +27,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public SavingGoal GetSavingGoalById(int id)
+        public static SavingGoal GetSavingGoalById(int id)
         {
             using (var db = new BIMFall4Context())
             {

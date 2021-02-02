@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BIMFall4.Manager;
+using BIMFall4.Models;
 
 namespace BIMFall4.Controllers
 {
@@ -22,8 +24,9 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/SavingGoal
-        public void Post([FromBody]string value)
+        public void Post([FromBody]SavingGoal value)
         {
+            SavingGoalManager.CreateSavingGoal(value);
         }
 
         // PUT: api/SavingGoal/5
