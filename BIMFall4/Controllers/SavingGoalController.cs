@@ -19,9 +19,9 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/SavingGoal/5
-        public string Get(int id)
+        public IEnumerable<SavingGoal> Get(int id)
         {
-            return "value";
+            return SavingGoalManager.getSavingGoalById(id);
         }
 
         // POST: api/SavingGoal

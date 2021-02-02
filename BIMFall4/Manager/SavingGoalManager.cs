@@ -1,9 +1,11 @@
 ﻿using BIMFall4.Data;
 using BIMFall4.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BIMFall4.Manager
 {
-    public class SavingGoalManager
+    public static class SavingGoalManager
     {
 
         public static void CreateSavingGoal(SavingGoal savingGoal)
@@ -27,13 +29,24 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static SavingGoal GetSavingGoalById(int id)
+        public static IEnumerable<SavingGoal> getSavingGoalById(int id)
         {
             using (var db = new BIMFall4Context())
             {
-                var savingGoal = db.SavingGoals.Find(id);
-                return savingGoal;
+                var saving = db.SavingGoals.Where(x => x.UserID == id).ToList();
+                return saving;
             }
         }
+
+        //public static SavingGoal GetSavingGoalById(int id)
+        //{
+        //    using (var db = new BIMFall4Context())
+        //    {
+        //        var savingGoal = db.SavingGoals.Find(id);
+        //        return savingGoal;
+        //    }
+        //}
+
+
     }
 }
