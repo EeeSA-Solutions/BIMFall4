@@ -9,7 +9,7 @@ namespace BIMFall4.Manager
 {
     public class BudgetManager
     {
-        public void CreateBudget(Budget budget)
+        public static void CreateBudget(Budget budget)
         {
             using(var db = new BIMFall4Context())
             {
@@ -36,6 +36,13 @@ namespace BIMFall4.Manager
             {
                 var budget = db.Budgets.Find(id);
                 return budget;
+            }
+        }
+        public static IEnumerable<Budget> GetBudgetList()
+        {
+            using (var db = new BIMFall4Context())
+            {
+                return db.Budgets.ToList();
             }
         }
     }

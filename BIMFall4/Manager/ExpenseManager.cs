@@ -31,11 +31,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static Expense GetExpensesById(int id)
+        public static IEnumerable<Expense> GetExpensesById(int id)
         {
             using (var db = new BIMFall4Context())
             {
-                var expense = db.Expenses.Find(id);
+                var expense = db.Expenses.Where(x => x.UserID == id).ToList();
                 return expense;
             }
         }

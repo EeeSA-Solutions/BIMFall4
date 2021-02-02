@@ -22,9 +22,9 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Expense/5
-        public string Get(int id)
+        public IEnumerable<Expense> Get(int id)
         {
-            return "value";
+            return ExpenseManager.GetExpensesById(id);
         }
 
         // POST: api/Expense
