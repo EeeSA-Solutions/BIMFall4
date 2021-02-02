@@ -38,5 +38,12 @@ namespace BIMFall4.Manager
                 return income;
             }
         }
+        public static IEnumerable<Income> GetIncomeList()
+        {
+            using (var db = new BIMFall4Context())
+            {
+                return db.Incomes.ToList();
+            }
+        }
     }
 }

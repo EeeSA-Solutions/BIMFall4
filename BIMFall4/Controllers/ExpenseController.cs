@@ -1,4 +1,5 @@
-﻿using BIMFall4.Manager;
+﻿using BIMFall4.Data;
+using BIMFall4.Manager;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -6,25 +7,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ExpenseController : ApiController
     {
-        
+     
         // GET: api/Expense
-        public IEnumerable<Expense> Get(int expenseid = 1)
+        public IEnumerable<Expense> Get()
         {
-            
-            return ExpenseManager.GetExpenseList(expenseid);
-            
+            return ExpenseManager.GetExpenseList();
         }
 
         // GET: api/Expense/5
-        public string Get()
+        public IEnumerable<Expense> Get(int id)
         {
-            return "value";
+            return ExpenseManager.GetExpensesById(id);
         }
 
         // POST: api/Expense

@@ -12,6 +12,7 @@ namespace BIMFall4.Data
     {
         public BIMFall4Context() : base("name=BudgetImpossibleManagerConnectionsString")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }

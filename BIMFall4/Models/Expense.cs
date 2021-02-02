@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace BIMFall4.Models
 {
@@ -17,6 +18,7 @@ namespace BIMFall4.Models
 
         public string Category { get; set; } //Val av katogorinamn
         public DateTime TransactionDate { get; set; }
+
         public decimal ExpenseAmount { get; set; }
 
         [ForeignKey("User")]
