@@ -13,9 +13,9 @@ namespace BIMFall4.Controllers
     public class SavingGoalController : ApiController
     {
         // GET: api/SavingGoal
-        public IEnumerable<string> Get()
+        public IEnumerable<SavingGoal> Get()
         {
-            return new string[] { "value1", "value2" };
+            return SavingGoalManager.GetSavingGoalList();
         }
 
         // GET: api/SavingGoal/5

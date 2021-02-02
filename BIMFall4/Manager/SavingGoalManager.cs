@@ -38,6 +38,14 @@ namespace BIMFall4.Manager
             }
         }
 
+        public static IEnumerable<SavingGoal> GetSavingGoalList()
+        {
+            using (var db = new BIMFall4Context())
+            {
+                return db.SavingGoals.ToList();
+            }
+        }
+
         //public static SavingGoal GetSavingGoalById(int id)
         //{
         //    using (var db = new BIMFall4Context())
