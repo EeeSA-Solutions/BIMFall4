@@ -9,6 +9,7 @@ using BIMFall4.Models;
 
 namespace BIMFall4.Controllers
 {
+    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SavingGoalController : ApiController
     {
         // GET: api/SavingGoal
