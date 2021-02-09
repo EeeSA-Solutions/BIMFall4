@@ -170,7 +170,9 @@
     <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SavingGoalController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BIMFall4Context.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +181,7 @@
     <Compile Include="Manager\BudgetManager.cs" />
     <Compile Include="Manager\ExpenseManager.cs" />
     <Compile Include="Manager\IncomeManager.cs" />
+    <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Migrations\202101290826496_Initial.cs" />
@@ -189,6 +192,7 @@
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Income.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SavingGoal.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
