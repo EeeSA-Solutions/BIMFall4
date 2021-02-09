@@ -14,7 +14,7 @@ namespace BIMFall4.Models
         public int IncomeID { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
         public string IncomeName { get; set; }
-
+        [Required(AllowEmptyStrings = false), MaxLength(80)]
         public decimal IncomeAmount { get; set; }
        
         public DateTime TransactionDate { get; set; }
