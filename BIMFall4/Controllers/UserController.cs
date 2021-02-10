@@ -13,10 +13,13 @@ namespace BIMFall4.Controllers
     public class UserController : ApiController
     {
         // GET: api/User
-    
+
 
         // GET: api/User/5
-      
+        public User GetUserById(int id)
+        {
+            return UserManager.GetUserByID(id);
+        }
 
         // POST: api/User
         public void Post([FromBody] User value)
