@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -42,7 +42,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                return db.Users.Where(user => user.Email == email).SingleOrDefault(); 
+                return db.Users.Where(user => user.Email == email).FirstOrDefault();
             }
         }
 

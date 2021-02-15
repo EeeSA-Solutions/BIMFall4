@@ -1,4 +1,5 @@
-﻿using BIMFall4.Manager;
+﻿using BIMFall4.Forms;
+using BIMFall4.Manager;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,20 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/User
-        public void Post([FromBody] User value)
+        public Response Post([FromBody] User value)
         {
-            UserManager.CreateUser(value);
-            
+            UserForm form = new UserForm(value);
+
+            if (form.isValid())
+            {
+                UserManager.CreateUser(value);
+                return new Response { Status = "Valid" };
+            }
+            else
+            {
+                return new Response { Status = "Invalid", Message = form.ErrorMessage };
+            }
+
         }
 
         // PUT: api/User/5
