@@ -30,14 +30,6 @@ namespace BIMFall4.Manager
             }
         }
 
-        //public Budget GetBudgetById(int id)
-        //{
-        //    using(var db = new BIMFall4Context())
-        //    {
-        //        var budget = db.Budgets.Find(id);
-        //        return budget;
-        //    }
-        //}
         public static IEnumerable<Budget> GetBudgetList()
         {
             using (var db = new BIMFall4Context())

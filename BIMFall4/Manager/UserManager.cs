@@ -42,7 +42,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                return db.Users.Where(user => user.Email == email).SingleOrDefault(); // error om det finns dubbel
+                return db.Users.Where(user => user.Email == email).SingleOrDefault(); 
             }
         }
 
@@ -53,10 +53,5 @@ namespace BIMFall4.Manager
                 return db.Users.Where(user => user.FirstName == firstName);
             }
         }
-
-
-        // search friends
-        // add friend
-        // remove friend
     }
 }
