@@ -19,9 +19,9 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Income/5
-        public string Get(int id)
+        public IEnumerable<Income> Get(int id)
         {
-            return "value";
+            return IncomeManager.GetIncomeById(id);
         }
 
         // POST: api/Income
