@@ -19,9 +19,9 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Budget/5
-        public string Get(int id)
+        public IEnumerable<Budget> Get(int id)
         {
-            return "value";
+            return BudgetManager.GetBudgetById(id);
         }
 
         // POST: api/Budget

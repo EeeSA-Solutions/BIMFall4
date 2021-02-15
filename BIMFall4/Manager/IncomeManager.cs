@@ -29,20 +29,21 @@ namespace BIMFall4.Manager
                 }
             }
         }
-
-        public Income GetIncomeById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var income = db.Incomes.Find(id);
-                return income;
-            }
-        }
         public static IEnumerable<Income> GetIncomeList()
         {
             using (var db = new BIMFall4Context())
             {
                 return db.Incomes.ToList();
+            }
+        }
+
+
+        public static IEnumerable<Income> GetIncomeById(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var income = db.Incomes.Where(x => x.UserID == id).ToList();
+                return income;
             }
         }
     }

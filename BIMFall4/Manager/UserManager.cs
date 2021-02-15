@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -53,10 +53,5 @@ namespace BIMFall4.Manager
                 return db.Users.Where(user => user.FirstName == firstName);
             }
         }
-
-
-        // search friends
-        // add friend
-        // remove friend
     }
 }

@@ -47,21 +47,5 @@ namespace BIMFall4.Manager
                 return db.Expenses.ToList();
             }
         }
-
-        //ville egenligen använda detta nedan.....
-
-        //    List<Expense> expenseList = db.Expenses.Select(x => new Expense
-        //    {
-        //        ExpenseID = x.ExpenseID,
-        //        ExpenseName = x.ExpenseName,
-        //        Category = x.Category,
-        //        TransactionDate = x.TransactionDate,
-        //        ExpenseAmount = x.ExpenseAmount,
-        //        UserID = x.UserID
-        //    }).ToList();
-        //    return expenseList;
-        //}
-
-
     }
 }
