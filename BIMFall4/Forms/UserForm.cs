@@ -1,4 +1,5 @@
-﻿using BIMFall4.Models;
+﻿using BIMFall4.Manager;
+using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,34 +7,45 @@ using System.Web;
 
 namespace BIMFall4.Forms
 {
-    public class UserForm : User, IForm
+    public class UserForm : IForm
     {
-        private string _erroMessage = "";
-        public string ErrorMessage { get { return _erroMessage; } }
+        private User user;
+        private string _errorMessage = "";
+        
+
+        public string ErrorMessage { get { return _errorMessage; } }
+
+
+        public UserForm(User user)
+        {
+            this.user = user;
+        }
 
         public bool isValid()
         {
-            //if(!this.Email_isValid())
-            //{
-            //    this._erroMessage = "This email is already in use";
-            //    return false;
-            //}
-            //else if(!this.Password_isValid())
-            //{
-            //    this._erroMessage = "Password must be more than 8 characters";
-            //    return false;
-            //}
+            if(!Email_isValid())
+            {
+                _errorMessage = "This email is already in use";
+                return false;
+            }
+            else if(!Password_isValid())
+            {
+                _errorMessage = "Password must be more than 8 characters";
+                return false;
+            }
             return true;
         }
 
         bool Email_isValid()
         {
+            if (UserManager.GetUserByEmail(user.Email) != null)
+                return false;
             return true;
         }
 
         bool Password_isValid()
         {
-            if (Password.Length < 8)
+            if(user.Password.Length < 8)
                 return false;
             return true;
         }
