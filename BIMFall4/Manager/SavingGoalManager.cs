@@ -45,16 +45,5 @@ namespace BIMFall4.Manager
                 return db.SavingGoals.ToList();
             }
         }
-
-        //public static SavingGoal GetSavingGoalById(int id)
-        //{
-        //    using (var db = new BIMFall4Context())
-        //    {
-        //        var savingGoal = db.SavingGoals.Find(id);
-        //        return savingGoal;
-        //    }
-        //}
-
-
     }
 }
