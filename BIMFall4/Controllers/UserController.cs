@@ -25,7 +25,7 @@ namespace BIMFall4.Controllers
         // POST: api/User
         public Response Post([FromBody] User value)
         {
-            UserForm form = new UserForm(value);
+            var form = new UserForm(value);
 
             if (form.isValid())
             {
