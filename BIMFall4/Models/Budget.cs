@@ -18,6 +18,6 @@ namespace BIMFall4.Models
         public int UserID { get; set; }
 
         public virtual User User { get; set; }
-        
+        public DateTime Date { get; set; }
     }
 }
