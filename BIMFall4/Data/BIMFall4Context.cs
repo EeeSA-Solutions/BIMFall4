@@ -15,6 +15,7 @@ namespace BIMFall4.Data
             base.Configuration.ProxyCreationEnabled = false;
         }
 
+        public DbSet<Friend> Friends { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }
