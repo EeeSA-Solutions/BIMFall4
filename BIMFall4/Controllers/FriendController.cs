@@ -21,10 +21,10 @@ namespace BIMFall4.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Friend/5
-        public string Get(int id)
+        // GET: api/Friend/id
+        public IEnumerable<Friend> Get(int id)
         {
-            return "value";
+            return FriendManager.GetPending(id);
         }
 
         // POST: api/Friend

@@ -192,13 +192,13 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202103041326290_Initial.cs" />
-    <Compile Include="Migrations\202103041326290_Initial.designer.cs">
-      <DependentUpon>202103041326290_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202103051026164_initial.cs" />
+    <Compile Include="Migrations\202103051026164_initial.designer.cs">
+      <DependentUpon>202103051026164_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103041331489_FriendModel.cs" />
-    <Compile Include="Migrations\202103041331489_FriendModel.designer.cs">
-      <DependentUpon>202103041331489_FriendModel.cs</DependentUpon>
+    <Compile Include="Migrations\202103051058103_toemail-namechange.cs" />
+    <Compile Include="Migrations\202103051058103_toemail-namechange.designer.cs">
+      <DependentUpon>202103051058103_toemail-namechange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Budget.cs" />
@@ -294,11 +294,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103041326290_Initial.resx">
-      <DependentUpon>202103041326290_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103051026164_initial.resx">
+      <DependentUpon>202103051026164_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103041331489_FriendModel.resx">
-      <DependentUpon>202103041331489_FriendModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103051058103_toemail-namechange.resx">
+      <DependentUpon>202103051058103_toemail-namechange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
