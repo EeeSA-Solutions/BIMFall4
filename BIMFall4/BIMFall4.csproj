@@ -200,6 +200,10 @@
     <Compile Include="Migrations\202103051058103_toemail-namechange.designer.cs">
       <DependentUpon>202103051058103_toemail-namechange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103091539344_social.cs" />
+    <Compile Include="Migrations\202103091539344_social.designer.cs">
+      <DependentUpon>202103091539344_social.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
@@ -299,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103051058103_toemail-namechange.resx">
       <DependentUpon>202103051058103_toemail-namechange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103091539344_social.resx">
+      <DependentUpon>202103091539344_social.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
