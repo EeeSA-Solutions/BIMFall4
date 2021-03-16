@@ -197,6 +197,7 @@
       <DependentUpon>202103100809292_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelDTO\UserDTO.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Friend.cs" />

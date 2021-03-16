@@ -7,15 +7,6 @@ using System.Web;
 
 namespace BIMFall4.Models
 {
-    public class UserDto
-    {
-        public int UserID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-    }
-
-
     public class User
     {
         [Key]
@@ -33,6 +24,5 @@ namespace BIMFall4.Models
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }
         public virtual ICollection<SavingGoal> SavingGoals { get; set; }
-        
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using BIMFall4.Models;
 using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 
 namespace BIMFall4.Manager
 {
@@ -30,15 +31,33 @@ namespace BIMFall4.Manager
             }
         }
 
-        static public User GetUserByID(int id)
+        static public UserDTO GetUserById(int id)
         {
+
             using (var db = new BIMFall4Context())
             {
-                var SafeUser = db.Users.Find(id);
-                SafeUser.Password = "";
-                return SafeUser;
+                var user = db.Users.FirstOrDefault(x => x.UserID == id);
+                var userdto = new UserDTO
+                {
+                    UserID = user.UserID,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email
+                };
+
+                return userdto;
             }
         }
+
+        //static public User GetUserByID(int id)
+        //{
+        //    using (var db = new BIMFall4Context())
+        //    {
+        //        var SafeUser = db.Users.Find(id);
+        //        SafeUser.Password = "";
+        //        return SafeUser;
+        //    }
+        //}
 
         static public User GetUserByEmail(string email)
         {

@@ -2,6 +2,7 @@
 using BIMFall4.Manager;
 using BIMFall4.Models;
 using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +13,16 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using System.Data.Entity;
 
+
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-        // GET: api/User
-        public IQueryable<UserDto> GetUser(int id)
+        // GET: api/User/5
+        public UserDTO GetSafeUserById(int id)
         {
-            using (var db = new BIMFall4Context())
-            {
-                var user = from x in db.Users
-                           select new UserDto()
-                           {
-                               UserID = x.UserID,
-                               FirstName = x.FirstName,
-                               LastName = x.LastName,
-                               Email = x.Email
-                           };
-                return user;
-            }
+           return UserManager.GetUserById(id);
         }
 
         //googla - - - eagerload relations
