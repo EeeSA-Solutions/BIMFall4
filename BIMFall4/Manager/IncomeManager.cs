@@ -61,7 +61,7 @@ namespace BIMFall4.Manager
                     incomelist.Add(new IncomeDTO
                     {
                         Amount = item.Amount,
-                        IncomeName = item.IncomeName,
+                        Name = item.Name,
                         Date = item.Date
 
 

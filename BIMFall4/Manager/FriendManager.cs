@@ -25,7 +25,7 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var mail = db.Users.Where(user => user.Email == email).FirstOrDefault();
-                int id = mail.UserID;
+                int id = mail.ID;
                 return id;
             }
         }

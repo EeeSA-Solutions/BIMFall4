@@ -62,7 +62,7 @@ namespace BIMFall4.Manager
                         ReachDate = item.ReachDate,
                         StartDate = item.StartDate,
                         Amount = item.Amount,
-                        GoalName = item.GoalName
+                        Name = item.Name
                     });
 
                 }

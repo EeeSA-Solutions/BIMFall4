@@ -9,7 +9,7 @@ namespace BIMFall4.ModelDTO
     {
         public DateTime StartDate { get; set; }
         public DateTime ReachDate { get; set; }
-        public string GoalName { get; set; }
+        public string Name { get; set; }
         public decimal Amount { get; set; }
     }
 }

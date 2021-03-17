@@ -11,9 +11,9 @@ namespace BIMFall4.Models
     {
         
         [Key]
-        public int IncomeID { get; set; }
+        public int ID { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
-        public string IncomeName { get; set; }
+        public string Name { get; set; }
 
         public decimal Amount { get; set; }
         [Column(TypeName = "Date")]

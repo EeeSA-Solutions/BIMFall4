@@ -200,6 +200,10 @@
     <Compile Include="Migrations\202103171331582_third.designer.cs">
       <DependentUpon>202103171331582_third.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103171410402_fourth.cs" />
+    <Compile Include="Migrations\202103171410402_fourth.designer.cs">
+      <DependentUpon>202103171410402_fourth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
@@ -304,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103171331582_third.resx">
       <DependentUpon>202103171331582_third.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103171410402_fourth.resx">
+      <DependentUpon>202103171410402_fourth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

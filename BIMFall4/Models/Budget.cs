@@ -10,7 +10,7 @@ namespace BIMFall4.Models
     public class Budget
     {
         [Key]
-        public int BudgetId { get; set; }
+        public int ID { get; set; }
         public string Category { get; set; }
         public decimal Amount { get; set; }
 

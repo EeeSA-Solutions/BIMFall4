@@ -36,10 +36,10 @@ namespace BIMFall4.Manager
 
             using (var db = new BIMFall4Context())
             {
-                var user = db.Users.FirstOrDefault(x => x.UserID == id);
+                var user = db.Users.FirstOrDefault(x => x.ID == id);
                 var userdto = new UserDTO
                 {
-                    UserID = user.UserID,
+                    ID = user.ID,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email

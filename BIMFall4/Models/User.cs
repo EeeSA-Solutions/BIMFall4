@@ -10,7 +10,7 @@ namespace BIMFall4.Models
     public class User
     {
         [Key]
-        public int UserID { get; set; }
+        public int ID { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
         public string FirstName { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]

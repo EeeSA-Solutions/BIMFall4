@@ -7,7 +7,7 @@ namespace BIMFall4.ModelDTO
 {
     public class IncomeDTO
     {    
-        public string IncomeName { get; set; }
+        public string Name { get; set; }
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
     }

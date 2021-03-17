@@ -62,7 +62,7 @@ namespace BIMFall4.Manager
                 {
                     expenselist.Add(new ExpenseDTO
                     {
-                        ExpenseName = item.ExpenseName,
+                        Name = item.Name,
                         Category = item.Category,
                         Date = item.Date,
                         Amount = item.Amount
