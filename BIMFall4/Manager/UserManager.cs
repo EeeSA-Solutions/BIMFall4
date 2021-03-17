@@ -34,7 +34,9 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                return db.Users.Find(id);
+                var SafeUser = db.Users.Find(id);
+                SafeUser.Password = "";
+                return SafeUser;
             }
         }
 
