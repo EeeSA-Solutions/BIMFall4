@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Budget/5
-        public IEnumerable<Budget> Get(int id)
+        public IEnumerable<BudgetDTO> Get(int id)
         {
-            return BudgetManager.GetBudgetById(id);
+            return BudgetManager.GetBudgetDtoById(id);
         }
 
         // POST: api/Budget

@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,31 @@ namespace BIMFall4.Manager
             {
                 var income = db.Incomes.Where(x => x.UserID == id).ToList();
                 return income;
+            }
+        }
+
+        public static IEnumerable<IncomeDTO> GetIncomeDtoById(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var inc = db.Incomes.Where(x => x.UserID == id).ToList();
+
+                var incomelist = new List<IncomeDTO>();
+
+                foreach (var item in inc)
+                {
+                    incomelist.Add(new IncomeDTO
+                    {
+                        IncomeAmount = item.IncomeAmount,
+                        IncomeName = item.IncomeName,
+                        TransactionDate = item.TransactionDate
+
+
+                    });
+
+                }
+
+                return incomelist;
             }
         }
     }

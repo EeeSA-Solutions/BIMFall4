@@ -197,7 +197,10 @@
       <DependentUpon>202103171219535_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
+    <Compile Include="ModelDTO\IncomeDTO.cs" />
+    <Compile Include="ModelDTO\SavingGoalDTO.cs" />
     <Compile Include="ModelDTO\UserDTO.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />

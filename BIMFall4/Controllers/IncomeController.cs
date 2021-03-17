@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Income/5
-        public IEnumerable<Income> Get(int id)
+        public IEnumerable<IncomeDTO> Get(int id)
         {
-            return IncomeManager.GetIncomeById(id);
+            return IncomeManager.GetIncomeDtoById(id);
         }
 
         // POST: api/Income

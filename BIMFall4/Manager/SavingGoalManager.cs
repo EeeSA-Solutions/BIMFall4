@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,30 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 return db.SavingGoals.ToList();
+            }
+        }
+
+        public static IEnumerable<SavingGoalDTO> GetSavingGoalDtoById(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var goal = db.SavingGoals.Where(x => x.UserID == id).ToList();
+
+                var goallist = new List<SavingGoalDTO>();
+
+                foreach (var item in goal)
+                {
+                    goallist.Add(new SavingGoalDTO
+                    {
+                        ReachDate = item.ReachDate,
+                        StartDate = item.StartDate,
+                        Amount = item.Amount,
+                        GoalName = item.GoalName
+                    });
+
+                }
+
+                return goallist;
             }
         }
     }
