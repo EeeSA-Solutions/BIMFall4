@@ -17,9 +17,10 @@ namespace BIMFall4.Models
         public string ExpenseName { get; set; }
 
         public string Category { get; set; } //Val av katogorinamn
-        public DateTime TransactionDate { get; set; }
+        [Column(TypeName = "Date")]
+        public DateTime Date { get; set; }
 
-        public decimal ExpenseAmount { get; set; }
+        public decimal Amount { get; set; }
 
         [ForeignKey("User")]
         public int UserID { get; set; }

@@ -64,8 +64,8 @@ namespace BIMFall4.Manager
                     {
                         ExpenseName = item.ExpenseName,
                         Category = item.Category,
-                        TransactionDate = item.TransactionDate,
-                        ExpenseAmount = item.ExpenseAmount
+                        Date = item.Date,
+                        Amount = item.Amount
 
 
                     });

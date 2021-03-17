@@ -9,7 +9,7 @@ namespace BIMFall4.ModelDTO
     {   
         public string ExpenseName { get; set; }
         public string Category { get; set; } 
-        public DateTime TransactionDate { get; set; }
-        public decimal ExpenseAmount { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Amount { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace BIMFall4.Models
         public int UserID { get; set; }
 
         public virtual User User { get; set; }
+        [Column(TypeName = "Date")]
         public DateTime Date { get; set; }
     }
 }
