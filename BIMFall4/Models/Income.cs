@@ -14,7 +14,7 @@ namespace BIMFall4.Models
         public int ID { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
         public string Name { get; set; }
-
+        //[Range(0, Decimal.)]
         public decimal Amount { get; set; }
         [Column(TypeName = "Date")]
 

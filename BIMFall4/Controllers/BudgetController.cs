@@ -26,9 +26,18 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/Budget
-        public void Post([FromBody]Budget value)
+        public bool Post([FromBody]Budget value)
         {
-            BudgetManager.CreateBudget(value);
+            if(value.Amount > 0)
+            {
+                BudgetManager.CreateBudget(value);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
 
         }
 

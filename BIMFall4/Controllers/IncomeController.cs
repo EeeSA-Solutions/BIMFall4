@@ -26,10 +26,20 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/Income
-        public void Post([FromBody]Income value)
+        public bool Post([FromBody]Income value)
         {
-            IncomeManager obj = new IncomeManager();
-            obj.CreateIncome(value);
+
+            if(value.Amount > 0)
+            {
+                IncomeManager.CreateIncome(value);
+                return true;
+            }
+            else
+            {
+                
+                return false;
+                
+            }
         }
 
         // PUT: api/Income/5

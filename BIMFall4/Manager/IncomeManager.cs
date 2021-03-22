@@ -10,16 +10,17 @@ namespace BIMFall4.Manager
 {
     public class IncomeManager
     {
-        public void CreateIncome(Income income)
+        public static void CreateIncome(Income income)
         {
-            using (BIMFall4Context db = new BIMFall4Context())
-            {
-                db.Incomes.Add(income);
-                db.SaveChanges();
-            }
+
+                using (BIMFall4Context db = new BIMFall4Context())
+                {
+                    db.Incomes.Add(income);
+                    db.SaveChanges();
+                }
         }
 
-        public void DeleteIncome(int id)
+        public static void DeleteIncome(int id)
         {
             using (BIMFall4Context db = new BIMFall4Context())
             {

@@ -26,9 +26,18 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/SavingGoal
-        public void Post([FromBody]SavingGoal value)
+        public bool Post([FromBody]SavingGoal value)
         {
-            SavingGoalManager.CreateSavingGoal(value);
+            if(value.Amount > 0)
+            {
+                SavingGoalManager.CreateSavingGoal(value);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         // PUT: api/SavingGoal/5

@@ -192,17 +192,9 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202103171325155_second.cs" />
-    <Compile Include="Migrations\202103171325155_second.designer.cs">
-      <DependentUpon>202103171325155_second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103171331582_third.cs" />
-    <Compile Include="Migrations\202103171331582_third.designer.cs">
-      <DependentUpon>202103171331582_third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103171410402_fourth.cs" />
-    <Compile Include="Migrations\202103171410402_fourth.designer.cs">
-      <DependentUpon>202103171410402_fourth.cs</DependentUpon>
+    <Compile Include="Migrations\202103181254209_initial.cs" />
+    <Compile Include="Migrations\202103181254209_initial.designer.cs">
+      <DependentUpon>202103181254209_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -303,14 +295,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103171325155_second.resx">
-      <DependentUpon>202103171325155_second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103171331582_third.resx">
-      <DependentUpon>202103171331582_third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103171410402_fourth.resx">
-      <DependentUpon>202103171410402_fourth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103181254209_initial.resx">
+      <DependentUpon>202103181254209_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,6 +12,7 @@ namespace BIMFall4.Models
         [Key]
         public int ID { get; set; }
         public string Category { get; set; }
+        
         public decimal Amount { get; set; }
 
         [ForeignKey("User")]

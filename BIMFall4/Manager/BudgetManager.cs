@@ -51,6 +51,7 @@ namespace BIMFall4.Manager
 
         public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
         {
+            
             using (var db = new BIMFall4Context())
             {
                 var bud = db.Budgets.Where(x => x.UserID == id).ToList();

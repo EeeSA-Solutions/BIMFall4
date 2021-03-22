@@ -29,10 +29,18 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/Expense
-        public string Post([FromBody]Expense value)
+        public bool Post([FromBody]Expense value)
         {
-            ExpenseManager.CreateExpense(value);
-            return "det gick bra";
+            if(value.Amount > 0)
+            {
+                ExpenseManager.CreateExpense(value);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         // PUT: api/Expense/5

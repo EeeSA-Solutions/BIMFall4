@@ -17,6 +17,7 @@ namespace BIMFall4.Models
         public DateTime ReachDate { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
         public string Name { get; set; }
+        
         public decimal Amount { get; set; }
 
         [ForeignKey("User")]
