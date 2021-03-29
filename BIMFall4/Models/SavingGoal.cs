@@ -10,11 +10,14 @@ namespace BIMFall4.Models
     public class SavingGoal
     {
         [Key]
-        public int SavingGoalID { set; get; }
+        public int ID { set; get; }
+        [Column(TypeName = "Date")]
         public DateTime StartDate { get; set; }
+        [Column(TypeName = "Date")]
         public DateTime ReachDate { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
-        public string GoalName { get; set; }
+        public string Name { get; set; }
+        
         public decimal Amount { get; set; }
 
         [ForeignKey("User")]

@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -19,16 +20,26 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Income/5
-        public string Get(int id)
+        public IEnumerable<IncomeDTO> Get(int id)
         {
-            return "value";
+            return IncomeManager.GetIncomeDtoById(id);
         }
 
         // POST: api/Income
-        public void Post([FromBody]Income value)
+        public bool Post([FromBody]Income value)
         {
-            IncomeManager obj = new IncomeManager();
-            obj.CreateIncome(value);
+
+            if(value.Amount > 0)
+            {
+                IncomeManager.CreateIncome(value);
+                return true;
+            }
+            else
+            {
+                
+                return false;
+                
+            }
         }
 
         // PUT: api/Income/5

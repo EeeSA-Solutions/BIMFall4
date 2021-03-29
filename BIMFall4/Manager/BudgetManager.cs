@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -30,19 +31,47 @@ namespace BIMFall4.Manager
             }
         }
 
-        public Budget GetBudgetById(int id)
-        {
-            using(var db = new BIMFall4Context())
-            {
-                var budget = db.Budgets.Find(id);
-                return budget;
-            }
-        }
         public static IEnumerable<Budget> GetBudgetList()
         {
             using (var db = new BIMFall4Context())
             {
                 return db.Budgets.ToList();
+            }
+        }
+
+
+        public static IEnumerable<Budget> GetBudgetById(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var budget = db.Budgets.Where(x => x.UserID == id).ToList();
+                return budget;
+            }
+        }
+
+        public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
+        {
+            
+            using (var db = new BIMFall4Context())
+            {
+                var bud = db.Budgets.Where(x => x.UserID == id).ToList();
+
+                var budgetlist = new List<BudgetDTO>();
+
+                foreach (var item in bud)
+                {
+                    budgetlist.Add(new BudgetDTO
+                    {
+                        Category = item.Category,
+                        Amount = item.Amount,
+                        Date = item.Date
+
+
+                    });
+
+                }
+
+                return budgetlist;
             }
         }
     }

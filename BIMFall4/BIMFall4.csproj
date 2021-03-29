@@ -168,27 +168,45 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SavingGoalController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BIMFall4Context.cs" />
+    <Compile Include="Forms\UserValidations\BaseValidate.cs" />
+    <Compile Include="Forms\IForm.cs" />
+    <Compile Include="Forms\UserValidations\IValidateHandler.cs" />
+    <Compile Include="Forms\UserForm.cs" />
+    <Compile Include="Forms\UserValidations\UserValidator.cs" />
+    <Compile Include="Forms\UserValidations\Validations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Manager\BudgetManager.cs" />
     <Compile Include="Manager\ExpenseManager.cs" />
+    <Compile Include="Manager\FriendManager.cs" />
     <Compile Include="Manager\IncomeManager.cs" />
+    <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202101290826496_Initial.cs" />
-    <Compile Include="Migrations\202101290826496_Initial.designer.cs">
-      <DependentUpon>202101290826496_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202103181254209_initial.cs" />
+    <Compile Include="Migrations\202103181254209_initial.designer.cs">
+      <DependentUpon>202103181254209_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelDTO\BudgetDTO.cs" />
+    <Compile Include="ModelDTO\ExpenseDTO.cs" />
+    <Compile Include="ModelDTO\IncomeDTO.cs" />
+    <Compile Include="ModelDTO\SavingGoalDTO.cs" />
+    <Compile Include="ModelDTO\UserDTO.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Income.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SavingGoal.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -277,8 +295,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101290826496_Initial.resx">
-      <DependentUpon>202101290826496_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103181254209_initial.resx">
+      <DependentUpon>202103181254209_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

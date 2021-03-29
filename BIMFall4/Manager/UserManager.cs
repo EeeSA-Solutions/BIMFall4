@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BIMFall4.Models;
 using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 
 namespace BIMFall4.Manager
 {
@@ -30,19 +31,39 @@ namespace BIMFall4.Manager
             }
         }
 
-        static public User GetUserByID(int id)
+        static public UserDTO GetUserById(int id)
         {
+
             using (var db = new BIMFall4Context())
             {
-                return db.Users.Find(id);
+                var user = db.Users.FirstOrDefault(x => x.ID == id);
+                var userdto = new UserDTO
+                {
+                    ID = user.ID,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email
+                };
+
+                return userdto;
             }
         }
+
+        //static public User GetUserByID(int id)
+        //{
+        //    using (var db = new BIMFall4Context())
+        //    {
+        //        var SafeUser = db.Users.Find(id);
+        //        SafeUser.Password = "";
+        //        return SafeUser;
+        //    }
+        //}
 
         static public User GetUserByEmail(string email)
         {
             using (var db = new BIMFall4Context())
             {
-                return db.Users.Where(user => user.Email == email).SingleOrDefault(); // error om det finns dubbel
+                return db.Users.Where(user => user.Email == email).FirstOrDefault();
             }
         }
 
@@ -53,10 +74,5 @@ namespace BIMFall4.Manager
                 return db.Users.Where(user => user.FirstName == firstName);
             }
         }
-
-
-        // search friends
-        // add friend
-        // remove friend
     }
 }

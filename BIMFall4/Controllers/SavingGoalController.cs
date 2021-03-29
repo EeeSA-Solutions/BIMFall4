@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 
 namespace BIMFall4.Controllers
@@ -19,15 +20,24 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/SavingGoal/5
-        public IEnumerable<SavingGoal> Get(int id)
+        public IEnumerable<SavingGoalDTO> Get(int id)
         {
-            return SavingGoalManager.getSavingGoalById(id);
+            return SavingGoalManager.GetSavingGoalDtoById(id);
         }
 
         // POST: api/SavingGoal
-        public void Post([FromBody]SavingGoal value)
+        public bool Post([FromBody]SavingGoal value)
         {
-            SavingGoalManager.CreateSavingGoal(value);
+            if(value.Amount > 0)
+            {
+                SavingGoalManager.CreateSavingGoal(value);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         // PUT: api/SavingGoal/5

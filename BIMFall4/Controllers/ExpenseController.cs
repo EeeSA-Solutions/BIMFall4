@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
+using BIMFall4.ModelDTO;
 
 namespace BIMFall4.Controllers
 {
@@ -22,16 +23,24 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Expense/5
-        public IEnumerable<Expense> Get(int id)
+        public IEnumerable<ExpenseDTO> Get(int id)
         {
-            return ExpenseManager.GetExpensesById(id);
+            return ExpenseManager.GetExpenseDtoById(id);
         }
 
         // POST: api/Expense
-        public string Post([FromBody]Expense value)
+        public bool Post([FromBody]Expense value)
         {
-            ExpenseManager.CreateExpense(value);
-            return "det gick bra";
+            if(value.Amount > 0)
+            {
+                ExpenseManager.CreateExpense(value);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         // PUT: api/Expense/5

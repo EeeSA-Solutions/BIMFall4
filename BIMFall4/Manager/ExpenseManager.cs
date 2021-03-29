@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using BIMFall4.ModelDTO;
 
 namespace BIMFall4.Manager
 {
@@ -48,20 +49,31 @@ namespace BIMFall4.Manager
             }
         }
 
-        //ville egenligen använda detta nedan.....
 
-        //    List<Expense> expenseList = db.Expenses.Select(x => new Expense
-        //    {
-        //        ExpenseID = x.ExpenseID,
-        //        ExpenseName = x.ExpenseName,
-        //        Category = x.Category,
-        //        TransactionDate = x.TransactionDate,
-        //        ExpenseAmount = x.ExpenseAmount,
-        //        UserID = x.UserID
-        //    }).ToList();
-        //    return expenseList;
-        //}
+        public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
+        {
+            using(var db = new BIMFall4Context())
+            {
+                var exp = db.Expenses.Where(x => x.UserID == id).ToList();
+
+                var expenselist = new List<ExpenseDTO>();
+
+                foreach (var item in exp)
+                {
+                    expenselist.Add(new ExpenseDTO
+                    {
+                        Name = item.Name,
+                        Category = item.Category,
+                        Date = item.Date,
+                        Amount = item.Amount
 
 
+                    });
+                   
+                }
+
+                return expenselist;
+            }
+        }
     }
 }
