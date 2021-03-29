@@ -62,11 +62,10 @@ namespace BIMFall4.Manager
                 {
                     budgetlist.Add(new BudgetDTO
                     {
+                        ID = item.ID,
                         Category = item.Category,
                         Amount = item.Amount,
                         Date = item.Date
-
-
                     });
 
                 }

@@ -7,6 +7,7 @@ namespace BIMFall4.ModelDTO
 {
     public class SavingGoalDTO
     {
+        public int ID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ReachDate { get; set; }
         public string Name { get; set; }

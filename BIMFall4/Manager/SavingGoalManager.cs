@@ -59,6 +59,7 @@ namespace BIMFall4.Manager
                 {
                     goallist.Add(new SavingGoalDTO
                     {
+                        ID = item.ID,
                         ReachDate = item.ReachDate,
                         StartDate = item.StartDate,
                         Amount = item.Amount,
