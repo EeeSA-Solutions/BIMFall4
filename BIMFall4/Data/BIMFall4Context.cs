@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BIMFall4.Models;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
-using BIMFall4.Models;
 
 
 namespace BIMFall4.Data
@@ -13,7 +8,7 @@ namespace BIMFall4.Data
     {
         public BIMFall4Context() : base("name=BudgetImpossibleManagerConnectionsString")
         {
-            
+
         }
 
         public DbSet<Pending> Pendings { get; set; }
@@ -25,10 +20,14 @@ namespace BIMFall4.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-                    
+            modelBuilder.Entity<User>()
+         .HasMany(p => p.Pendings)
+         .WithMany()
+         .Map(m => {
+       m.MapLeftKey("From_ID");
+       m.MapRightKey("To_ID");
+       m.ToTable("Related_Pending");
+   });
         }
-
     }
 }

@@ -12,16 +12,8 @@ namespace BIMFall4.Models
         [Column(Order = 2)]
         public int To_ID { get; set; }
 
-        [ForeignKey("From_ID")]
-        
-        public User ID { get; set; }
-
-        [ForeignKey("To_ID")]
-        
-        public User To_User { get; set; }
-
-        [NotMapped]
-        public string To_Email { get; set; }
+        //[NotMapped]
+        //public string To_Email { get; set; }
     }
 }
 

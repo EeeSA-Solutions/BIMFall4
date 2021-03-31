@@ -46,9 +46,8 @@ namespace BIMFall4.Manager
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    Pendings = user.Pendings
+           
                 };
-
                 return userdto;
             }
         }
