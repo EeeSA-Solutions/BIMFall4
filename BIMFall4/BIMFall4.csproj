@@ -192,13 +192,9 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202103301126255_try.cs" />
-    <Compile Include="Migrations\202103301126255_try.designer.cs">
-      <DependentUpon>202103301126255_try.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103301219250_finltr.cs" />
-    <Compile Include="Migrations\202103301219250_finltr.designer.cs">
-      <DependentUpon>202103301219250_finltr.cs</DependentUpon>
+    <Compile Include="Migrations\202103310839106_try.cs" />
+    <Compile Include="Migrations\202103310839106_try.designer.cs">
+      <DependentUpon>202103310839106_try.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -299,11 +295,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103301126255_try.resx">
-      <DependentUpon>202103301126255_try.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103301219250_finltr.resx">
-      <DependentUpon>202103301219250_finltr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103310839106_try.resx">
+      <DependentUpon>202103310839106_try.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

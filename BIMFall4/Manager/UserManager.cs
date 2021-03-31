@@ -5,6 +5,7 @@ using System.Web;
 using BIMFall4.Models;
 using BIMFall4.Data;
 using BIMFall4.ModelDTO;
+using System.Data.Entity;
 
 namespace BIMFall4.Manager
 {
@@ -37,12 +38,15 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var user = db.Users.FirstOrDefault(x => x.ID == id);
+                //var user = db.Users.Where(s => s.ID == id).Include(u => u.Pendings).FirstOrDefault()
+                var b = user.Budgets;
                 var userdto = new UserDTO
                 {
                     ID = user.ID,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    Email = user.Email
+                    Email = user.Email,
+                    Pendings = user.Pendings
                 };
 
                 return userdto;

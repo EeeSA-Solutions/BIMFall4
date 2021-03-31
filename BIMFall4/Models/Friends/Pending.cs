@@ -18,7 +18,7 @@ namespace BIMFall4.Models
 
         [ForeignKey("To_ID")]
         
-        public User Friend_ID { get; set; }
+        public User To_User { get; set; }
 
         [NotMapped]
         public string To_Email { get; set; }

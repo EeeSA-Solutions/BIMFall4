@@ -21,7 +21,7 @@ namespace BIMFall4.Models
         [Required(AllowEmptyStrings = false), MinLength(8)]
         public string Password { get; set; }
         [Column("Friend_ID")]
-        public ICollection<User> Friend_ID { get; set; } //<--Friends of user
+        public ICollection<Pending> Pendings { get; set; } //<--Friends of user
         public virtual ICollection<Income> Incomes { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }
