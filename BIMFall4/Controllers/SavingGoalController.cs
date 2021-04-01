@@ -48,6 +48,7 @@ namespace BIMFall4.Controllers
         // DELETE: api/SavingGoal/5
         public void Delete(int id)
         {
+            SavingGoalManager.DeleteSavingGoal(id);
         }
     }
 }

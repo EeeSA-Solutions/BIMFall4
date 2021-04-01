@@ -49,6 +49,7 @@ namespace BIMFall4.Controllers
         // DELETE: api/Budget/5
         public void Delete(int id)
         {
+            BudgetManager.DeleteBudget(id);
         }
     }
 }
