@@ -9,16 +9,17 @@ namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        //public static void AddFriend(Pending value)
-        //{
-        //    var to_ID = GetUserIDByEmail(value.To_Email);
-        //    value.To_ID = to_ID;
-        //    using (var db = new BIMFall4Context())
-        //    {
-        //        db.Pendings.Add(value);
-        //        db.SaveChanges();
-        //    }
-        //}
+        public void AddFriend(User value)
+        {
+            var to_ID = GetUserIDByEmail(value.Email);
+            value.RelatedUser = GetUserIDByEmail(value.Email);
+            value.Users = value.ID();
+            using (var db = new BIMFall4Context())
+            {
+                db.Users.Add(value);
+                db.SaveChanges();
+            }
+        }
 
         static public int GetUserIDByEmail(string email)
         {

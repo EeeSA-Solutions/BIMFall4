@@ -9,6 +9,5 @@ namespace BIMFall4.ModelDTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public ICollection<Pending> Pendings { get; set; }
     }
 }

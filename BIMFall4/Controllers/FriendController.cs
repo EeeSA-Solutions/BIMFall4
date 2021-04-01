@@ -28,9 +28,9 @@ namespace BIMFall4.Controllers
         //}
 
         // POST: api/Friend
-        public void Post([FromBody] Pending value)
+        public void Post([FromBody] User value)
         {
-            //FriendManager.AddFriend(value);
+            FriendManager.AddFriend(value);
         }
 
         // PUT: api/Friend/5

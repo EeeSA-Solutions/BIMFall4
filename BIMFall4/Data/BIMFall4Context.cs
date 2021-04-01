@@ -11,7 +11,6 @@ namespace BIMFall4.Data
 
         }
 
-        public DbSet<Pending> Pendings { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }
@@ -21,13 +20,21 @@ namespace BIMFall4.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-         .HasMany(p => p.Pendings)
-         .WithMany()
-         .Map(m => {
-       m.MapLeftKey("From_ID");
-       m.MapRightKey("To_ID");
-       m.ToTable("Related_Pending");
-   });
+            .HasMany(p => p.Users)
+            .WithMany()
+            .Map(m => {
+                 m.MapLeftKey("ID");
+                 m.MapRightKey("Users");
+                 m.ToTable("Pending");
+            });
+            modelBuilder.Entity<User>()
+            .HasMany(p => p.Users)
+            .WithMany()
+            .Map(m => {
+                m.MapLeftKey("ID");
+                m.MapRightKey("RelatedUser");
+                m.ToTable("Pending");
+            });
         }
     }
 }
