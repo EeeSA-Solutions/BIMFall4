@@ -16,25 +16,23 @@ namespace BIMFall4.Data
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<SavingGoal> SavingGoals { get; set; }
-
+       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<FriendTable>()
+            //.HasKey(f => new { f.User, f.Friend } );
+
+            
             modelBuilder.Entity<User>()
-            .HasMany(p => p.Users)
-            .WithMany()
-            .Map(m => {
-                 m.MapLeftKey("ID");
-                 m.MapRightKey("Users");
-                 m.ToTable("Pending");
-            });
-            modelBuilder.Entity<User>()
-            .HasMany(p => p.Users)
-            .WithMany()
-            .Map(m => {
-                m.MapLeftKey("ID");
-                m.MapRightKey("RelatedUser");
-                m.ToTable("Pending");
-            });
+                .HasOptional(u => u.Friend)
+                .WithMany()
+                .HasForeignKey(m => m.ID)
+                .WillCascadeOnDelete(false);
+
+            
+
+
+            
         }
     }
 }
