@@ -192,13 +192,17 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202104061345303_initial.cs" />
-    <Compile Include="Migrations\202104061345303_initial.designer.cs">
-      <DependentUpon>202104061345303_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202104061457386_initial.cs" />
+    <Compile Include="Migrations\202104061457386_initial.designer.cs">
+      <DependentUpon>202104061457386_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104061354322_initial2.cs" />
-    <Compile Include="Migrations\202104061354322_initial2.designer.cs">
-      <DependentUpon>202104061354322_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\202104061511505_initial2.cs" />
+    <Compile Include="Migrations\202104061511505_initial2.designer.cs">
+      <DependentUpon>202104061511505_initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104061530380_initial3.cs" />
+    <Compile Include="Migrations\202104061530380_initial3.designer.cs">
+      <DependentUpon>202104061530380_initial3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -208,6 +212,7 @@
     <Compile Include="ModelDTO\UserDTO.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Income.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SavingGoal.cs" />
@@ -298,11 +303,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104061345303_initial.resx">
-      <DependentUpon>202104061345303_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104061457386_initial.resx">
+      <DependentUpon>202104061457386_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104061354322_initial2.resx">
-      <DependentUpon>202104061354322_initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104061511505_initial2.resx">
+      <DependentUpon>202104061511505_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104061530380_initial3.resx">
+      <DependentUpon>202104061530380_initial3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿using BIMFall4.Models;
 using System.Data.Entity;
-
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace BIMFall4.Data
 {
@@ -16,25 +16,12 @@ namespace BIMFall4.Data
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<SavingGoal> SavingGoals { get; set; }
-       
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public DbSet<Friend> Friends { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelbuilder)
         {
-            //modelBuilder.Entity<FriendTable>()
-            //.HasKey(f => new { f.User, f.Friend } );
-
-
-            modelBuilder.Entity<User>().HasMany(m => m.Friends).WithMany().Map(m =>
-            {
-                m.MapLeftKey("ID");
-                m.MapRightKey("FriendID");
-                m.ToTable("UserFriends");
-            }
-    );
-
-
-
-
-
+            modelbuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelbuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
     }
 }

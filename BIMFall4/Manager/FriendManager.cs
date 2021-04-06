@@ -12,14 +12,17 @@ namespace BIMFall4.Manager
     {
         public static void AddFriend(User value)
         {
+
             Friend added = new Friend();
-       
+            added.Status = 0;
+            added.User1 = UserManager.GetSafeUserByID(value.ID);
             var to_ID = GetUserIDByEmail(value.Email);
-            added.User2 = to_ID;
+            added.User2 = UserManager.GetSafeUserByID(to_ID);
+            
+            
             using (var db = new BIMFall4Context())
             {
-                User2.Friends.Add(User1);
-                User1.Friends.Add(User2);
+                db.Friends.Add(added);
                 db.SaveChanges();
             }
         }
