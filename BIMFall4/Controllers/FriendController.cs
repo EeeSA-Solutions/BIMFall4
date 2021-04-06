@@ -22,7 +22,7 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Friend/id
-        //public IEnumerable<Pending> Get(int id)
+        //public IEnumerable<Friend> Get(int id)
         //{
         //    return FriendManager.GetPending(id);
         //}

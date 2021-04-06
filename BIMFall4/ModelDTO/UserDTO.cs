@@ -1,7 +1,4 @@
-﻿using BIMFall4.Models;
-using System.Collections.Generic;
-
-namespace BIMFall4.ModelDTO
+﻿namespace BIMFall4.ModelDTO
 {
     public class UserDTO
     {

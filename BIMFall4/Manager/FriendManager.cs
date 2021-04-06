@@ -10,15 +10,12 @@ namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        public void AddFriend(User value)
+        public static void AddFriend(User value)
         {
-            
-
-            var User1 = UserManager.GetSafeUserByID(value.ID);
+            Friend added = new Friend();
+       
             var to_ID = GetUserIDByEmail(value.Email);
-             var User2 = UserManager.GetSafeUserByID(to_ID);
-            
-            
+            added.User2 = to_ID;
             using (var db = new BIMFall4Context())
             {
                 User2.Friends.Add(User1);
