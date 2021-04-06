@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,22 @@ namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        //public void AddFriend(User value)
-        //{
-        //    var to_ID = GetUserIDByEmail(value.Email);
-        //    value.RelatedUser = GetUserIDByEmail(value.Email);
-        //    value.Users = value.ID();
-        //    using (var db = new BIMFall4Context())
-        //    {
-        //        db.Users.Add(value);
-        //        db.SaveChanges();
-        //    }
-        //}
+        public void AddFriend(User value)
+        {
+            
+
+            var User1 = UserManager.GetSafeUserByID(value.ID);
+            var to_ID = GetUserIDByEmail(value.Email);
+             var User2 = UserManager.GetSafeUserByID(to_ID);
+            
+            
+            using (var db = new BIMFall4Context())
+            {
+                User2.Friends.Add(User1);
+                User1.Friends.Add(User2);
+                db.SaveChanges();
+            }
+        }
 
         static public int GetUserIDByEmail(string email)
         {

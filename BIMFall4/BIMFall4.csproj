@@ -192,6 +192,14 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Migrations\202104051155434_mby.cs" />
+    <Compile Include="Migrations\202104051155434_mby.designer.cs">
+      <DependentUpon>202104051155434_mby.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104051320000_mby1.cs" />
+    <Compile Include="Migrations\202104051320000_mby1.designer.cs">
+      <DependentUpon>202104051320000_mby1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
@@ -288,6 +296,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202104051155434_mby.resx">
+      <DependentUpon>202104051155434_mby.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104051320000_mby1.resx">
+      <DependentUpon>202104051320000_mby1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

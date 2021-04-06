@@ -22,17 +22,19 @@ namespace BIMFall4.Data
             //modelBuilder.Entity<FriendTable>()
             //.HasKey(f => new { f.User, f.Friend } );
 
-            
-            modelBuilder.Entity<User>()
-                .HasOptional(u => u.Friend)
-                .WithMany()
-                .HasForeignKey(m => m.ID)
-                .WillCascadeOnDelete(false);
 
-            
+            modelBuilder.Entity<User>().HasMany(m => m.Friends).WithMany().Map(m =>
+            {
+                m.MapLeftKey("ID");
+                m.MapRightKey("FriendID");
+                m.ToTable("UserFriends");
+            }
+    );
 
 
-            
+
+
+
         }
     }
 }

@@ -39,28 +39,28 @@ namespace BIMFall4.Manager
             {
                 var user = db.Users.FirstOrDefault(x => x.ID == id);
                 //var user = db.Users.Where(s => s.ID == id).Include(u => u.Pendings).FirstOrDefault()
-                var b = user.Budgets;
+                
                 var userdto = new UserDTO
                 {
                     ID = user.ID,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-           
+                    Friends = user.Friends
                 };
                 return userdto;
             }
         }
 
-        //static public User GetUserByID(int id)
-        //{
-        //    using (var db = new BIMFall4Context())
-        //    {
-        //        var SafeUser = db.Users.Find(id);
-        //        SafeUser.Password = "";
-        //        return SafeUser;
-        //    }
-        //}
+        static public User GetSafeUserByID(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var SafeUser = db.Users.Find(id);
+                SafeUser.Password = "";
+                return SafeUser;
+            }
+        }
 
         static public User GetUserByEmail(string email)
         {

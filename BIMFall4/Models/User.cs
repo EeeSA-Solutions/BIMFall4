@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Web;
-
+using BIMFall4.ModelDTO;
 namespace BIMFall4.Models
 {
     public class User
@@ -21,8 +21,8 @@ namespace BIMFall4.Models
         public string Email { get; set; }
         [Required(AllowEmptyStrings = false), MinLength(8)]
         public string Password { get; set; }
-        public int FriendID { get; set; }
-        public virtual List<User> Friend { get; set; }//<--Friends of user
+        
+        public virtual List<User> Friends { get; set; }//<--Friends of user
         
         public virtual ICollection<Income> Incomes { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
