@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -18,7 +19,7 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Friend/id
-        public IEnumerable<Friend> Get(int id)
+        public IEnumerable<FriendDTO> Get(int id)
         {
             return FriendManager.GetPending(id);
         }

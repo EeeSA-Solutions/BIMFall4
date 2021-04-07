@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202104070941409_initial.designer.cs">
       <DependentUpon>202104070941409_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104071135521_initial2.cs" />
+    <Compile Include="Migrations\202104071135521_initial2.designer.cs">
+      <DependentUpon>202104071135521_initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
@@ -298,6 +302,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104070941409_initial.resx">
       <DependentUpon>202104070941409_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104071135521_initial2.resx">
+      <DependentUpon>202104071135521_initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

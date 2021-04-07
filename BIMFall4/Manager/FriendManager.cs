@@ -50,18 +50,27 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                var friend = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
-                //List<int> IdList = new List<int>();
+                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
 
-                var frienddto = new FriendDTO();
-                foreach (var item in friend)
+                List<FriendDTO> friendDTOlist = new List<FriendDTO>();
+
+
+                foreach (var item in friendlist)
                 {
+
+                    FriendDTO frienddto = new FriendDTO();
+
                     frienddto.FirstName = item.User1.FirstName;
                     frienddto.LastName = item.User1.LastName;
                     frienddto.Email = item.User1.Email;
+
+                    friendDTOlist.Add(frienddto);
                 }
+
+                return friendDTOlist;
             }
         }
+
         static public IEnumerable<Friend> GetFriendsById(int id)
         {
             using (var db = new BIMFall4Context())
