@@ -192,25 +192,14 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202104070727063_try.cs" />
-    <Compile Include="Migrations\202104070727063_try.designer.cs">
-      <DependentUpon>202104070727063_try.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104070753534_try1.cs" />
-    <Compile Include="Migrations\202104070753534_try1.designer.cs">
-      <DependentUpon>202104070753534_try1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104070925579_tryutancoll.cs" />
-    <Compile Include="Migrations\202104070925579_tryutancoll.designer.cs">
-      <DependentUpon>202104070925579_tryutancoll.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104070929253_tryutancollundo.cs" />
-    <Compile Include="Migrations\202104070929253_tryutancollundo.designer.cs">
-      <DependentUpon>202104070929253_tryutancollundo.cs</DependentUpon>
+    <Compile Include="Migrations\202104070941409_initial.cs" />
+    <Compile Include="Migrations\202104070941409_initial.designer.cs">
+      <DependentUpon>202104070941409_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
+    <Compile Include="ModelDTO\FriendDTO.cs" />
     <Compile Include="ModelDTO\IncomeDTO.cs" />
     <Compile Include="ModelDTO\SavingGoalDTO.cs" />
     <Compile Include="ModelDTO\UserDTO.cs" />
@@ -307,17 +296,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104070727063_try.resx">
-      <DependentUpon>202104070727063_try.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104070753534_try1.resx">
-      <DependentUpon>202104070753534_try1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104070925579_tryutancoll.resx">
-      <DependentUpon>202104070925579_tryutancoll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104070929253_tryutancollundo.resx">
-      <DependentUpon>202104070929253_tryutancollundo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104070941409_initial.resx">
+      <DependentUpon>202104070941409_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

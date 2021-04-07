@@ -4,7 +4,6 @@ using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace BIMFall4.Manager
 {
@@ -19,12 +18,12 @@ namespace BIMFall4.Manager
 
                 try
                 {
-            Friend added = new Friend();
-            added.Status = 0;
-            added.User1 = db.Users.Find(value.ID);
-            added.User2 = UserManager.GetUserByEmail(value.Email, db);
-            //added.User2 = db.Users.Find(to_ID);
-           
+                    Friend added = new Friend();
+                    added.Status = 0;
+                    added.User1 = db.Users.Find(value.ID);
+                    added.User2 = UserManager.GetUserByEmail(value.Email, db);
+                    //added.User2 = db.Users.Find(to_ID);
+
                     db.Friends.Add(added);
                     db.SaveChanges();
                 }
@@ -47,22 +46,35 @@ namespace BIMFall4.Manager
                 }
             }
         }
-static public IEnumerable<Friend> GetPending(int id)
-{
-    using (var db = new BIMFall4Context())
-    {
+        static public IEnumerable<FriendDTO> GetPending(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var friend = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
+                //List<int> IdList = new List<int>();
 
-        return db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
+                var frienddto = new FriendDTO();
+                foreach (var item in friend)
+                {
+                    frienddto.FirstName = item.User1.FirstName;
+                    frienddto.LastName = item.User1.LastName;
+                    frienddto.Email = item.User1.Email;
+                }
+            }
+        }
+        static public IEnumerable<Friend> GetFriendsById(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                return db.Friends.Where(x => x.User1.ID == id);
+            }
+        }
     }
-}
-static public IEnumerable<Friend> GetFriendsById(int id)
-{
-    using (var db = new BIMFall4Context())
-    {
-        return db.Friends.Where(x => x.User1.ID == id);
-    }
+
 }
 
-    }
-}
-    
+
+
+
+
+
