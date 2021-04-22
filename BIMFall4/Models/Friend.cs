@@ -12,11 +12,14 @@ namespace BIMFall4.Models
         [Key]
         public int Relationship_ID { get; set; }
 
-       // public int User1_ID { get; set; }
+        //public int User1_ID { get; set; }
         //public int User2_ID { get; set; }
         //[ForeignKey("User1_ID")]
+
         public virtual User User1 { get; set; }
+
         //[ForeignKey("User2_ID")]
+
         public virtual User User2 { get; set; }
 
         public FriendStatus Status { get; set; }

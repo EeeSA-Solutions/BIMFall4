@@ -54,10 +54,8 @@ namespace BIMFall4.Manager
 
                 List<FriendDTO> friendDTOlist = new List<FriendDTO>();
 
-
                 foreach (var item in friendlist)
                 {
-
                     FriendDTO frienddto = new FriendDTO();
 
                     frienddto.FirstName = item.User1.FirstName;
@@ -66,7 +64,6 @@ namespace BIMFall4.Manager
 
                     friendDTOlist.Add(frienddto);
                 }
-
                 return friendDTOlist;
             }
         }
