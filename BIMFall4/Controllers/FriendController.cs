@@ -1,10 +1,7 @@
 ﻿using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 
@@ -22,19 +19,19 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Friend/id
-        public IEnumerable<Friend> Get(int id)
+        public IEnumerable<FriendDTO> Get(int id)
         {
             return FriendManager.GetPending(id);
         }
 
         // POST: api/Friend
-        public void Post([FromBody]Friend value)
+        public void Post([FromBody] User value)
         {
             FriendManager.AddFriend(value);
         }
 
         // PUT: api/Friend/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 

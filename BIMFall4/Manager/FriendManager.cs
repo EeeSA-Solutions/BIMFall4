@@ -1,53 +1,86 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        public static void AddFriend(Friend value)
-        {   
-            var to_ID = GetUserIDByEmail(value.To_Email);
-            value.To_ID = to_ID;
+        public static void AddFriend(User value)
+        {
+
+
             using (var db = new BIMFall4Context())
             {
-                db.Friends.Add(value);
-                db.SaveChanges();
+
+                try
+                {
+                    Friend added = new Friend();
+                    added.Status = 0;
+                    added.User1 = db.Users.Find(value.ID);
+                    added.User2 = UserManager.GetUserByEmail(value.Email, db);
+                    //added.User2 = db.Users.Find(to_ID);
+
+                    db.Friends.Add(added);
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
             }
         }
-
-        static public int GetUserIDByEmail(string email)
+        static public IEnumerable<FriendDTO> GetPending(int id)
         {
             using (var db = new BIMFall4Context())
             {
-                var mail = db.Users.Where(user => user.Email == email).FirstOrDefault();
-                int id = mail.ID;
-                return id;
+                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
+
+                List<FriendDTO> friendDTOlist = new List<FriendDTO>();
+
+                foreach (var item in friendlist)
+                {
+                    FriendDTO frienddto = new FriendDTO();
+
+                    frienddto.FirstName = item.User1.FirstName;
+                    frienddto.LastName = item.User1.LastName;
+                    frienddto.Email = item.User1.Email;
+
+                    friendDTOlist.Add(frienddto);
+                }
+                return friendDTOlist;
             }
         }
 
-        static public IEnumerable<Friend> GetPending(int id)
+        static public IEnumerable<Friend> GetFriendsById(int id)
         {
             using (var db = new BIMFall4Context())
             {
-
-                return db.Friends.Where(x => x.Status == "Pending" && x.To_ID == id).ToList();
+                return db.Friends.Where(x => x.User1.ID == id);
             }
         }
-        //static public IEnumerable<Friend> GetFriendsById(int id)
-        //{
-        //    using (var db = new BIMFall4Context())
-        //    {
-        //        return db.Friends.Where(x => x.From_ID == id);
-        //    }
-        //}
-
-
-
-
     }
+
 }
+
+
+
+
+
+
