@@ -49,8 +49,10 @@ namespace BIMFall4.Controllers
         }
 
         // DELETE: api/Expense/5
+ 
         public void Delete(int id)
         {
+            ExpenseManager.DeleteExpense(id);
         }
     }
 }

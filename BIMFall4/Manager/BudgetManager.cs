@@ -19,7 +19,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public void DeleteBudget(int id)
+        public static void DeleteBudget(int id)
         {
             using(var db = new BIMFall4Context())
             {

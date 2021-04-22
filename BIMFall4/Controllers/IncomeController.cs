@@ -50,6 +50,7 @@ namespace BIMFall4.Controllers
         // DELETE: api/Income/5
         public void Delete(int id)
         {
+            IncomeManager.DeleteIncome(id);
         }
     }
 }
