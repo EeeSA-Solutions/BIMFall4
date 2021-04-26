@@ -50,7 +50,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
+                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User2.ID == id).ToList();
 
                 List<FriendDTO> friendDTOlist = new List<FriendDTO>();
 
@@ -75,6 +75,27 @@ namespace BIMFall4.Manager
                 return db.Friends.Where(x => x.User1.ID == id);
             }
         }
+
+        static public void setFriendStatus(int wantedstatus, int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var newStatus = db.Friends.Find(id);
+                if(wantedstatus == 1) 
+                {
+                    newStatus.Status = FriendStatus.Accepted;
+                }
+                else if(wantedstatus == 2)
+                {
+                    newStatus.Status = FriendStatus.Denied;
+                }
+                else if(wantedstatus == 3)
+                {
+                    newStatus.Status = FriendStatus.Blocked;
+                }
+            }
+        }
+
     }
 
 }
