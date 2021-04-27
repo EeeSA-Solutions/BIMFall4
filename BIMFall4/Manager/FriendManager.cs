@@ -61,6 +61,7 @@ namespace BIMFall4.Manager
                     frienddto.FirstName = item.User1.FirstName;
                     frienddto.LastName = item.User1.LastName;
                     frienddto.Email = item.User1.Email;
+                    frienddto.Relationship_ID = item.Relationship_ID;
 
                     friendDTOlist.Add(frienddto);
                 }
@@ -76,23 +77,26 @@ namespace BIMFall4.Manager
             }
         }
 
-        static public void setFriendStatus(int wantedstatus, int id)
+        static public void SetFriendStatus(int id, FriendStatus wantedstatus)
         {
             using (var db = new BIMFall4Context())
             {
                 var newStatus = db.Friends.Find(id);
-                if(wantedstatus == 1) 
+                
+                if(wantedstatus == FriendStatus.Accepted) 
                 {
                     newStatus.Status = FriendStatus.Accepted;
                 }
-                else if(wantedstatus == 2)
+                else if(wantedstatus == FriendStatus.Denied)
                 {
                     newStatus.Status = FriendStatus.Denied;
                 }
-                else if(wantedstatus == 3)
+                else if(wantedstatus == FriendStatus.Blocked)
                 {
                     newStatus.Status = FriendStatus.Blocked;
                 }
+                
+                    db.SaveChanges();
             }
         }
 
