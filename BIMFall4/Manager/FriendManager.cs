@@ -9,7 +9,7 @@ namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        public static void AddFriend(User value)
+        public static bool AddFriend(User value)
         {
 
 
@@ -18,6 +18,15 @@ namespace BIMFall4.Manager
 
                 try
                 {
+                    // finns idt i db med conecct till id.email, fiins ens emailen?
+
+                    var checkforduplicateU1 = db.Users.Find(value.ID);
+                    var checkforduplicateU2 = UserManager.GetUserByEmail(value.Email, db);
+
+                    if (checkforduplicateU1 == ?? && checkforduplicateU2 == ?? ) { }
+                    
+
+                    //----------------------------------------------//
                     Friend added = new Friend();
                     added.Status = 0;
                     added.User1 = db.Users.Find(value.ID);
@@ -79,22 +88,12 @@ namespace BIMFall4.Manager
 
         static public void SetFriendStatus(int id, FriendStatus wantedstatus)
         {
+            
             using (var db = new BIMFall4Context())
             {
                 var newStatus = db.Friends.Find(id);
                 
-                if(wantedstatus == FriendStatus.Accepted) 
-                {
-                    newStatus.Status = FriendStatus.Accepted;
-                }
-                else if(wantedstatus == FriendStatus.Denied)
-                {
-                    newStatus.Status = FriendStatus.Denied;
-                }
-                else if(wantedstatus == FriendStatus.Blocked)
-                {
-                    newStatus.Status = FriendStatus.Blocked;
-                }
+                    newStatus.Status = wantedstatus;
                 
                     db.SaveChanges();
             }

@@ -68,9 +68,18 @@ namespace BIMFall4.Manager
               return GetUserByEmail(email, db);
             }
         }
-        static public User GetUserByEmail(string email, BIMFall4Context db)
+        static public dynamic GetUserByEmail(string email, BIMFall4Context db)
         {
-                return db.Users.Where(user => user.Email == email).FirstOrDefault();
+            var checkemail = db.Users.Where(user => user.Email == email).FirstOrDefault();
+
+            if (checkemail == null)
+            {
+                return "User does not exist";
+            }
+            else
+            {
+                return checkemail;
+            }
         }
 
         static public IEnumerable<User> SearchByFirstName(string firstName)

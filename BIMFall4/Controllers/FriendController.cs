@@ -31,10 +31,10 @@ namespace BIMFall4.Controllers
         }
         // POST: api/Friend/id/wantedstatus
         [HttpPost]
-        public void Post(int id , [FromBody] Friend value)
+        public void Post(int id , [FromBody] FriendStatus value)
         {
 
-            FriendManager.SetFriendStatus(id, value.Status);
+            FriendManager.SetFriendStatus(id, value);
         }
 
         // PUT: api/Friend/id/wantedstatus
