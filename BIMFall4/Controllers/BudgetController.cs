@@ -42,8 +42,9 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/Budget/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Budget value)
         {
+            BudgetManager.PutByID(value, id);
         }
 
         // DELETE: api/Budget/5

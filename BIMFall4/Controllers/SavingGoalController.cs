@@ -41,8 +41,9 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/SavingGoal/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] SavingGoal value)
         {
+            SavingGoalManager.PutByID(value, id);
         }
 
         // DELETE: api/SavingGoal/5
