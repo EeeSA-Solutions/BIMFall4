@@ -25,9 +25,9 @@ namespace BIMFall4.Controllers
             return FriendManager.GetPending(id);
         }
         // POST: api/Friend
-        public void Post([FromBody] User value)
+        public Response Post([FromBody] User value)
         {
-            FriendManager.AddFriend(value);
+            return FriendManager.AddFriend(value);
         }
         // POST: api/Friend/id/wantedstatus
         [HttpPost]

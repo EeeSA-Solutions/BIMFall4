@@ -9,7 +9,7 @@ namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        public static bool AddFriend(User value)
+        public static Response AddFriend(User value)
         {
 
 
@@ -18,23 +18,30 @@ namespace BIMFall4.Manager
 
                 try
                 {
-                    // finns idt i db med conecct till id.email, fiins ens emailen?
+                    // finns idt i db med conecct till id.email, finns ens emailen?
 
                     var checkforduplicateU1 = db.Users.Find(value.ID);
                     var checkforduplicateU2 = UserManager.GetUserByEmail(value.Email, db);
 
-                    if (checkforduplicateU1 == ?? && checkforduplicateU2 == ?? ) { }
-                    
+                    var check1 = db.Friends.Where(x => x.User1.ID.Equals(checkforduplicateU1.ID) && x.User2.ID.Equals(checkforduplicateU2.ID)).FirstOrDefault();
+                    var check2 = db.Friends.Where(x => x.User1.ID.Equals(checkforduplicateU2.ID) && x.User2.ID.Equals(checkforduplicateU1.ID)).FirstOrDefault();
+                    if (check1 == null && check2 == null) 
+                    {
+                        Friend added = new Friend();
+                        added.Status = 0;
+                        added.User1 = db.Users.Find(value.ID);
+                        added.User2 = UserManager.GetUserByEmail(value.Email, db);
+                        
 
-                    //----------------------------------------------//
-                    Friend added = new Friend();
-                    added.Status = 0;
-                    added.User1 = db.Users.Find(value.ID);
-                    added.User2 = UserManager.GetUserByEmail(value.Email, db);
-                    //added.User2 = db.Users.Find(to_ID);
+                        db.Friends.Add(added);
+                        db.SaveChanges();
+                        return  new Response { Status = "succes" };
+                    }
+                    else
+                    {
+                        return new Response { Status = "Failed" };
+                    }
 
-                    db.Friends.Add(added);
-                    db.SaveChanges();
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                 {
