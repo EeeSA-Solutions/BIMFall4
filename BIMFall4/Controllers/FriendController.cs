@@ -37,12 +37,12 @@ namespace BIMFall4.Controllers
             return FriendManager.SetFriendStatus(id, value);
         }
 
-        // PUT: api/Friend/id/wantedstatus
-        //[HttpPut]
-        //public void Put(int id, string wantedstatus)
-        //{
-        //    FriendManager.SetFriendStatus(id, wantedstatus);
-        //}
+        //PUT: api/Friend/id/wantedstatus
+       [HttpPut]
+        public Response Put(int id, [FromBody] FriendStatus value)
+        {
+            return FriendManager.SetFriendStatus(id, value);
+        }
 
         // DELETE: api/Friend/5
         public void Delete(int id)
