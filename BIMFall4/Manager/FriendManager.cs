@@ -35,11 +35,11 @@ namespace BIMFall4.Manager
 
                         db.Friends.Add(added);
                         db.SaveChanges();
-                        return  new Response { Status = "succes" };
+                        return  new Response { Status = "Success", Message = "Success" };
                     }
                     else
                     {
-                        return new Response { Status = "Failed" };
+                        return new Response { Status = "Failed", Message = "A request has already been sent" };
                     }
 
                 }
@@ -93,17 +93,20 @@ namespace BIMFall4.Manager
             }
         }
 
-        static public void SetFriendStatus(int id, FriendStatus wantedstatus)
+        static public Response SetFriendStatus(int id, FriendStatus wantedstatus)
         {
             
             using (var db = new BIMFall4Context())
             {
+                
                 var newStatus = db.Friends.Find(id);
                 
                     newStatus.Status = wantedstatus;
                 
                     db.SaveChanges();
+
             }
+                return new Response { Status = "Success" , Message = "Success"};
         }
 
     }
