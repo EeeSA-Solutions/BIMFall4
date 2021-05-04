@@ -70,7 +70,7 @@ namespace BIMFall4.Manager
         }
         static public User GetUserByEmail(string email, BIMFall4Context db)
         {
-                return db.Users.Where(user => user.Email == email).FirstOrDefault();
+            return db.Users.Where(user => user.Email == email).FirstOrDefault();
         }
 
         static public IEnumerable<User> SearchByFirstName(string firstName)

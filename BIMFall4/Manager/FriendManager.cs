@@ -9,7 +9,7 @@ namespace BIMFall4.Manager
 {
     public class FriendManager
     {
-        public static void AddFriend(User value)
+        public static Response AddFriend(User value)
         {
 
 
@@ -18,14 +18,30 @@ namespace BIMFall4.Manager
 
                 try
                 {
-                    Friend added = new Friend();
-                    added.Status = 0;
-                    added.User1 = db.Users.Find(value.ID);
-                    added.User2 = UserManager.GetUserByEmail(value.Email, db);
-                    //added.User2 = db.Users.Find(to_ID);
+                    // finns idt i db med conecct till id.email, finns ens emailen?
 
-                    db.Friends.Add(added);
-                    db.SaveChanges();
+                    var checkforduplicateU1 = db.Users.Find(value.ID);
+                    var checkforduplicateU2 = UserManager.GetUserByEmail(value.Email, db);
+
+                    var check1 = db.Friends.Where(x => x.User1.ID.Equals(checkforduplicateU1.ID) && x.User2.ID.Equals(checkforduplicateU2.ID)).FirstOrDefault();
+                    var check2 = db.Friends.Where(x => x.User1.ID.Equals(checkforduplicateU2.ID) && x.User2.ID.Equals(checkforduplicateU1.ID)).FirstOrDefault();
+                    if (check1 == null && check2 == null) 
+                    {
+                        Friend added = new Friend();
+                        added.Status = 0;
+                        added.User1 = db.Users.Find(value.ID);
+                        added.User2 = UserManager.GetUserByEmail(value.Email, db);
+                        
+
+                        db.Friends.Add(added);
+                        db.SaveChanges();
+                        return  new Response { Status = "Success", Message = "Success" };
+                    }
+                    else
+                    {
+                        return new Response { Status = "Failed", Message = "A request has already been sent" };
+                    }
+
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                 {
@@ -50,7 +66,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id || x.User2.ID == id).ToList();
+                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User2.ID == id).ToList();
 
                 List<FriendDTO> friendDTOlist = new List<FriendDTO>();
 
@@ -61,6 +77,7 @@ namespace BIMFall4.Manager
                     frienddto.FirstName = item.User1.FirstName;
                     frienddto.LastName = item.User1.LastName;
                     frienddto.Email = item.User1.Email;
+                    frienddto.Relationship_ID = item.Relationship_ID;
 
                     friendDTOlist.Add(frienddto);
                 }
@@ -75,6 +92,23 @@ namespace BIMFall4.Manager
                 return db.Friends.Where(x => x.User1.ID == id);
             }
         }
+
+        static public Response SetFriendStatus(int id, FriendStatus wantedstatus)
+        {
+            
+            using (var db = new BIMFall4Context())
+            {
+                
+                var newStatus = db.Friends.Find(id);
+                
+                    newStatus.Status = wantedstatus;
+                
+                    db.SaveChanges();
+
+            }
+                return new Response { Status = "Success" , Message = "Success"};
+        }
+
     }
 
 }

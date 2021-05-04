@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-
+    
     public class FriendController : ApiController
     {
 
@@ -19,20 +19,29 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Friend/id
+        [HttpGet]
         public IEnumerable<FriendDTO> Get(int id)
         {
             return FriendManager.GetPending(id);
         }
-
         // POST: api/Friend
-        public void Post([FromBody] User value)
+        public Response Post([FromBody] User value)
         {
-            FriendManager.AddFriend(value);
+            return FriendManager.AddFriend(value);
+        }
+        // POST: api/Friend/id/wantedstatus
+        [HttpPost]
+        public Response Post(int id , [FromBody] FriendStatus value)
+        {
+
+            return FriendManager.SetFriendStatus(id, value);
         }
 
-        // PUT: api/Friend/5
-        public void Put(int id, [FromBody] string value)
+        //PUT: api/Friend/id/wantedstatus
+       [HttpPut]
+        public Response Put(int id, [FromBody] FriendStatus value)
         {
+            return FriendManager.SetFriendStatus(id, value);
         }
 
         // DELETE: api/Friend/5
