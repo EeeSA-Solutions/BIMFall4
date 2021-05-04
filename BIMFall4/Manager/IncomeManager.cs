@@ -39,7 +39,6 @@ namespace BIMFall4.Manager
             }
         }
 
-
         public static IEnumerable<Income> GetIncomeById(int id)
         {
             using (var db = new BIMFall4Context())
@@ -70,6 +69,24 @@ namespace BIMFall4.Manager
                 }
 
                 return incomelist;
+            }
+        }
+        public static void PutByID(Income income, int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var inc = db.Incomes.Where(x => x.ID == id).FirstOrDefault();
+                if(inc != null)
+                {
+                    inc.Name = income.Name;
+                    inc.Amount = income.Amount;
+                    inc.Date = income.Date;
+                }
+                else
+                {
+                    return;
+                }
+                db.SaveChanges();
             }
         }
     }

@@ -43,8 +43,9 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/Income/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Income value)
         {
+            IncomeManager.PutByID(value, id);
         }
 
         // DELETE: api/Income/5
