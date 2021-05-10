@@ -22,7 +22,7 @@ namespace BIMFall4.Controllers
         [HttpGet]
         public IEnumerable<FriendDTO> Get(int id)
         {
-            return FriendManager.GetPending(id);
+            return FriendManager.GetPendingSentFriendsList(id);
         }
         // POST: api/Friend
         public Response Post([FromBody] User value)
@@ -33,7 +33,6 @@ namespace BIMFall4.Controllers
         [HttpPost]
         public Response Post(int id , [FromBody] FriendStatus value)
         {
-
             return FriendManager.SetFriendStatus(id, value);
         }
 

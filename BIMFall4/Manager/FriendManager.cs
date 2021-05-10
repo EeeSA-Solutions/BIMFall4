@@ -108,7 +108,52 @@ namespace BIMFall4.Manager
             }
                 return new Response { Status = "Success" , Message = "Success"};
         }
+        static public IEnumerable<FriendDTO> GetPendingSentFriendsList(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var receivedlist = db.Friends.Where(x => x.Status == 0 && x.User2.ID == id).ToList();
+                var sentlist = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id).ToList();
+                var friendlist = db.Friends.Where(x => x.Status == FriendStatus.Accepted && x.User1.ID == id || x.User2.ID == id).ToList();
 
+                List<FriendDTO> friendDTOlist = new List<FriendDTO>();
+
+                foreach (var item in receivedlist)
+                {
+                    FriendDTO frienddto = new FriendDTO();
+                    frienddto.List_ID = 1;
+                    frienddto.FirstName = item.User1.FirstName;
+                    frienddto.LastName = item.User1.LastName;
+                    frienddto.Email = item.User1.Email;
+                    frienddto.Relationship_ID = item.Relationship_ID;
+
+                    friendDTOlist.Add(frienddto);
+                }
+                foreach (var item in sentlist)
+                {
+                    FriendDTO frienddto = new FriendDTO();
+                    frienddto.List_ID = 2;
+                    frienddto.FirstName = item.User1.FirstName;
+                    frienddto.LastName = item.User1.LastName;
+                    frienddto.Email = item.User1.Email;
+                    frienddto.Relationship_ID = item.Relationship_ID;
+
+                    friendDTOlist.Add(frienddto);
+                }
+                foreach (var item in friendlist)
+                {
+                    FriendDTO frienddto = new FriendDTO();
+                    frienddto.List_ID = 3;
+                    frienddto.FirstName = item.User1.FirstName;
+                    frienddto.LastName = item.User1.LastName;
+                    frienddto.Email = item.User1.Email;
+                    frienddto.Relationship_ID = item.Relationship_ID;
+
+                    friendDTOlist.Add(frienddto);
+                }
+                return friendDTOlist;
+            }
+        }
     }
 
 }

@@ -38,7 +38,6 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var user = db.Users.FirstOrDefault(x => x.ID == id);
-                //var user = db.Users.Where(s => s.ID == id).Include(u => u.Pendings).FirstOrDefault()
                 
                 var userdto = new UserDTO
                 {
@@ -48,16 +47,6 @@ namespace BIMFall4.Manager
                     Email = user.Email,
                 };
                 return userdto;
-            }
-        }
-
-        static public User GetSafeUserByID(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var SafeUser = db.Users.Find(id);
-                //SafeUser.Password = "";
-                return SafeUser;
             }
         }
 
