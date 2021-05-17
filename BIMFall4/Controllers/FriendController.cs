@@ -13,13 +13,8 @@ namespace BIMFall4.Controllers
     {
 
         // GET: api/Friend
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
+        
         // GET: api/Friend/id
-        [HttpGet]
         public IEnumerable<FriendDTO> Get(int id)
         {
             return FriendManager.GetPendingSentFriendsList(id);
@@ -31,7 +26,6 @@ namespace BIMFall4.Controllers
         }
 
         //PUT: api/Friend/id/wantedstatus
-       [HttpPut]
         public Response Put(int id, [FromBody] FriendStatus value)
         {
             return FriendManager.SetFriendStatus(id, value);

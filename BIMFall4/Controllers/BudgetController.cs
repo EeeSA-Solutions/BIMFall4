@@ -13,12 +13,6 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BudgetController : ApiController
     {
-        // GET: api/Budget
-        public IEnumerable<Budget> Get()
-        {
-            return BudgetManager.GetBudgetList();
-        }
-
         // GET: api/Budget/5
         public IEnumerable<BudgetDTO> Get(int id)
         {
@@ -37,14 +31,12 @@ namespace BIMFall4.Controllers
             {
                 return false;
             }
-            
-
         }
 
         // PUT: api/Budget/5
         public void Put(int id, [FromBody]Budget value)
         {
-            BudgetManager.PutByID(value, id);
+            BudgetManager.EditBudgetByID(value, id);
         }
 
         // DELETE: api/Budget/5

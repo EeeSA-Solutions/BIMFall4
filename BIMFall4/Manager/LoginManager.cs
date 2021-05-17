@@ -17,8 +17,7 @@ namespace BIMFall4.Manager
                 if (user == null)
                     return new Response { Status = "Invalid", Message = "Invalid User." };
                 else
-                    return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID};
-                    
+                    return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID};  
             }
         }
     }

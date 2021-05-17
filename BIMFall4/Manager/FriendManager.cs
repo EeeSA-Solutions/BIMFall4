@@ -11,14 +11,11 @@ namespace BIMFall4.Manager
     {
         public static Response AddFriend(User value)
         {
-
-
             using (var db = new BIMFall4Context())
             {
-
                 try
                 {
-                    // finns idt i db med conecct till id.email, finns ens emailen?
+                    // Kontrollera att emailen finns i databasen "existerande mail"
 
                     var checkforduplicateU1 = db.Users.Find(value.ID);
                     var checkforduplicateU2 = UserManager.GetUserByEmail(value.Email, db);
@@ -31,7 +28,6 @@ namespace BIMFall4.Manager
                         added.Status = 0;
                         added.User1 = db.Users.Find(value.ID);
                         added.User2 = UserManager.GetUserByEmail(value.Email, db);
-                        
 
                         db.Friends.Add(added);
                         db.SaveChanges();
@@ -41,7 +37,6 @@ namespace BIMFall4.Manager
                     {
                         return new Response { Status = "Failed", Message = "A request has already been sent" };
                     }
-
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                 {
@@ -63,17 +58,8 @@ namespace BIMFall4.Manager
             }
         }
 
-        static public IEnumerable<Friend> GetFriendsById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.Friends.Where(x => x.User1.ID == id);
-            }
-        }
-
         static public Response SetFriendStatus(int id, FriendStatus wantedstatus)
         {
-            
             using (var db = new BIMFall4Context())
             {
                 
@@ -82,7 +68,6 @@ namespace BIMFall4.Manager
                     newStatus.Status = wantedstatus;
                 
                     db.SaveChanges();
-
             }
                 return new Response { Status = "Success" , Message = "Success"};
         }

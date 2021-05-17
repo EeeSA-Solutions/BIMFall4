@@ -31,24 +31,6 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<Budget> GetBudgetList()
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.Budgets.ToList();
-            }
-        }
-
-
-        public static IEnumerable<Budget> GetBudgetById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var budget = db.Budgets.Where(x => x.UserID == id).ToList();
-                return budget;
-            }
-        }
-
         public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
         {
             
@@ -73,7 +55,8 @@ namespace BIMFall4.Manager
                 return budgetlist;
             }
         }
-        public static void PutByID(Budget budget, int id)
+
+        public static void EditBudgetByID(Budget budget, int id)
         {
             using (var db = new BIMFall4Context())
             {

@@ -21,7 +21,6 @@ namespace BIMFall4.Models
 
         public DateTime Date { get; set; }
 
-
         [ForeignKey("User")]
         public int UserID { get; set; }
 
