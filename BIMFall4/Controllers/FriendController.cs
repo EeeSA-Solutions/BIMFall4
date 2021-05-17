@@ -29,12 +29,6 @@ namespace BIMFall4.Controllers
         {
             return FriendManager.AddFriend(value);
         }
-        // POST: api/Friend/id/wantedstatus
-        [HttpPost]
-        public Response Post(int id , [FromBody] FriendStatus value)
-        {
-            return FriendManager.SetFriendStatus(id, value);
-        }
 
         //PUT: api/Friend/id/wantedstatus
        [HttpPut]

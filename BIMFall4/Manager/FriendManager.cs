@@ -62,28 +62,6 @@ namespace BIMFall4.Manager
                 }
             }
         }
-        static public IEnumerable<FriendDTO> GetPending(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var friendlist = db.Friends.Where(x => x.Status == 0 && x.User2.ID == id).ToList();
-
-                List<FriendDTO> friendDTOlist = new List<FriendDTO>();
-
-                foreach (var item in friendlist)
-                {
-                    FriendDTO frienddto = new FriendDTO();
-
-                    frienddto.FirstName = item.User1.FirstName;
-                    frienddto.LastName = item.User1.LastName;
-                    frienddto.Email = item.User1.Email;
-                    frienddto.Relationship_ID = item.Relationship_ID;
-
-                    friendDTOlist.Add(frienddto);
-                }
-                return friendDTOlist;
-            }
-        }
 
         static public IEnumerable<Friend> GetFriendsById(int id)
         {
