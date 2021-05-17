@@ -114,7 +114,7 @@ namespace BIMFall4.Manager
             {
                 var receivedlist = db.Friends.Where(x => x.Status == 0 && x.User2.ID == id).ToList();
                 var sentlist = db.Friends.Where(x => x.Status == 0 && x.User1.ID == id).ToList();
-                var friendlist = db.Friends.Where(x => x.Status == FriendStatus.Accepted && x.User1.ID == id || x.User2.ID == id).ToList();
+                var friendlist = db.Friends.Where(x => x.Status == FriendStatus.Accepted && x.User1.ID == id || x.User2.ID == id && x.Status == FriendStatus.Accepted).ToList();
 
                 List<FriendDTO> friendDTOlist = new List<FriendDTO>();
 
@@ -133,9 +133,9 @@ namespace BIMFall4.Manager
                 {
                     FriendDTO frienddto = new FriendDTO();
                     frienddto.List_ID = 2;
-                    frienddto.FirstName = item.User1.FirstName;
-                    frienddto.LastName = item.User1.LastName;
-                    frienddto.Email = item.User1.Email;
+                    frienddto.FirstName = item.User2.FirstName;
+                    frienddto.LastName = item.User2.LastName;
+                    frienddto.Email = item.User2.Email;
                     frienddto.Relationship_ID = item.Relationship_ID;
 
                     friendDTOlist.Add(frienddto);
@@ -154,6 +154,17 @@ namespace BIMFall4.Manager
                 return friendDTOlist;
             }
         }
+        public static void DeleteRelationship(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                if (db.Friends.Find(id) != null)
+                {
+                    db.Friends.Remove(db.Friends.Find(id));
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 
 }
@@ -163,3 +174,4 @@ namespace BIMFall4.Manager
 
 
 
+   

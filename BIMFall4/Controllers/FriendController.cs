@@ -46,6 +46,7 @@ namespace BIMFall4.Controllers
         // DELETE: api/Friend/5
         public void Delete(int id)
         {
+            FriendManager.DeleteRelationship(id);
         }
     }
 }
