@@ -11,7 +11,6 @@ namespace BIMFall4.Models
     {
         [Key]
         public int ID { get; set; }
-        public string Category { get; set; }
         
         public decimal Amount { get; set; }
 
@@ -21,5 +20,6 @@ namespace BIMFall4.Models
         public virtual User User { get; set; }
         [Column(TypeName = "Date")]
         public DateTime Date { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }
