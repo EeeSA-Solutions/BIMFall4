@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BIMFall4.Manager;
+using BIMFall4.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,10 +19,10 @@ namespace BIMFall4.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Category/5
-        public string Get(int id)
+        // GET: api/Category/1
+        public IEnumerable<Category> Get(int id)
         {
-            return "value";
+            return CategoryManager.GetCategoryByBudegetId(id);
         }
 
         // POST: api/Category

@@ -36,7 +36,7 @@ namespace BIMFall4.Manager
         {
             using(var db = new BIMFall4Context())
             {
-                var exp = db.Expenses.Where(x => x.UserID == id).ToList();
+                var exp = db.Expenses.Where(x => x.CategoryID == id).ToList();
 
                 var expenselist = new List<ExpenseDTO>();
 
@@ -46,7 +46,6 @@ namespace BIMFall4.Manager
                     {
                         ID = item.ID,
                         Name = item.Name,
-                        Category = item.Category,
                         Date = item.Date,
                         Amount = item.Amount
 
