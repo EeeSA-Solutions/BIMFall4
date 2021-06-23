@@ -20,7 +20,7 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Category/1
-        public IEnumerable<Category> Get(int id)
+        public List<Category> Get(int id)
         {
             return CategoryManager.GetCategoryByBudegetId(id);
         }

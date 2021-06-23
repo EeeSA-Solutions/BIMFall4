@@ -194,13 +194,29 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202106221253009_ínit.cs" />
-    <Compile Include="Migrations\202106221253009_ínit.designer.cs">
-      <DependentUpon>202106221253009_ínit.cs</DependentUpon>
+    <Compile Include="Migrations\202106230816164_init.cs" />
+    <Compile Include="Migrations\202106230816164_init.designer.cs">
+      <DependentUpon>202106230816164_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106221405356_intit2.cs" />
-    <Compile Include="Migrations\202106221405356_intit2.designer.cs">
-      <DependentUpon>202106221405356_intit2.cs</DependentUpon>
+    <Compile Include="Migrations\202106230819528_test2.cs" />
+    <Compile Include="Migrations\202106230819528_test2.designer.cs">
+      <DependentUpon>202106230819528_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231001084_inTheMiddleTable.cs" />
+    <Compile Include="Migrations\202106231001084_inTheMiddleTable.designer.cs">
+      <DependentUpon>202106231001084_inTheMiddleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231005343_deletedForeignKey.cs" />
+    <Compile Include="Migrations\202106231005343_deletedForeignKey.designer.cs">
+      <DependentUpon>202106231005343_deletedForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231011136_deletedSeed.cs" />
+    <Compile Include="Migrations\202106231011136_deletedSeed.designer.cs">
+      <DependentUpon>202106231011136_deletedSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106231023272_testingRelation.cs" />
+    <Compile Include="Migrations\202106231023272_testingRelation.designer.cs">
+      <DependentUpon>202106231023272_testingRelation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -210,6 +226,7 @@
     <Compile Include="ModelDTO\SavingGoalDTO.cs" />
     <Compile Include="ModelDTO\UserDTO.cs" />
     <Compile Include="Models\Budget.cs" />
+    <Compile Include="Models\BudgetCategory.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Friend.cs" />
@@ -304,11 +321,23 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106221253009_ínit.resx">
-      <DependentUpon>202106221253009_ínit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106230816164_init.resx">
+      <DependentUpon>202106230816164_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106221405356_intit2.resx">
-      <DependentUpon>202106221405356_intit2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106230819528_test2.resx">
+      <DependentUpon>202106230819528_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231001084_inTheMiddleTable.resx">
+      <DependentUpon>202106231001084_inTheMiddleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231005343_deletedForeignKey.resx">
+      <DependentUpon>202106231005343_deletedForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231011136_deletedSeed.resx">
+      <DependentUpon>202106231011136_deletedSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231023272_testingRelation.resx">
+      <DependentUpon>202106231023272_testingRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

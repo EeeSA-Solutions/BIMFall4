@@ -44,7 +44,7 @@ namespace BIMFall4.Manager
                 {
                     budgetlist.Add(new BudgetDTO
                     {
-                        ID = item.ID,
+                        ID = item.BudgetID,
                         Amount = item.Amount,
                         Date = item.Date
                     });
@@ -59,7 +59,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                var db_bud = db.Budgets.Where(x => x.ID == id).FirstOrDefault();
+                var db_bud = db.Budgets.Where(x => x.BudgetID == id).FirstOrDefault();
                 if (db_bud != null)
                 {
                     db_bud.Amount = budget.Amount;

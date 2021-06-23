@@ -29,14 +29,14 @@ namespace BIMFall4.Manager
                 {
                     //get the "Other" category
                     var category = db.Categories.Where(x => x.Name.Equals("Other")
-                    && x.Month.Equals(DateTime.Now.ToString("MM yyyy"))).Include(y => y.ID == categoryID).FirstOrDefault();
+                    && x.Month.Equals(DateTime.Now.ToString("MM yyyy"))).Include(y => y.CategoryID == categoryID).FirstOrDefault();
                     //&& x.BudgetID == budgetID).FirstOrDefault();
                        
                         //&& db.Users.Where(x => x.ID == userID).FirstOrDefault();
 
-                        foreach (var expense in expenses)
+                    foreach (var expense in expenses)
                     {
-                        expense.CategoryID = category.ID;
+                        expense.CategoryID = category.CategoryID;
                     }
                 }
                 if (db.Categories.Find(categoryID) != null)
@@ -46,11 +46,13 @@ namespace BIMFall4.Manager
                 }
             }
         }
-        static public IEnumerable<Category> GetCategoryByBudegetId(int id)
+
+        static public List<Category> GetCategoryByBudegetId(int id)
         {
             using (var db = new BIMFall4Context())
             {
-                var categories = db.Categories.Where(x => x.BudgetID == id).Include(x => x.Expenses).ToList();
+                var categories = db.Categories.Where(x => x.CategoryID == id).Include(x => x.Expenses).ToList();
+
                 return categories;
             }
         }
