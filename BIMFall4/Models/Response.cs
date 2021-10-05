@@ -10,10 +10,6 @@ namespace BIMFall4.Models
     {
         public string Status { set; get; }
         public string Message { set; get; }
-
-        [ForeignKey("User")]
         public int UserID { get; set; }
-
-        public virtual User User { get; set; }
     }
 }

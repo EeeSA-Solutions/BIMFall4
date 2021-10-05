@@ -10,5 +10,7 @@ namespace BIMFall4.ModelDTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public int Relationship_ID { get; set; }
+        public int List_ID { get; set; }
     }
 }

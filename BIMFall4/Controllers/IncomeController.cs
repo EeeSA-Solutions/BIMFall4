@@ -14,10 +14,6 @@ namespace BIMFall4.Controllers
     public class IncomeController : ApiController
     {
         // GET: api/Income
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
         // GET: api/Income/5
         public IEnumerable<IncomeDTO> Get(int id)
@@ -28,7 +24,6 @@ namespace BIMFall4.Controllers
         // POST: api/Income
         public bool Post([FromBody]Income value)
         {
-
             if(value.Amount > 0)
             {
                 IncomeManager.CreateIncome(value);
@@ -36,15 +31,14 @@ namespace BIMFall4.Controllers
             }
             else
             {
-                
                 return false;
-                
             }
         }
 
         // PUT: api/Income/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Income value)
         {
+            IncomeManager.EditIncomeByID(value, id);
         }
 
         // DELETE: api/Income/5

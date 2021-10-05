@@ -32,24 +32,6 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<Expense> GetExpensesById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var expense = db.Expenses.Where(x => x.UserID == id).ToList();
-                return expense;
-            }
-        }
-
-        public static IEnumerable<Expense> GetExpenseList()
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.Expenses.ToList();
-            }
-        }
-
-
         public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
         {
             using(var db = new BIMFall4Context())
@@ -74,6 +56,26 @@ namespace BIMFall4.Manager
                 }
 
                 return expenselist;
+            }
+        }
+
+        public static void EditExpenseByID(Expense expense, int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var db_exp = db.Expenses.Where(x => x.ID == id).FirstOrDefault();
+                if (db_exp != null)
+                {
+                    db_exp.Category = expense.Category;
+                    db_exp.Amount = expense.Amount;
+                    db_exp.Date = expense.Date;
+                    db_exp.Name = expense.Name;
+                }
+                else
+                {
+                    return;
+                }
+                db.SaveChanges();
             }
         }
     }

@@ -25,14 +25,6 @@ namespace BIMFall4.Controllers
            return UserManager.GetUserById(id);
         }
 
-        //googla - - - eagerload relations
-
-        //GET: api/User/5
-        //public User GetUserById(int id)
-        //{
-        //    return UserManager.GetUserByID(id);
-        //}
-
         // POST: api/User
         public Response Post([FromBody] User value)
         {

@@ -192,15 +192,6 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202104070941409_initial.cs" />
-    <Compile Include="Migrations\202104070941409_initial.designer.cs">
-      <DependentUpon>202104070941409_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104071135521_initial2.cs" />
-    <Compile Include="Migrations\202104071135521_initial2.designer.cs">
-      <DependentUpon>202104071135521_initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
     <Compile Include="ModelDTO\FriendDTO.cs" />
@@ -298,14 +289,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104070941409_initial.resx">
-      <DependentUpon>202104070941409_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104071135521_initial2.resx">
-      <DependentUpon>202104071135521_initial2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
