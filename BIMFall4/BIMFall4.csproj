@@ -56,9 +56,21 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.13.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.13.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.5\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -166,6 +178,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Manager\JWTManager\LoginWithJWT.cs" />
+    <Compile Include="Manager\JWTManager\TokenManager.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\FriendController.cs" />
@@ -189,16 +203,21 @@
     <Compile Include="Manager\ExpenseManager.cs" />
     <Compile Include="Manager\FriendManager.cs" />
     <Compile Include="Manager\IncomeManager.cs" />
+    <Compile Include="Manager\JWTManager\UserRepository.cs" />
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202104070941409_initial.cs" />
-    <Compile Include="Migrations\202104070941409_initial.designer.cs">
-      <DependentUpon>202104070941409_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202110050827362_init.cs" />
+    <Compile Include="Migrations\202110050827362_init.designer.cs">
+      <DependentUpon>202110050827362_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104071135521_initial2.cs" />
-    <Compile Include="Migrations\202104071135521_initial2.designer.cs">
-      <DependentUpon>202104071135521_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\202110080655377_token.cs" />
+    <Compile Include="Migrations\202110080655377_token.designer.cs">
+      <DependentUpon>202110080655377_token.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110080657288_RealToken.cs" />
+    <Compile Include="Migrations\202110080657288_RealToken.designer.cs">
+      <DependentUpon>202110080657288_RealToken.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -300,11 +319,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104070941409_initial.resx">
-      <DependentUpon>202104070941409_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110050827362_init.resx">
+      <DependentUpon>202110050827362_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104071135521_initial2.resx">
-      <DependentUpon>202104071135521_initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110080655377_token.resx">
+      <DependentUpon>202110080655377_token.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110080657288_RealToken.resx">
+      <DependentUpon>202110080657288_RealToken.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

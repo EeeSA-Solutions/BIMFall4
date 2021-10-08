@@ -36,6 +36,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
+
                 var expense = db.Expenses.Where(x => x.UserID == id).ToList();
                 return expense;
             }
