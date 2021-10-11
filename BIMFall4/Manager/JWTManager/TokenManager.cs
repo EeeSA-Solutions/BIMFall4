@@ -19,20 +19,22 @@ namespace BIMFall4.Authenticator
     {
         HMACSHA256 hamc = new HMACSHA256();
         private string key;
+        private static string Secret = "XCAP05H6LoKvbRRa/QkqLNMI7cOHguaRyHzyg7n5qEkGjQmtBhz4SzYh4Fqwjyi3KJHlSXKPwVu2+bXr6CtpgQ==";
 
-        public string getToken()
-        {
-            return key = Convert.ToBase64String(hamc.Key);
-        }
+        //public string getToken()
+        //{
+        //    return key = Convert.ToBase64String(hamc.Key);
+        //}
 
-        public string GenerateToken(string email)
+        public string GenerateToken(int id)
         {
-            byte[] key = Convert.FromBase64String(getToken());
+            byte[] key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {
-                      new Claim(ClaimTypes.Name, email)}),
+                      //new Claim(ClaimTypes.Name, email),
+                        new Claim("Id",  id.ToString())}),
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(securityKey,
                 SecurityAlgorithms.HmacSha256Signature)
@@ -46,7 +48,8 @@ namespace BIMFall4.Authenticator
 
         public string ValidateToken(string token)
         {
-            string username = null;
+            
+            string Id = null;
             ClaimsPrincipal principal = GetPrincipal(token);
             if (principal == null)
                 return null;
@@ -59,9 +62,8 @@ namespace BIMFall4.Authenticator
             {
                 return null;
             }
-            Claim usernameClaim = identity.FindFirst(ClaimTypes.Name);
-            username = usernameClaim.Value;
-            return username;
+            string userId = identity.FindFirst("Id").Value;
+            return userId;
         }
 
 
@@ -74,7 +76,7 @@ namespace BIMFall4.Authenticator
                 JwtSecurityToken jwtToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
                 if (jwtToken == null)
                     return null;
-                byte[] key = Convert.FromBase64String(getToken());
+                byte[] key = Convert.FromBase64String(Secret);
                 TokenValidationParameters parameters = new TokenValidationParameters()
                 {
                     RequireExpirationTime = true,

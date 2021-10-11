@@ -9,13 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using BIMFall4.ModelDTO;
+using BIMFall4.Authenticator;
 
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ExpenseController : ApiController
     {
-     
+        TokenManager tokenManager = new TokenManager();
         // GET: api/Expense
         public IEnumerable<Expense> Get()
         {
@@ -23,9 +24,18 @@ namespace BIMFall4.Controllers
         }
 
         // GET: api/Expense/5
-        public IEnumerable<ExpenseDTO> Get(int id)
+        [Authorize]
+        public IEnumerable<ExpenseDTO> Get(string token)
         {
-            return ExpenseManager.GetExpenseDtoById(id);
+            string userid = tokenManager.ValidateToken(token);
+            if (userid != null)
+            {
+                return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // POST: api/Expense

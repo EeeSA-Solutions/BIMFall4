@@ -10,28 +10,29 @@ namespace BIMFall4.Manager
 {
     public class LoginManager
     {
+        
         static public Response GetLoginResponse(User value)
         {
+            TokenManager tokenManager = new TokenManager();
             using (var db = new BIMFall4Context())
             {
                 var user = db.Users.Where(x => x.Email.Equals(value.Email) && x.Password.Equals(value.Password)).FirstOrDefault();
                 if (user == null)
                     return new Response { Status = "Invalid", Message = "Invalid User." };
                 else
-                    return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID, UserToken = updateToken(value.Email)};
+                    return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID, UserToken = tokenManager.GenerateToken(getUserId(value.Email)) };
             }
         }
 
-        static public string updateToken(string email)
+        static public int getUserId(string email)
         {
             TokenManager tokenManager = new TokenManager();
 
             using (var db = new BIMFall4Context())
             {
                 var u = db.Users.Where(x => x.Email == email).FirstOrDefault();
-                u.Token = tokenManager.GenerateToken(email);
                 db.SaveChanges();
-                return u.Token;
+                return u.ID;
             }
         }
     }

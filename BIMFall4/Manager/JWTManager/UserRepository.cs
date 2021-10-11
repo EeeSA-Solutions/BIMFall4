@@ -1,4 +1,5 @@
-﻿using BIMFall4.Models;
+﻿using BIMFall4.Data;
+using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,8 @@ namespace BIMFall4.Manager.JWTManager
         public List<User> TestUsers;
         public UserRepository()
         {
-            TestUsers = new List<User>();
-            TestUsers.Add(new User() { Email = "Test1@hotmail.com", Password = "Pass1" });
-            TestUsers.Add(new User() { Email = "Test2@hotmail.com", Password = "Pass2" });
+            TestUsers = getUsers();
+            
         }
         public User GetUser(string email)
         {
@@ -26,6 +26,15 @@ namespace BIMFall4.Manager.JWTManager
             catch
             {
                 return null;
+            }
+        }
+
+        public List<User> getUsers()
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var u = db.Users.ToList();
+                return u;
             }
         }
     }
