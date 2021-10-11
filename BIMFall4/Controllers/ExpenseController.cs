@@ -18,13 +18,13 @@ namespace BIMFall4.Controllers
     {
         TokenManager tokenManager = new TokenManager();
         // GET: api/Expense
-        public IEnumerable<Expense> Get()
-        {
-            return ExpenseManager.GetExpenseList();
-        }
+        //public IEnumerable<Expense> Get()
+        //{
+        //    return ExpenseManager.GetExpenseList();
+        //}
 
         // GET: api/Expense/5
-        [Authorize]
+        
         public IEnumerable<ExpenseDTO> Get(string token)
         {
             string userid = tokenManager.ValidateToken(token);
@@ -41,15 +41,27 @@ namespace BIMFall4.Controllers
         // POST: api/Expense
         public bool Post([FromBody]Expense value)
         {
-            if(value.Amount > 0)
+            var bearer = Request.Headers.Authorization;
+            string userid = tokenManager.ValidateToken(bearer.Parameter);
+            value.UserID = Convert.ToInt32(userid);
+            if (userid != null && userid == value.ID.ToString())
             {
-                ExpenseManager.CreateExpense(value);
-                return true;
+                if (value.Amount > 0)
+                {
+                    ExpenseManager.CreateExpense(value);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
+
+
 
         }
 

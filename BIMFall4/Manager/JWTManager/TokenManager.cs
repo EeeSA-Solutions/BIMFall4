@@ -34,7 +34,8 @@ namespace BIMFall4.Authenticator
             {
                 Subject = new ClaimsIdentity(new[] {
                       //new Claim(ClaimTypes.Name, email),
-                        new Claim("Id",  id.ToString())}),
+                        new Claim("Id",  id.ToString()),
+                        new Claim(ClaimTypes.Role, "User")}),
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(securityKey,
                 SecurityAlgorithms.HmacSha256Signature)
