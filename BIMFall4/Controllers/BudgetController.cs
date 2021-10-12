@@ -7,28 +7,33 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using BIMFall4.Authenticator;
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BudgetController : ApiController
     {
-        // GET: api/Budget
-        public IEnumerable<Budget> Get()
-        {
-            return BudgetManager.GetBudgetList();
-        }
-
+        TokenManager tokenManager = new TokenManager();
+      
         // GET: api/Budget/5
-        public IEnumerable<BudgetDTO> Get(int id)
+        public IEnumerable<BudgetDTO> Get()
         {
-            return BudgetManager.GetBudgetDtoById(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+            return BudgetManager.GetBudgetDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // POST: api/Budget
-        public bool Post([FromBody]Budget value)
+        public bool Post([FromBody] Budget value)
         {
-            if(value.Amount > 0)
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null && value.Amount > 0)
             {
                 BudgetManager.CreateBudget(value);
                 return true;
@@ -37,8 +42,6 @@ namespace BIMFall4.Controllers
             {
                 return false;
             }
-            
-
         }
 
         // PUT: api/Budget/5

@@ -14,7 +14,6 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
-        TokenManager tokenManager = new TokenManager();
         // GET: api/Login
         public IEnumerable<string> Get()
         {

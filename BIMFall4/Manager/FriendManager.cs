@@ -11,11 +11,8 @@ namespace BIMFall4.Manager
     {
         public static void AddFriend(User value)
         {
-
-
             using (var db = new BIMFall4Context())
             {
-
                 try
                 {
                     Friend added = new Friend();

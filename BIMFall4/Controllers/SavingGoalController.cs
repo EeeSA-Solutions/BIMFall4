@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BIMFall4.Authenticator;
 using BIMFall4.Manager;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
@@ -13,22 +14,28 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SavingGoalController : ApiController
     {
+        TokenManager tokenManager = new TokenManager();
         // GET: api/SavingGoal
-        public IEnumerable<SavingGoal> Get()
+        public IEnumerable<SavingGoalDTO> Get()
         {
-            return SavingGoalManager.GetSavingGoalList();
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+            return SavingGoalManager.GetSavingGoalDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
-
         // GET: api/SavingGoal/5
-        public IEnumerable<SavingGoalDTO> Get(int id)
-        {
-            return SavingGoalManager.GetSavingGoalDtoById(id);
-        }
 
         // POST: api/SavingGoal
         public bool Post([FromBody]SavingGoal value)
         {
-            if(value.Amount > 0)
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+
+            if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
             {
                 SavingGoalManager.CreateSavingGoal(value);
                 return true;
@@ -37,7 +44,6 @@ namespace BIMFall4.Controllers
             {
                 return false;
             }
-            
         }
 
         // PUT: api/SavingGoal/5

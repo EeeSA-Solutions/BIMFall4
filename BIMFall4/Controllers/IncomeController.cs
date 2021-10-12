@@ -1,11 +1,9 @@
-﻿using BIMFall4.Manager;
+﻿using BIMFall4.Authenticator;
+using BIMFall4.Manager;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace BIMFall4.Controllers
@@ -13,37 +11,41 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class IncomeController : ApiController
     {
+        TokenManager tokenManager = new TokenManager();
         // GET: api/Income
-        public IEnumerable<string> Get()
+        public IEnumerable<IncomeDTO> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                return IncomeManager.GetIncomeDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
 
-        // GET: api/Income/5
-        public IEnumerable<IncomeDTO> Get(int id)
-        {
-            return IncomeManager.GetIncomeDtoById(id);
         }
+        // GET: api/Income/5
 
         // POST: api/Income
-        public bool Post([FromBody]Income value)
+        public bool Post([FromBody] Income value)
         {
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
 
-            if(value.Amount > 0)
+            if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
             {
                 IncomeManager.CreateIncome(value);
                 return true;
             }
             else
             {
-                
                 return false;
-                
             }
         }
 
         // PUT: api/Income/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
