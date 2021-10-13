@@ -176,6 +176,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BIMFall4Context.cs" />
+    <Compile Include="Data\Secure\SecurePassword.cs" />
     <Compile Include="Forms\UserValidations\BaseValidate.cs" />
     <Compile Include="Forms\IForm.cs" />
     <Compile Include="Forms\UserValidations\IValidateHandler.cs" />
@@ -192,6 +193,11 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Migrations\202110120757219_inital.cs" />
+    <Compile Include="Migrations\202110120757219_inital.designer.cs">
+      <DependentUpon>202110120757219_inital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
     <Compile Include="ModelDTO\FriendDTO.cs" />
@@ -289,6 +295,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110120757219_inital.resx">
+      <DependentUpon>202110120757219_inital.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
