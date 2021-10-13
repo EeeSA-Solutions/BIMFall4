@@ -17,8 +17,8 @@ namespace BIMFall4.Authenticator
 {
     public class TokenManager 
     {
-        HMACSHA256 hamc = new HMACSHA256();
-        private string key;
+        //HMACSHA256 hamc = new HMACSHA256();
+        //private string key;
         private static string Secret = "XCAP05H6LoKvbRRa/QkqLNMI7cOHguaRyHzyg7n5qEkGjQmtBhz4SzYh4Fqwjyi3KJHlSXKPwVu2+bXr6CtpgQ==";
 
         //public string getToken()

@@ -38,25 +38,6 @@ namespace BIMFall4.Controllers
             else return null;
 
         }
-        //[HttpPost]
-        //public HttpResponseMessage Login(User user)
-        //{
-        //    User u = new UserRepository().GetUser(user.Email);
-        //    if (u == null)
-        //        return null;
-        //    bool credentials = u.Password.Equals(user.Password);
-        //    if (!credentials)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.Forbidden,
-        //        "The username/password combination was wrong.");
-        //    }
-        //    else
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.OK,
-        //             tokenManager.GenerateToken(user.Email));
-        //    }
-        //}
-
 
         // PUT: api/Login/5
         public void Put(int id, [FromBody]string value)
