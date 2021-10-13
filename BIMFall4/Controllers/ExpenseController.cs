@@ -13,6 +13,7 @@ using BIMFall4.ModelDTO;
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class ExpenseController : ApiController
     {
         // GET: api/Expense/5

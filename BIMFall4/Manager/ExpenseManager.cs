@@ -49,12 +49,8 @@ namespace BIMFall4.Manager
                         Category = item.Category,
                         Date = item.Date,
                         Amount = item.Amount
-
-
                     });
-                   
                 }
-
                 return expenselist;
             }
         }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace BIMFall4.Controllers
@@ -13,9 +14,13 @@ namespace BIMFall4.Controllers
     public class LoginController : ApiController
     {
         // GET: api/Login
-        public IEnumerable<string> Get()
+        public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var identity = (ClaimsIdentity)User.Identity;
+            var Email = identity.Claims
+                     .FirstOrDefault(c => c.Type == "Email").Value;
+            var UserName = identity.Name;
+            return Ok("Hello: " + UserName + ", your email is: " + Email);
         }
 
         // GET: api/Login/5
