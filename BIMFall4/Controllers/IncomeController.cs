@@ -50,9 +50,13 @@ namespace BIMFall4.Controllers
         }
 
         // DELETE: api/Income/5
-        public void Delete(int id)
+        public void Delete([FromBody] string incomeId)
         {
-            IncomeManager.DeleteIncome(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                IncomeManager.DeleteIncome(Convert.ToInt32(incomeId), Convert.ToInt32(userid));
+            }
         }
     }
 }

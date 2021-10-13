@@ -33,7 +33,7 @@ namespace BIMFall4.Controllers
         public bool Post([FromBody] Budget value)
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
-            if (userid != null && value.Amount > 0)
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
                 BudgetManager.CreateBudget(value);
                 return true;
@@ -50,9 +50,14 @@ namespace BIMFall4.Controllers
         }
 
         // DELETE: api/Budget/5
-        public void Delete(int id)
+        public void Delete([FromBody] string budgetId)
         {
-            BudgetManager.DeleteBudget(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                BudgetManager.DeleteBudget(Convert.ToInt32(budgetId), Convert.ToInt32(userid));
+            }
+
         }
     }
 }

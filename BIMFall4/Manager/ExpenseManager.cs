@@ -20,13 +20,14 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void DeleteExpense(int id)
+        public static void DeleteExpense(int expenseId, int userid)
         {
             using (var db = new BIMFall4Context())
             {
-                if (db.Expenses.Find(id) != null)
+                var expense = db.Expenses.Find(expenseId);
+                if (expense != null && expense.UserID == userid)
                 {
-                    db.Expenses.Remove(db.Expenses.Find(id));
+                    db.Expenses.Remove(db.Expenses.Find(expenseId));
                     db.SaveChanges();
                 }
             }

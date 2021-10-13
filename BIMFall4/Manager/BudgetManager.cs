@@ -19,13 +19,14 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void DeleteBudget(int id)
+        public static void DeleteBudget(int budgetid, int userid)
         {
             using(var db = new BIMFall4Context())
             {
-                if (db.Budgets.Find(id) != null)
+                var budget = db.Budgets.Find(budgetid);
+                if (budget != null && budget.UserID == userid)
                 {
-                    db.Budgets.Remove(db.Budgets.Find(id));
+                    db.Budgets.Remove(db.Budgets.Find(budgetid));
                     db.SaveChanges();
                 }
             }
@@ -48,6 +49,8 @@ namespace BIMFall4.Manager
                 return budget;
             }
         }
+
+        
 
         public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
         {

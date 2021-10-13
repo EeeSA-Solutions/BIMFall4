@@ -31,8 +31,8 @@ namespace BIMFall4.Controllers
         public bool Post([FromBody] Expense value)
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
-            value.UserID = Convert.ToInt32(userid);
-            if (userid != null && value.Amount > 0)
+            
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
                 ExpenseManager.CreateExpense(value);
                 return true;
@@ -50,9 +50,13 @@ namespace BIMFall4.Controllers
 
         // DELETE: api/Expense/5
 
-        public void Delete(int id)
+        public void Delete([FromBody] string expenseId)
         {
-            ExpenseManager.DeleteExpense(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                ExpenseManager.DeleteExpense(Convert.ToInt32(expenseId), Convert.ToInt32(userid));
+            }
         }
     }
 }
