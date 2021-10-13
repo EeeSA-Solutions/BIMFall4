@@ -19,7 +19,7 @@ namespace BIMFall4.Manager
                 }
         }
 
-        public static void DeleteIncome(int userid, int incomeId)
+        public static void DeleteIncome(int incomeId, int userid )
         {
             using (var db = new BIMFall4Context())
             {
