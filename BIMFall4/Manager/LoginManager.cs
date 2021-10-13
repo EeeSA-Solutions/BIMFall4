@@ -1,4 +1,5 @@
-﻿using BIMFall4.Data;
+﻿using BIMFall4.Authenticator;
+using BIMFall4.Data;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,31 @@ namespace BIMFall4.Manager
 {
     public class LoginManager
     {
+        
         static public Response GetLoginResponse(User value)
         {
+            TokenManager tokenManager = new TokenManager();
             using (var db = new BIMFall4Context())
             {
                 var user = db.Users.Where(x => x.Email.Equals(value.Email) && x.Password.Equals(value.Password)).FirstOrDefault();
                 if (user == null)
                     return new Response { Status = "Invalid", Message = "Invalid User." };
                 else
-                    return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID};  
+
+                    return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID, UserToken = tokenManager.GenerateToken(getUserId(value.Email)) };
+            }
+        }
+
+        static public int getUserId(string email)
+        {
+            TokenManager tokenManager = new TokenManager();
+
+            using (var db = new BIMFall4Context())
+            {
+                var u = db.Users.Where(x => x.Email == email).FirstOrDefault();
+                db.SaveChanges();
+                return u.ID;
+
             }
         }
     }

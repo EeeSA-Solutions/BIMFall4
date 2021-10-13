@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BIMFall4.Authenticator;
 using BIMFall4.Manager;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
@@ -13,16 +14,30 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SavingGoalController : ApiController
     {
-        // GET: api/SavingGoal/5
-        public IEnumerable<SavingGoalDTO> Get(int id)
+
+        TokenManager tokenManager = new TokenManager();
+        // GET: api/SavingGoal
+        public IEnumerable<SavingGoalDTO> Get()
         {
-            return SavingGoalManager.GetSavingGoalDtoById(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+            return SavingGoalManager.GetSavingGoalDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
+
+        // GET: api/SavingGoal/5
 
         // POST: api/SavingGoal
         public bool Post([FromBody]SavingGoal value)
         {
-            if(value.Amount > 0)
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+
+            if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
             {
                 SavingGoalManager.CreateSavingGoal(value);
                 return true;
@@ -31,7 +46,6 @@ namespace BIMFall4.Controllers
             {
                 return false;
             }
-            
         }
 
         // PUT: api/SavingGoal/5
@@ -41,9 +55,15 @@ namespace BIMFall4.Controllers
         }
 
         // DELETE: api/SavingGoal/5
-        public void Delete(int id)
+
+        public void Delete([FromBody] string savinggoalId)
         {
-            SavingGoalManager.DeleteSavingGoal(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                SavingGoalManager.DeleteSavingGoal(Convert.ToInt32(savinggoalId), Convert.ToInt32(userid));
+            }
         }
+        
     }
 }

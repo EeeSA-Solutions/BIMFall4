@@ -15,8 +15,8 @@ namespace BIMFall4
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{token}",
+                defaults: new { controller = "Home", action = "Index", token = UrlParameter.Optional }
             );
         }
     }

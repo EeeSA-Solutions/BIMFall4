@@ -19,13 +19,14 @@ namespace BIMFall4.Manager
                 }
         }
 
-        public static void DeleteIncome(int id)
+        public static void DeleteIncome(int userid, int incomeId)
         {
-            using (BIMFall4Context db = new BIMFall4Context())
+            using (var db = new BIMFall4Context())
             {
-                if (db.Incomes.Find(id) != null)
+                var income = db.Incomes.Find(incomeId);
+                if (income != null && income.UserID == userid)
                 {
-                    db.Incomes.Remove(db.Incomes.Find(id));
+                    db.Incomes.Remove(db.Incomes.Find(incomeId));
                     db.SaveChanges();
                 }
             }

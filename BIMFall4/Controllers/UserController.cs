@@ -1,28 +1,29 @@
-﻿using BIMFall4.Forms;
+﻿using BIMFall4.Authenticator;
+using BIMFall4.Forms;
 using BIMFall4.Manager;
-using BIMFall4.Models;
-using BIMFall4.Data;
 using BIMFall4.ModelDTO;
+using BIMFall4.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
-using System.Data.Entity;
-
 
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
+        TokenManager tokenManager = new TokenManager();
         // GET: api/User/5
-        public UserDTO GetSafeUserById(int id)
+        public UserDTO GetSafeUserById()
         {
-           return UserManager.GetUserById(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                return UserManager.GetUserById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // POST: api/User
@@ -43,7 +44,7 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/User/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
