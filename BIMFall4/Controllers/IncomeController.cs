@@ -13,6 +13,7 @@ namespace BIMFall4.Controllers
     {
         TokenManager tokenManager = new TokenManager();
         // GET: api/Income
+
         public IEnumerable<IncomeDTO> Get()
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
@@ -25,6 +26,7 @@ namespace BIMFall4.Controllers
                 return null;
             }
 
+
         }
         // GET: api/Income/5
 
@@ -34,6 +36,7 @@ namespace BIMFall4.Controllers
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
 
             if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
+
             {
                 IncomeManager.CreateIncome(value);
                 return true;
@@ -45,8 +48,10 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/Income/5
-        public void Put(int id, [FromBody] string value)
+
+        public void Put(int id, [FromBody]Income value)
         {
+            IncomeManager.EditIncomeByID(value, id);
         }
 
         // DELETE: api/Income/5

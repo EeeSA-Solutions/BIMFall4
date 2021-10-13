@@ -32,6 +32,7 @@ namespace BIMFall4.Manager
             }
         }
 
+
         public static IEnumerable<Budget> GetBudgetList()
         {
             using (var db = new BIMFall4Context())
@@ -51,6 +52,7 @@ namespace BIMFall4.Manager
         }
 
         
+
 
         public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
         {
@@ -74,6 +76,25 @@ namespace BIMFall4.Manager
                 }
 
                 return budgetlist;
+            }
+        }
+
+        public static void EditBudgetByID(Budget budget, int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var db_bud = db.Budgets.Where(x => x.ID == id).FirstOrDefault();
+                if (db_bud != null)
+                {
+                    db_bud.Category = budget.Category;
+                    db_bud.Amount = budget.Amount;
+                    db_bud.Date = budget.Date;
+                }
+                else
+                {
+                    return;
+                }
+                db.SaveChanges();
             }
         }
     }

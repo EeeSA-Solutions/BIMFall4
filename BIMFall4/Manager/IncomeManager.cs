@@ -12,7 +12,6 @@ namespace BIMFall4.Manager
     {
         public static void CreateIncome(Income income)
         {
-
                 using (BIMFall4Context db = new BIMFall4Context())
                 {
                     db.Incomes.Add(income);
@@ -30,23 +29,6 @@ namespace BIMFall4.Manager
                     db.Incomes.Remove(db.Incomes.Find(incomeId));
                     db.SaveChanges();
                 }
-            }
-        }
-        public static IEnumerable<Income> GetIncomeList()
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.Incomes.ToList();
-            }
-        }
-
-
-        public static IEnumerable<Income> GetIncomeById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var income = db.Incomes.Where(x => x.UserID == id).ToList();
-                return income;
             }
         }
 
@@ -67,10 +49,27 @@ namespace BIMFall4.Manager
                         Name = item.Name,
                         Date = item.Date
                     });
-
                 }
-
                 return incomelist;
+            }
+        }
+
+        public static void EditIncomeByID(Income income, int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var inc = db.Incomes.Where(x => x.ID == id).FirstOrDefault();
+                if(inc != null)
+                {
+                    inc.Name = income.Name;
+                    inc.Amount = income.Amount;
+                    inc.Date = income.Date;
+                }
+                else
+                {
+                    return;
+                }
+                db.SaveChanges();
             }
         }
     }

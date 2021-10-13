@@ -237,11 +237,14 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
+
+
     <Compile Include="Migrations\202110130726053_init.cs" />
     <Compile Include="Migrations\202110130726053_init.designer.cs">
       <DependentUpon>202110130726053_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
     <Compile Include="ModelDTO\FriendDTO.cs" />
@@ -340,11 +343,13 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110130726053_init.resx">
       <DependentUpon>202110130726053_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

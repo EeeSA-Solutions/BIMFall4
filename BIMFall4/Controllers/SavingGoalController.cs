@@ -14,6 +14,7 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SavingGoalController : ApiController
     {
+
         TokenManager tokenManager = new TokenManager();
         // GET: api/SavingGoal
         public IEnumerable<SavingGoalDTO> Get()
@@ -28,6 +29,7 @@ namespace BIMFall4.Controllers
                 return null;
             }
         }
+
         // GET: api/SavingGoal/5
 
         // POST: api/SavingGoal
@@ -47,8 +49,9 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/SavingGoal/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] SavingGoal value)
         {
+            SavingGoalManager.EditSavingGoalByID(value, id);
         }
 
         // DELETE: api/SavingGoal/5

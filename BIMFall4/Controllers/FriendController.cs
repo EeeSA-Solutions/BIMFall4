@@ -10,11 +10,12 @@ using System.Web.Http;
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-
+    
     public class FriendController : ApiController
     {
         TokenManager tokenManager = new TokenManager();
         // GET: api/Friend
+
         public IEnumerable<FriendDTO> Get()
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
@@ -32,7 +33,7 @@ namespace BIMFall4.Controllers
 
 
         // POST: api/Friend
-        public void Post([FromBody] User value)
+        public Response Post([FromBody] User value)
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
             if (userid != null && value.ID.ToString()==userid)
@@ -41,14 +42,16 @@ namespace BIMFall4.Controllers
             }
         }
 
-        // PUT: api/Friend/5
-        public void Put(int id, [FromBody] string value)
+        //PUT: api/Friend/id/wantedstatus
+        public Response Put(int id, [FromBody] FriendStatus value)
         {
+            return FriendManager.SetFriendStatus(id, value);
         }
 
         // DELETE: api/Friend/5
         public void Delete(int id)
         {
+            FriendManager.DeleteRelationship(id);
         }
     }
 }

@@ -11,7 +11,9 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ExpenseController : ApiController
     {
+
         TokenManager tokenManager = new TokenManager();
+
 
         // GET: api/Expense/5
         public IEnumerable<ExpenseDTO> Get()
@@ -44,11 +46,15 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/Expense/5
-        public void Put(int id, [FromBody] string value)
+
+        public void Put(int id, [FromBody] Expense value)
+
         {
+            ExpenseManager.EditExpenseByID(value, id);
         }
 
         // DELETE: api/Expense/5
+
 
         public void Delete([FromBody] string expenseId)
         {

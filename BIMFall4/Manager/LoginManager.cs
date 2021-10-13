@@ -20,6 +20,7 @@ namespace BIMFall4.Manager
                 if (user == null)
                     return new Response { Status = "Invalid", Message = "Invalid User." };
                 else
+
                     return new Response { Status = "Success", Message = "Login Successfully", UserID = user.ID, UserToken = tokenManager.GenerateToken(getUserId(value.Email)) };
             }
         }
@@ -33,6 +34,7 @@ namespace BIMFall4.Manager
                 var u = db.Users.Where(x => x.Email == email).FirstOrDefault();
                 db.SaveChanges();
                 return u.ID;
+
             }
         }
     }

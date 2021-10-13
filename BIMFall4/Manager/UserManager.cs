@@ -38,7 +38,6 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var user = db.Users.FirstOrDefault(x => x.ID == id);
-                //var user = db.Users.Where(s => s.ID == id).Include(u => u.Pendings).FirstOrDefault()
                 
                 var userdto = new UserDTO
                 {
@@ -51,16 +50,6 @@ namespace BIMFall4.Manager
             }
         }
 
-        static public User GetSafeUserByID(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var SafeUser = db.Users.Find(id);
-                //SafeUser.Password = "";
-                return SafeUser;
-            }
-        }
-
         static public User GetUserByEmail(string email)
         {
             using (var db = new BIMFall4Context())
@@ -68,17 +57,10 @@ namespace BIMFall4.Manager
               return GetUserByEmail(email, db);
             }
         }
+
         static public User GetUserByEmail(string email, BIMFall4Context db)
         {
-                return db.Users.Where(user => user.Email == email).FirstOrDefault();
-        }
-
-        static public IEnumerable<User> SearchByFirstName(string firstName)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.Users.Where(user => user.FirstName == firstName);
-            }
+            return db.Users.Where(user => user.Email == email).FirstOrDefault();
         }
 
 

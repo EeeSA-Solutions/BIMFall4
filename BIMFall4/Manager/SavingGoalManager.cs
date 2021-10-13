@@ -31,23 +31,6 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<SavingGoal> getSavingGoalById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var saving = db.SavingGoals.Where(x => x.UserID == id).ToList();
-                return saving;
-            }
-        }
-
-        public static IEnumerable<SavingGoal> GetSavingGoalList()
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.SavingGoals.ToList();
-            }
-        }
-
         public static IEnumerable<SavingGoalDTO> GetSavingGoalDtoById(int id)
         {
             using (var db = new BIMFall4Context())
@@ -70,6 +53,25 @@ namespace BIMFall4.Manager
                 }
 
                 return goallist;
+            }
+        }
+        public static void EditSavingGoalByID(SavingGoal savinggoal, int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var db_sav = db.SavingGoals.Where(x => x.ID == id).FirstOrDefault();
+                if (db_sav != null)
+                {
+                    db_sav.Name = savinggoal.Name;
+                    db_sav.Amount = savinggoal.Amount;
+                    db_sav.StartDate = savinggoal.StartDate;
+                    db_sav.ReachDate = savinggoal.ReachDate;
+                }
+                else
+                {
+                    return;
+                }
+                db.SaveChanges();
             }
         }
     }
