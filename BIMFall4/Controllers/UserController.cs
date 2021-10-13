@@ -13,7 +13,7 @@ namespace BIMFall4.Controllers
     {
         TokenManager tokenManager = new TokenManager();
         // GET: api/User/5
-        public UserDTO GetSafeUserById(int id)
+        public UserDTO GetSafeUserById()
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
             if (userid != null)

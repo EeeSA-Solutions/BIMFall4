@@ -12,8 +12,8 @@ namespace BIMFall4.Controllers
     public class ExpenseController : ApiController
     {
         TokenManager tokenManager = new TokenManager();
-        // GET: api/Expense/5
 
+        // GET: api/Expense/5
         public IEnumerable<ExpenseDTO> Get()
         {
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
