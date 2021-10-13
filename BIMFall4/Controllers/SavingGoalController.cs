@@ -52,9 +52,15 @@ namespace BIMFall4.Controllers
         }
 
         // DELETE: api/SavingGoal/5
-        public void Delete(int id)
+
+        public void Delete([FromBody] string savinggoalId)
         {
-            SavingGoalManager.DeleteSavingGoal(id);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null)
+            {
+                SavingGoalManager.DeleteSavingGoal(Convert.ToInt32(savinggoalId), Convert.ToInt32(userid));
+            }
         }
+        
     }
 }

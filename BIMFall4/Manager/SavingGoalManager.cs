@@ -18,13 +18,14 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void DeleteSavingGoal(int id)
+        public static void DeleteSavingGoal(int savinggoalId, int userid)
         {
             using (var db = new BIMFall4Context())
             {
-                if (db.SavingGoals.Find(id) != null)
+                var savinggoal = db.SavingGoals.Find(savinggoalId);
+                if (savinggoal != null && savinggoal.UserID == userid)
                 {
-                    db.SavingGoals.Remove(db.SavingGoals.Find(id));
+                    db.SavingGoals.Remove(db.SavingGoals.Find(savinggoalId));
                     db.SaveChanges();
                 }
             }
