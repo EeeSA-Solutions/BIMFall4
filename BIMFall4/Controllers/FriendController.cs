@@ -21,7 +21,7 @@ namespace BIMFall4.Controllers
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
             if (userid != null)
             {
-                return FriendManager.GetPending(Convert.ToInt32(userid));
+                return FriendManager.GetPendingSentFriendsList(Convert.ToInt32(userid));
             }
             else
             {
@@ -38,7 +38,11 @@ namespace BIMFall4.Controllers
             string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
             if (userid != null && value.ID.ToString()==userid)
             {
-            FriendManager.AddFriend(value);
+                return FriendManager.AddFriend(value);
+            }
+            else
+            {
+                return null;
             }
         }
 
