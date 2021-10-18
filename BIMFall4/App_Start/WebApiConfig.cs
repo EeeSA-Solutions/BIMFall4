@@ -16,8 +16,8 @@ namespace BIMFall4
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{token}",
+                defaults: new {  token = RouteParameter.Optional }
             );
         }
     }

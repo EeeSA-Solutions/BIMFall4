@@ -62,5 +62,7 @@ namespace BIMFall4.Manager
         {
             return db.Users.Where(user => user.Email == email).FirstOrDefault();
         }
+
+
     }
 }
