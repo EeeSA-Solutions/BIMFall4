@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Web;
-using System.Web.Http;
-using BIMFall4.Manager;
-using BIMFall4.Models;
-using Microsoft.IdentityModel.Tokens;
 
 namespace BIMFall4.Authenticator
 {
-    public class TokenManager 
+    public class TokenManager
     {
         //HMACSHA256 hamc = new HMACSHA256();
         //private string key;
@@ -32,7 +23,6 @@ namespace BIMFall4.Authenticator
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {
-                      //new Claim(ClaimTypes.Name, email),
                         new Claim("Id",  id.ToString()),
                         new Claim(ClaimTypes.Role, "User")}),
                 Expires = DateTime.UtcNow.AddMinutes(30),
@@ -48,8 +38,6 @@ namespace BIMFall4.Authenticator
 
         public string ValidateToken(string token)
         {
-            
-            string Id = null;
             ClaimsPrincipal principal = GetPrincipal(token);
             if (principal == null)
                 return null;
@@ -65,8 +53,6 @@ namespace BIMFall4.Authenticator
             string userId = identity.FindFirst("Id").Value;
             return userId;
         }
-
-
 
         public ClaimsPrincipal GetPrincipal(string token)
         {
