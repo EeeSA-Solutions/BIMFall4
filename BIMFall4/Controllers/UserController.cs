@@ -5,6 +5,10 @@ using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Web.Http;
+using System.Web.Http.Description;
+using System.Data.Entity;
+using BIMFall4.Data.Secure;
+
 
 namespace BIMFall4.Controllers
 {
@@ -30,9 +34,11 @@ namespace BIMFall4.Controllers
         public Response Post([FromBody] User value)
         {
             var form = new UserForm(value);
+            var pw = new SecurePassword();
 
             if (form.isValid())
             {
+                pw.SetPassword(value);
                 UserManager.CreateUser(value);
                 return new Response { Status = "Valid" };
             }
