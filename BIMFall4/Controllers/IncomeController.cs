@@ -51,7 +51,15 @@ namespace BIMFall4.Controllers
 
         public void Put([FromBody]Income value)
         {
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
             IncomeManager.EditIncomeByID(value);
+            }
+            else
+            {
+                return;
+            }
         }
 
         // DELETE: api/Income/5

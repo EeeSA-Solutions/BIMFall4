@@ -48,9 +48,16 @@ namespace BIMFall4.Controllers
         // PUT: api/Expense/5
 
         public void Put([FromBody] Expense value)
-
         {
-            ExpenseManager.EditExpenseByID(value);
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
+                ExpenseManager.EditExpenseByID(value);
+            }
+            else
+            {
+                return;
+            }
         }
 
         // DELETE: api/Expense/5

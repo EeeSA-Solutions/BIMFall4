@@ -49,7 +49,15 @@ namespace BIMFall4.Controllers
         // PUT: api/Budget/5
         public void Put([FromBody]Budget value)
         {
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
             BudgetManager.EditBudgetByID(value);
+            }
+            else
+            {
+                return;
+            }
         }
 
         // DELETE: api/Budget/5

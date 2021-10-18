@@ -51,7 +51,16 @@ namespace BIMFall4.Controllers
         // PUT: api/SavingGoal/5
         public void Put([FromBody] SavingGoal value)
         {
+            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
             SavingGoalManager.EditSavingGoalByID(value);
+            }
+            else
+            {
+                return;
+            }
+
         }
 
         // DELETE: api/SavingGoal/5
