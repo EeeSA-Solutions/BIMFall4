@@ -79,11 +79,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void EditBudgetByID(Budget budget, int id)
+        public static void EditBudgetByID(Budget budget)
         {
             using (var db = new BIMFall4Context())
             {
-                var db_bud = db.Budgets.Where(x => x.ID == id).FirstOrDefault();
+                var db_bud = db.Budgets.Where(x => x.ID == budget.ID).FirstOrDefault();
                 if (db_bud != null)
                 {
                     db_bud.Category = budget.Category;

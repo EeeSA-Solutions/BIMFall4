@@ -55,11 +55,11 @@ namespace BIMFall4.Manager
                 return goallist;
             }
         }
-        public static void EditSavingGoalByID(SavingGoal savinggoal, int id)
+        public static void EditSavingGoalByID(SavingGoal savinggoal)
         {
             using (var db = new BIMFall4Context())
             {
-                var db_sav = db.SavingGoals.Where(x => x.ID == id).FirstOrDefault();
+                var db_sav = db.SavingGoals.Where(x => x.ID == savinggoal.ID).FirstOrDefault();
                 if (db_sav != null)
                 {
                     db_sav.Name = savinggoal.Name;

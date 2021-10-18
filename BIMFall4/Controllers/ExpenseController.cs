@@ -47,10 +47,10 @@ namespace BIMFall4.Controllers
 
         // PUT: api/Expense/5
 
-        public void Put(int id, [FromBody] Expense value)
+        public void Put([FromBody] Expense value)
 
         {
-            ExpenseManager.EditExpenseByID(value, id);
+            ExpenseManager.EditExpenseByID(value);
         }
 
         // DELETE: api/Expense/5
