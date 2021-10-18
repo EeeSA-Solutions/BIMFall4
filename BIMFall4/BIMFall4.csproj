@@ -233,7 +233,6 @@
     <Compile Include="Manager\ExpenseManager.cs" />
     <Compile Include="Manager\FriendManager.cs" />
     <Compile Include="Manager\IncomeManager.cs" />
-    <Compile Include="Manager\JWTManager\UserRepository.cs" />
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />

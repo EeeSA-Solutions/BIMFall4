@@ -9,7 +9,6 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
 using BIMFall4.Manager;
-using BIMFall4.Manager.JWTManager;
 using BIMFall4.Models;
 using Microsoft.IdentityModel.Tokens;
 

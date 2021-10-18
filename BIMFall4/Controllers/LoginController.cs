@@ -1,6 +1,5 @@
 ﻿using BIMFall4.Authenticator;
 using BIMFall4.Manager;
-using BIMFall4.Manager.JWTManager;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
@@ -29,13 +28,9 @@ namespace BIMFall4.Controllers
         //POST: api/Login
         public Response Post([FromBody] User value)
         {
-            User u = new UserRepository().GetUser(value.Email);
-            
-            if (u.Email != null)
-            {
-                return LoginManager.GetLoginResponse(value);
-            }
-            else return null;
+
+
+            return LoginManager.GetLoginResponse(value);
 
         }
 
