@@ -28,8 +28,6 @@ namespace BIMFall4.Controllers
         //POST: api/Login
         public Response Post([FromBody] User value)
         {
-
-
             return LoginManager.GetLoginResponse(value);
 
         }

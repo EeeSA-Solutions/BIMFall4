@@ -39,7 +39,7 @@ namespace BIMFall4.Data.Secure
         }
 
         public void SetPassword(User user)
-        {
+        {   
             user.Salt = SaltGenerator(10);
             user.Password = ComputePassword(user);
         }
