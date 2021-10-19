@@ -40,12 +40,19 @@ namespace BIMFall4.Authenticator
 
         public string ValidateToken(HttpRequestMessage req)
         {
-
             try
             {
+                if(req.Headers.Authorization == null)
+                {
+                req = new HttpRequestMessage(req.Method, ToString());
+                }
+                if (req.Content != null)
+                {
                 ClaimsPrincipal principal = GetPrincipal(req.Headers.Authorization.Parameter);
                 if (principal == null)
+                    {
                     return null;
+                    }
                 ClaimsIdentity identity = null;
                 try
                 {
@@ -58,6 +65,11 @@ namespace BIMFall4.Authenticator
                 string userId = identity.FindFirst("Id").Value;
                 return userId;
 
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch
             {
@@ -66,7 +78,6 @@ namespace BIMFall4.Authenticator
 
          
         }
-
         public ClaimsPrincipal GetPrincipal(string token)
         {
             try
