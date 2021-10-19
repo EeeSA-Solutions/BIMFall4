@@ -1,7 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Web;
 
 namespace BIMFall4.Authenticator
 {
@@ -36,22 +38,33 @@ namespace BIMFall4.Authenticator
         }
 
 
-        public string ValidateToken(string token)
+        public string ValidateToken(HttpRequestMessage req)
         {
-            ClaimsPrincipal principal = GetPrincipal(token);
-            if (principal == null)
-                return null;
-            ClaimsIdentity identity = null;
+
             try
             {
-                identity = (ClaimsIdentity)principal.Identity;
+                ClaimsPrincipal principal = GetPrincipal(req.Headers.Authorization.Parameter);
+                if (principal == null)
+                    return null;
+                ClaimsIdentity identity = null;
+                try
+                {
+                    identity = (ClaimsIdentity)principal.Identity;
+                }
+                catch (NullReferenceException)
+                {
+                    return null;
+                }
+                string userId = identity.FindFirst("Id").Value;
+                return userId;
+
             }
-            catch (NullReferenceException)
+            catch
             {
                 return null;
             }
-            string userId = identity.FindFirst("Id").Value;
-            return userId;
+
+         
         }
 
         public ClaimsPrincipal GetPrincipal(string token)

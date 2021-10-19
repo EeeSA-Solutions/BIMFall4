@@ -19,7 +19,7 @@ namespace BIMFall4.Controllers
         // GET: api/SavingGoal
         public IEnumerable<SavingGoalDTO> Get()
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
             return SavingGoalManager.GetSavingGoalDtoById(Convert.ToInt32(userid));
@@ -35,7 +35,7 @@ namespace BIMFall4.Controllers
         // POST: api/SavingGoal
         public bool Post([FromBody]SavingGoal value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
 
             if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
             {
@@ -51,7 +51,7 @@ namespace BIMFall4.Controllers
         // PUT: api/SavingGoal/5
         public void Put([FromBody] SavingGoal value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
             SavingGoalManager.EditSavingGoalByID(value);
@@ -67,7 +67,7 @@ namespace BIMFall4.Controllers
 
         public void Delete([FromBody] string savinggoalId)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 SavingGoalManager.DeleteSavingGoal(Convert.ToInt32(savinggoalId), Convert.ToInt32(userid));

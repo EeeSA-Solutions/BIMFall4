@@ -16,7 +16,7 @@ namespace BIMFall4.Controllers
 
         public IEnumerable<IncomeDTO> Get()
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 return IncomeManager.GetIncomeDtoById(Convert.ToInt32(userid));
@@ -33,7 +33,7 @@ namespace BIMFall4.Controllers
         // POST: api/Income
         public bool Post([FromBody] Income value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
 
             if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
 
@@ -51,10 +51,10 @@ namespace BIMFall4.Controllers
 
         public void Put([FromBody]Income value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
-            IncomeManager.EditIncomeByID(value);
+                IncomeManager.EditIncomeByID(value);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace BIMFall4.Controllers
         // DELETE: api/Income/5
         public void Delete([FromBody] string incomeId)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 IncomeManager.DeleteIncome(Convert.ToInt32(incomeId), Convert.ToInt32(userid));

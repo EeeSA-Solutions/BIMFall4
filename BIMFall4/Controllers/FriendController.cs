@@ -18,7 +18,7 @@ namespace BIMFall4.Controllers
 
         public IEnumerable<FriendDTO> Get()
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 return FriendManager.GetPendingSentFriendsList(Convert.ToInt32(userid));
@@ -35,7 +35,7 @@ namespace BIMFall4.Controllers
         // POST: api/Friend
         public Response Post([FromBody] User value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.ID.ToString()==userid)
             {
                 return FriendManager.AddFriend(value);

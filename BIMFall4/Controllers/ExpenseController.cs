@@ -18,7 +18,7 @@ namespace BIMFall4.Controllers
         // GET: api/Expense/5
         public IEnumerable<ExpenseDTO> Get()
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid));
@@ -32,7 +32,7 @@ namespace BIMFall4.Controllers
         // POST: api/Expense
         public bool Post([FromBody] Expense value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
@@ -49,7 +49,7 @@ namespace BIMFall4.Controllers
 
         public void Put([FromBody] Expense value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
                 ExpenseManager.EditExpenseByID(value);
@@ -65,7 +65,7 @@ namespace BIMFall4.Controllers
 
         public void Delete([FromBody] string expenseId)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 ExpenseManager.DeleteExpense(Convert.ToInt32(expenseId), Convert.ToInt32(userid));
