@@ -54,11 +54,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void EditIncomeByID(Income income, int id)
+        public static void EditIncomeByID(Income income)
         {
             using (var db = new BIMFall4Context())
             {
-                var inc = db.Incomes.Where(x => x.ID == id).FirstOrDefault();
+                var inc = db.Incomes.Where(x => x.ID == income.ID).FirstOrDefault();
                 if(inc != null)
                 {
                     inc.Name = income.Name;

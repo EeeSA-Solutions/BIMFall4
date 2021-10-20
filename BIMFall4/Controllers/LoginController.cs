@@ -1,11 +1,6 @@
-﻿using BIMFall4.Authenticator;
-using BIMFall4.Manager;
+﻿using BIMFall4.Manager;
 using BIMFall4.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace BIMFall4.Controllers
@@ -29,11 +24,10 @@ namespace BIMFall4.Controllers
         public Response Post([FromBody] User value)
         {
             return LoginManager.GetLoginResponse(value);
-
         }
 
         // PUT: api/Login/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 

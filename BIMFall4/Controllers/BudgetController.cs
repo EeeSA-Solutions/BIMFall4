@@ -20,7 +20,7 @@ namespace BIMFall4.Controllers
         // GET: api/Budget/5
         public IEnumerable<BudgetDTO> Get()
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
             return BudgetManager.GetBudgetDtoById(Convert.ToInt32(userid));
@@ -34,7 +34,7 @@ namespace BIMFall4.Controllers
         // POST: api/Budget
         public bool Post([FromBody] Budget value)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
                 BudgetManager.CreateBudget(value);
@@ -47,15 +47,23 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/Budget/5
-        public void Put(int id, [FromBody]Budget value)
+        public void Put([FromBody]Budget value)
         {
-            BudgetManager.EditBudgetByID(value, id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
+            BudgetManager.EditBudgetByID(value);
+            }
+            else
+            {
+                return;
+            }
         }
 
         // DELETE: api/Budget/5
         public void Delete([FromBody] string budgetId)
         {
-            string userid = tokenManager.ValidateToken(Request.Headers.Authorization.Parameter);
+            string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
                 BudgetManager.DeleteBudget(Convert.ToInt32(budgetId), Convert.ToInt32(userid));

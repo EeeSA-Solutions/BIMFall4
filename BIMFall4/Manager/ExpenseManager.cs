@@ -81,11 +81,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void EditExpenseByID(Expense expense, int id)
+        public static void EditExpenseByID(Expense expense)
         {
             using (var db = new BIMFall4Context())
             {
-                var db_exp = db.Expenses.Where(x => x.ID == id).FirstOrDefault();
+                var db_exp = db.Expenses.Where(x => x.ID == expense.ID).FirstOrDefault();
                 if (db_exp != null)
                 {
                     db_exp.Category = expense.Category;
