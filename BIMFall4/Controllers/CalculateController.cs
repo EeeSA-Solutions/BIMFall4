@@ -12,10 +12,10 @@ namespace BIMFall4.Controllers
     public class CalculateController : ApiController
     {
         // GET: api/Calculate
-        public List<ProgressCalculations.Erik> Get()
+        public List<ProgressCalculations.ProgressDTO> Get()
         {
-            var johan = ProgressCalculations.Calculate(1);
-            return johan;
+            return ProgressCalculations.Calculate(1);
+            
         }
 
         // GET: api/Calculate/5

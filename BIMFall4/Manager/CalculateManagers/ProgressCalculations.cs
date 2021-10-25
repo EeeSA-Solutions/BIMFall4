@@ -14,13 +14,13 @@ namespace BIMFall4.Manager.CalculateManagers
         ///         Gör sedan en total uträkning för alla expenses och alla budgetar och skicka till front (13000/17000)
         ///         Sortera efter månad.
         ///  </summary>
-       public struct Erik
+       public struct ProgressDTO
         {
-            string Category;
-            int Count;
-            decimal Amount;
-            
-            public Erik(string category, int count, decimal amount)
+           public string Category { get; set; }
+            public int Count { get; set; }
+           public decimal Amount { get; set; }
+
+            public ProgressDTO(string category, int count, decimal amount)
             {
                 Category = category;
                 Count = count;
@@ -29,11 +29,11 @@ namespace BIMFall4.Manager.CalculateManagers
 
 
         }
-        public static List<Erik> Calculate(int userId)
+        public static List<ProgressDTO> Calculate(int userId)
         {
             var list = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentMonth(userId);
             var sortedlist=list.GroupBy(item=>item.Category)
-            .Select(item => new  Erik
+            .Select(item => new  ProgressDTO
                            (
                                item.Key,
                                item.Count(),
