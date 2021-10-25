@@ -240,9 +240,9 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202110200912228_initial.cs" />
-    <Compile Include="Migrations\202110200912228_initial.designer.cs">
-      <DependentUpon>202110200912228_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202110251311353_initial.cs" />
+    <Compile Include="Migrations\202110251311353_initial.designer.cs">
+      <DependentUpon>202110251311353_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -344,8 +344,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110200912228_initial.resx">
-      <DependentUpon>202110200912228_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110251311353_initial.resx">
+      <DependentUpon>202110251311353_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

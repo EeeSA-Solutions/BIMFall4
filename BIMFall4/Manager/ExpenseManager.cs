@@ -60,7 +60,7 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                var exp = db.Expenses.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month).ToList();
+                var exp = db.Expenses.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).ToList();
 
                 var expenselist = new List<ExpenseDTO>();
 
