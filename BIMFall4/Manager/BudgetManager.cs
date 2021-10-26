@@ -14,9 +14,48 @@ namespace BIMFall4.Manager
         {
             using(var db = new BIMFall4Context())
             {
-                db.Budgets.Add(budget);
-                db.SaveChanges();
+                if (budget.Repeat)
+                {
+
+                    db.Budgets.AddRange(createOnRepeat(budget));
+                    db.SaveChanges();
+                }
+                else
+                {
+                    if(db.Budgets.Where(x => x.Date == budget.Date && x.Category == budget.Category).FirstOrDefault() == null)
+                    {
+                    db.Budgets.Add(budget);
+                    db.SaveChanges();
+
+                    }
+
+                }
             }
+        }
+
+        public static List<Budget> createOnRepeat(Budget budget)
+        {
+            List<Budget> newbudgetlist = new List<Budget>();
+
+            for (int i = 0; i < 12; i++)
+            {
+                Budget newbudget = new Budget()
+                {
+                    Date = budget.Date.AddMonths(i),
+                    Category = budget.Category,
+                    UserID = budget.UserID,
+                    Amount = budget.Amount
+                    
+                };
+                using(var db = new BIMFall4Context())
+                {
+                    if(db.Budgets.Where(x => x.Date == newbudget.Date && x.Category == newbudget.Category).FirstOrDefault() == null)
+                    {
+                    newbudgetlist.Add(newbudget);
+                    }
+                }
+            }
+            return newbudgetlist;
         }
 
         public static void DeleteBudget(int budgetid, int userid)
