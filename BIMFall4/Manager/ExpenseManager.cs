@@ -56,7 +56,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentMonth( int userId)
+        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentDate( int userId)
         {
             using (var db = new BIMFall4Context())
             {

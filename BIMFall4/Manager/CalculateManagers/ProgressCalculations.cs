@@ -30,42 +30,28 @@ namespace BIMFall4.Manager.CalculateManagers
              
 
         }
-        public static List<ProgressDTO> Calculate(int userId)
+        public static List<List<ProgressDTO>> Calculate(int userId)
         {
-            var list = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentMonth(userId);
-            var sortedlist=list.GroupBy(item=>item.Category)
+            var expList = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentDate(userId);
+            var budList = BudgetManager.GetUserBudgetDtoSortedByCategoryAndCurrentDate(userId);
+
+
+            var groupedExpList=expList.GroupBy(item=>item.Category)
             .Select(item => new  ProgressDTO
                            (
                                item.Key,
                                item.Count(),
                                item.Sum(ta => ta.Amount)
                            )).ToList();
-
-            return sortedlist;
+            var groupedBudList = budList.GroupBy(item => item.Category)
+            .Select(item => new ProgressDTO
+                           (
+                               item.Key,
+                               item.Count(), // kan kommas att ta bort då tanken är att inte kunna ha fler än en budget av varje typ.
+                               item.Sum(ta => ta.Amount) // när ovan blir aktuellt behöver vi ej summera heller.
+                           )).ToList();
+            List<List<ProgressDTO>> expBudList = new List<List<ProgressDTO>> { groupedExpList, groupedBudList };
+            return expBudList;
         }
-
-        public static IEnumerable<BudgetDTO> GetUserBudgetDtoSortedByCategoryAndCurrentMonth(int userId)
-        {
-            using (var db = new BIMFall4Context())
-            {
-                var bud = db.Budgets.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).ToList();
-
-                var budgetlist = new List<BudgetDTO>();
-
-                foreach (var item in bud)
-                {
-                    budgetlist.Add(new BudgetDTO
-                    {
-                        ID = item.ID,
-                        Category = item.Category,
-                        Date = item.Date,
-                        Amount = item.Amount
-
-                    });
-                }
-                return budgetlist;
-            }
-        }
-
     }
 }
