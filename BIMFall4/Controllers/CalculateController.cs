@@ -1,42 +1,29 @@
-﻿using BIMFall4.Manager.CalculateManagers;
-using BIMFall4.ModelDTO;
+﻿using BIMFall4.Authenticator;
+using BIMFall4.Manager.CalculateManagers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+
 
 namespace BIMFall4.Controllers
 {
+    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CalculateController : ApiController
     {
+         TokenManager tokenManager = new TokenManager();
         // GET: api/Calculate
+        [HttpGet]
         public List<List<ProgressCalculations.ProgressDTO>> Get()
         {
-            return ProgressCalculations.Calculate(1);
-            
-        }
-
-        // GET: api/Calculate/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Calculate
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Calculate/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Calculate/5
-        public void Delete(int id)
-        {
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null)
+            {
+                return ProgressCalculations.Calculate(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using BIMFall4.Data;
-using BIMFall4.ModelDTO;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
 
 namespace BIMFall4.Manager.CalculateManagers
 {
@@ -15,11 +13,11 @@ namespace BIMFall4.Manager.CalculateManagers
         ///         Gör sedan en total uträkning för alla expenses och alla budgetar och skicka till front (13000/17000)
         ///         Sortera efter månad.
         ///  </summary>
-       public struct ProgressDTO
+        public struct ProgressDTO
         {
-           public string Category { get; set; }
+            public string Category { get; set; }
             public int Count { get; set; }
-           public decimal Amount { get; set; }
+            public decimal Amount { get; set; }
 
             public ProgressDTO(string category, int count, decimal amount)
             {
@@ -27,17 +25,14 @@ namespace BIMFall4.Manager.CalculateManagers
                 Count = count; // Antal element i t.ex Groceries
                 Amount = amount; //totala summan
             }
-             
-
         }
         public static List<List<ProgressDTO>> Calculate(int userId)
         {
             var expList = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentDate(userId);
             var budList = BudgetManager.GetUserBudgetDtoSortedByCategoryAndCurrentDate(userId);
 
-
-            var groupedExpList=expList.GroupBy(item=>item.Category)
-            .Select(item => new  ProgressDTO
+            var groupedExpList = expList.GroupBy(item => item.Category)
+            .Select(item => new ProgressDTO
                            (
                                item.Key,
                                item.Count(),
@@ -50,7 +45,9 @@ namespace BIMFall4.Manager.CalculateManagers
                                item.Count(), // kan kommas att ta bort då tanken är att inte kunna ha fler än en budget av varje typ.
                                item.Sum(ta => ta.Amount) // när ovan blir aktuellt behöver vi ej summera heller.
                            )).ToList();
+
             List<List<ProgressDTO>> expBudList = new List<List<ProgressDTO>> { groupedExpList, groupedBudList };
+
             return expBudList;
         }
     }
