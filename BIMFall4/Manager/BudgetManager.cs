@@ -22,7 +22,8 @@ namespace BIMFall4.Manager
                 }
                 else
                 {
-                    if(db.Budgets.Where(x => x.Date == budget.Date && x.Category == budget.Category).FirstOrDefault() == null)
+                    var foundDuplicate = db.Budgets.Where(x => x.Date == budget.Date && x.Category == budget.Category).FirstOrDefault();
+                    if (foundDuplicate == null)
                     {
                     db.Budgets.Add(budget);
                     db.SaveChanges();
@@ -123,7 +124,11 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var db_bud = db.Budgets.Where(x => x.ID == budget.ID).FirstOrDefault();
-                if (db_bud != null)
+                var foundDuplicate = db.Budgets.Where(x => x.Date.Year == budget.Date.Year 
+                && x.Date.Month == budget.Date.Month
+                && x.Category == budget.Category).FirstOrDefault();
+
+                if (db_bud != null && foundDuplicate == null)
                 {
                     db_bud.Category = budget.Category;
                     db_bud.Amount = budget.Amount;
