@@ -15,11 +15,13 @@ namespace BIMFall4.Models
         
         public decimal Amount { get; set; }
 
+        public bool Repeat { get; set; }
+
         [ForeignKey("User")]
         public int UserID { get; set; }
 
         public virtual User User { get; set; }
         [Column(TypeName = "Date")]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } 
     }
 }
