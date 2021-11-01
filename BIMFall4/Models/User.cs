@@ -16,13 +16,13 @@ namespace BIMFall4.Models
         public string FirstName { get; set; }
         [Required(AllowEmptyStrings = false), MaxLength(80)]
         public string LastName { get; set; }
+        public string Token { get; set; }
         [Index(IsUnique = true), MaxLength(80)]
         [EmailAddress]
         public string Email { get; set; }
         [Required(AllowEmptyStrings = false), MinLength(8)]
         public string Password { get; set; }
-        
-                
+        public string Salt { get; set; }
         public virtual ICollection<Income> Incomes { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }

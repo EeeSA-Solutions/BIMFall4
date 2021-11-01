@@ -9,7 +9,7 @@ namespace BIMFall4.Forms.UserValidations
 {
     public class UserValidator
     {
-        User user;
+        //User user;
         List<IValidateHandler> validators = new List<IValidateHandler>();
 
         public void AddHandler(IValidateHandler val)

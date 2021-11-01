@@ -1,30 +1,40 @@
-﻿using BIMFall4.Data;
+﻿using BIMFall4.Authenticator;
 using BIMFall4.Manager;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Data.Entity;
-using BIMFall4.ModelDTO;
 
 namespace BIMFall4.Controllers
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ExpenseController : ApiController
     {
+
+        TokenManager tokenManager = new TokenManager();
+
+
         // GET: api/Expense/5
-        public IEnumerable<ExpenseDTO> Get(int id)
+        public IEnumerable<ExpenseDTO> Get()
         {
-            return ExpenseManager.GetExpenseDtoById(id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null)
+            {
+                return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // POST: api/Expense
-        public bool Post([FromBody]Expense value)
+        public bool Post([FromBody] Expense value)
         {
-            if(value.Amount > 0)
+            string userid = tokenManager.ValidateToken(Request);
+            
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
                 ExpenseManager.CreateExpense(value);
                 return true;
@@ -33,20 +43,33 @@ namespace BIMFall4.Controllers
             {
                 return false;
             }
-
         }
 
         // PUT: api/Expense/5
-        public void Put(int id, [FromBody] Expense value)
+
+        public void Put([FromBody] Expense value)
         {
-            ExpenseManager.EditExpenseByID(value, id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
+                ExpenseManager.EditExpenseByID(value);
+            }
+            else
+            {
+                return;
+            }
         }
 
         // DELETE: api/Expense/5
 
-        public void Delete(int id)
+
+        public void Delete([FromBody] string expenseId)
         {
-            ExpenseManager.DeleteExpense(id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null)
+            {
+                ExpenseManager.DeleteExpense(Convert.ToInt32(expenseId), Convert.ToInt32(userid));
+            }
         }
     }
 }

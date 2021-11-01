@@ -20,17 +20,39 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void DeleteExpense(int id)
+        public static void DeleteExpense(int expenseId, int userid)
         {
             using (var db = new BIMFall4Context())
             {
-                if (db.Expenses.Find(id) != null)
+                var expense = db.Expenses.Find(expenseId);
+                if (expense != null && expense.UserID == userid)
                 {
-                    db.Expenses.Remove(db.Expenses.Find(id));
+                    db.Expenses.Remove(db.Expenses.Find(expenseId));
                     db.SaveChanges();
                 }
             }
         }
+
+
+        public static IEnumerable<Expense> GetExpensesById(int id)
+        {
+            using (var db = new BIMFall4Context())
+            {
+
+                var expense = db.Expenses.Where(x => x.UserID == id).ToList();
+                return expense;
+            }
+        }
+
+        public static IEnumerable<Expense> GetExpenseList()
+        {
+            using (var db = new BIMFall4Context())
+            {
+                return db.Expenses.ToList();
+            }
+        }
+
+
 
         public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
         {
@@ -59,11 +81,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static void EditExpenseByID(Expense expense, int id)
+        public static void EditExpenseByID(Expense expense)
         {
             using (var db = new BIMFall4Context())
             {
-                var db_exp = db.Expenses.Where(x => x.ID == id).FirstOrDefault();
+                var db_exp = db.Expenses.Where(x => x.ID == expense.ID).FirstOrDefault();
                 if (db_exp != null)
                 {
                     db_exp.Category = expense.Category;

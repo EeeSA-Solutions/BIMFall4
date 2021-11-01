@@ -1,11 +1,9 @@
-﻿using BIMFall4.Manager;
+﻿using BIMFall4.Authenticator;
+using BIMFall4.Manager;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace BIMFall4.Controllers
@@ -13,18 +11,32 @@ namespace BIMFall4.Controllers
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class IncomeController : ApiController
     {
+        TokenManager tokenManager = new TokenManager();
         // GET: api/Income
 
-        // GET: api/Income/5
-        public IEnumerable<IncomeDTO> Get(int id)
+        public IEnumerable<IncomeDTO> Get()
         {
-            return IncomeManager.GetIncomeDtoById(id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null)
+            {
+                return IncomeManager.GetIncomeDtoById(Convert.ToInt32(userid));
+            }
+            else
+            {
+                return null;
+            }
+
+
         }
+        // GET: api/Income/5
 
         // POST: api/Income
-        public bool Post([FromBody]Income value)
+        public bool Post([FromBody] Income value)
         {
-            if(value.Amount > 0)
+            string userid = tokenManager.ValidateToken(Request);
+
+            if (userid != null && value.Amount > 0 && value.UserID.ToString() == userid)
+
             {
                 IncomeManager.CreateIncome(value);
                 return true;
@@ -36,15 +48,28 @@ namespace BIMFall4.Controllers
         }
 
         // PUT: api/Income/5
-        public void Put(int id, [FromBody]Income value)
+
+        public void Put([FromBody]Income value)
         {
-            IncomeManager.EditIncomeByID(value, id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
+            {
+                IncomeManager.EditIncomeByID(value);
+            }
+            else
+            {
+                return;
+            }
         }
 
         // DELETE: api/Income/5
-        public void Delete(int id)
+        public void Delete([FromBody] string incomeId)
         {
-            IncomeManager.DeleteIncome(id);
+            string userid = tokenManager.ValidateToken(Request);
+            if (userid != null)
+            {
+                IncomeManager.DeleteIncome(Convert.ToInt32(incomeId), Convert.ToInt32(userid));
+            }
         }
     }
 }
