@@ -1,4 +1,5 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.Manager.Helper;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
@@ -10,14 +11,16 @@ namespace BIMFall4.Manager
 {
     public class BudgetManager
     {
-        public static void CreateBudget(Budget budget)
+        private IRepeater<Budget> repeater;
+        public void CreateBudget(Budget budget)
         {
+            
             using(var db = new BIMFall4Context())
             {
                 if (budget.Repeat)
                 {
 
-                    db.Budgets.AddRange(createOnRepeat(budget));
+                    db.Budgets.AddRange(repeater.CreateOnRepeat(budget));
                     db.SaveChanges();
                 }
                 else
@@ -34,30 +37,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static List<Budget> createOnRepeat(Budget budget)
-        {
-            List<Budget> newbudgetlist = new List<Budget>();
-
-            for (int i = 0; i < 12; i++)
-            {
-                Budget newbudget = new Budget()
-                {
-                    Date = budget.Date.AddMonths(i),
-                    Category = budget.Category,
-                    UserID = budget.UserID,
-                    Amount = budget.Amount
-                    
-                };
-                using(var db = new BIMFall4Context())
-                {
-                    if(db.Budgets.Where(x => x.Date == newbudget.Date && x.Category == newbudget.Category).FirstOrDefault() == null)
-                    {
-                    newbudgetlist.Add(newbudget);
-                    }
-                }
-            }
-            return newbudgetlist;
-        }
+  
 
         public static void DeleteBudget(int budgetid, int userid)
         {

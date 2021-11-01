@@ -6,17 +6,34 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using BIMFall4.ModelDTO;
+using BIMFall4.Manager.Helper;
 
 namespace BIMFall4.Manager
 {
-    public static class ExpenseManager
+    public class ExpenseManager
     {
-        public static void CreateExpense(Expense expense)
+        private IRepeater<Expense> repeater;
+        public void CreateExpense(Expense expense)
         {
             using (var db = new BIMFall4Context())
             {
-                db.Expenses.Add(expense);
-                db.SaveChanges();
+                if (expense.Repeat)
+                {
+
+                    db.Expenses.AddRange(repeater.CreateOnRepeat(expense));
+                    db.SaveChanges();
+                }
+                else
+                {
+                    var foundDuplicate = db.Expenses.Where(x => x.Date == expense.Date && x.Category == expense.Category).FirstOrDefault();
+                    if (foundDuplicate == null)
+                    {
+                        db.Expenses.Add(expense);
+                        db.SaveChanges();
+
+                    }
+
+                }
             }
         }
 

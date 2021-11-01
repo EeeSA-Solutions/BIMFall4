@@ -37,7 +37,8 @@ namespace BIMFall4.Controllers
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
-                BudgetManager.CreateBudget(value);
+                BudgetManager budgetManager = new BudgetManager();
+                budgetManager.CreateBudget(value);
                 return true;
             }
             else
