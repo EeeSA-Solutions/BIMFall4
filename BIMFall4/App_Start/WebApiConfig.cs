@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace BIMFall4
 {
@@ -17,7 +14,7 @@ namespace BIMFall4
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{token}",
-                defaults: new {  token = RouteParameter.Optional }
+                defaults: new { token = RouteParameter.Optional }
             );
         }
     }
