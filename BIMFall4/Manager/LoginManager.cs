@@ -16,7 +16,6 @@ namespace BIMFall4.Manager
         {
             TokenManager tokenManager = new TokenManager();
             var pw = new SecurePassword();
-            
 
             using (var db = new BIMFall4Context())
             {
