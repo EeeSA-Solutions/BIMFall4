@@ -11,16 +11,15 @@ namespace BIMFall4.Manager
 {
     public class BudgetManager
     {
-        IRepeater<Budget> repeater = new BudgetRepeater();
-        
+        //private IRepeater<Budget> repeater;
         public void CreateBudget(Budget budget)
         {
+        IRepeater<Budget> repeater = new BudgetRepeater();
             
             using(var db = new BIMFall4Context())
             {
                 if (budget.Repeat)
                 {
-
                     db.Budgets.AddRange(repeater.CreateOnRepeat(budget));
                     db.SaveChanges();
                 }

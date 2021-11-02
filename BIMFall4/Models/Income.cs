@@ -20,6 +20,8 @@ namespace BIMFall4.Models
         [Column(TypeName = "Date")]
 
         public DateTime Date { get; set; }
+        public bool Repeat { get; set; }
+
 
         [ForeignKey("User")]
         public int UserID { get; set; }

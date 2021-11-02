@@ -12,9 +12,9 @@ namespace BIMFall4.Manager
 {
     public class ExpenseManager
     {
-        IRepeater<Expense> repeater = new ExpenseRepeater();
         public void CreateExpense(Expense expense)
         {
+        IRepeater<Expense> repeater = new ExpenseRepeater();
             using (var db = new BIMFall4Context())
             {
                 if (expense.Repeat)

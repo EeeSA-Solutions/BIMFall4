@@ -211,6 +211,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Manager\Repeat\BudgetRepeater.cs" />
     <Compile Include="Manager\Repeat\ExpenseRepeater.cs" />
+    <Compile Include="Manager\Repeat\IncomeRepeater.cs" />
     <Compile Include="Manager\Repeat\IRepeater.cs" />
     <Compile Include="Manager\JWTManager\TokenManager.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
@@ -240,13 +241,9 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202111011003522_init.cs" />
-    <Compile Include="Migrations\202111011003522_init.designer.cs">
-      <DependentUpon>202111011003522_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111011052269_expenserepeat.cs" />
-    <Compile Include="Migrations\202111011052269_expenserepeat.designer.cs">
-      <DependentUpon>202111011052269_expenserepeat.cs</DependentUpon>
+    <Compile Include="Migrations\202111020940329_init.cs" />
+    <Compile Include="Migrations\202111020940329_init.designer.cs">
+      <DependentUpon>202111020940329_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -348,11 +345,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111011003522_init.resx">
-      <DependentUpon>202111011003522_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111011052269_expenserepeat.resx">
-      <DependentUpon>202111011052269_expenserepeat.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111020940329_init.resx">
+      <DependentUpon>202111020940329_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
