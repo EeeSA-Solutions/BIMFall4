@@ -124,15 +124,12 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var db_bud = db.Budgets.Where(x => x.ID == budget.ID).FirstOrDefault();
-                var foundDuplicate = db.Budgets.Where(x => x.Date.Year == budget.Date.Year 
-                && x.Date.Month == budget.Date.Month
-                && x.Category == budget.Category).FirstOrDefault();
+             
 
-                if (db_bud != null && foundDuplicate == null)
+                if (db_bud != null)
                 {
                     db_bud.Category = budget.Category;
                     db_bud.Amount = budget.Amount;
-                    db_bud.Date = budget.Date;
                 }
                 else
                 {
