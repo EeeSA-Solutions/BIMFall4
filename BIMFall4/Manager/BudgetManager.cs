@@ -11,7 +11,8 @@ namespace BIMFall4.Manager
 {
     public class BudgetManager
     {
-        private IRepeater<Budget> repeater;
+        IRepeater<Budget> repeater = new BudgetRepeater();
+        
         public void CreateBudget(Budget budget)
         {
             
