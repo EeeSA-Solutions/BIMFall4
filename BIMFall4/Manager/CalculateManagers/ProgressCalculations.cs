@@ -11,7 +11,7 @@ namespace BIMFall4.Manager.CalculateManagers
         ///        Hämta budget per enskild kategori och deras expense.
         ///         - Lägg sedan ihop dessa expenses och skicka den summan och budget summan till front(1200/5000)
         ///         Gör sedan en total uträkning för alla expenses och alla budgetar och skicka till front (13000/17000)
-        ///         Sortera efter månad.
+        ///         Sortera efter månad och år.
         ///  </summary>
         public struct ProgressDTO
         {
