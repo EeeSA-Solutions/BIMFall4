@@ -1,11 +1,9 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using BIMFall4.ModelDTO;
 
 namespace BIMFall4.Manager
 {
@@ -32,31 +30,12 @@ namespace BIMFall4.Manager
                 }
             }
         }
+        //EE tog bort getExpById och getListExp.
 
-
-        public static IEnumerable<Expense> GetExpensesById(int id)
-        {
-            using (var db = new BIMFall4Context())
-            {
-
-                var expense = db.Expenses.Where(x => x.UserID == id).ToList();
-                return expense;
-            }
-        }
-
-        public static IEnumerable<Expense> GetExpenseList()
-        {
-            using (var db = new BIMFall4Context())
-            {
-                return db.Expenses.ToList();
-            }
-        }
-
-
-
+       
         public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
         {
-            using(var db = new BIMFall4Context())
+            using (var db = new BIMFall4Context())
             {
                 var exp = db.Expenses.Where(x => x.UserID == id).ToList();
 
@@ -71,12 +50,32 @@ namespace BIMFall4.Manager
                         Category = item.Category,
                         Date = item.Date,
                         Amount = item.Amount
-
-
                     });
-                   
                 }
+                return expenselist;
+            }
+        }
 
+        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentDate( int userId)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var exp = db.Expenses.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).ToList();
+
+                var expenselist = new List<ExpenseDTO>();
+
+                foreach (var item in exp)
+                {
+                    expenselist.Add(new ExpenseDTO
+                    {
+                        ID = item.ID,
+                        Name = item.Name,
+                        Category = item.Category,
+                        Date = item.Date,
+                        Amount = item.Amount
+                                             
+                    });
+                }
                 return expenselist;
             }
         }
