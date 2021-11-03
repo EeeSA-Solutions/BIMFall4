@@ -26,10 +26,9 @@ namespace BIMFall4.Manager.Helper
                 };
                 using (var db = new BIMFall4Context())
                 {
-                    if (db.Expenses.Where(x => x.Date == newExpense.Date && x.Category == newExpense.Category).FirstOrDefault() == null)
-                    {
-                        newExpenseList.Add(newExpense);
-                    }
+
+                    newExpenseList.Add(newExpense);
+
                 }
             }
             return newExpenseList;

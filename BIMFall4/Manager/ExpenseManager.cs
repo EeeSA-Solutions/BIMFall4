@@ -14,25 +14,18 @@ namespace BIMFall4.Manager
     {
         public void CreateExpense(Expense expense)
         {
-        IRepeater<Expense> repeater = new ExpenseRepeater();
+            IRepeater<Expense> repeater = new ExpenseRepeater();
             using (var db = new BIMFall4Context())
             {
                 if (expense.Repeat)
                 {
-
                     db.Expenses.AddRange(repeater.CreateOnRepeat(expense));
                     db.SaveChanges();
                 }
                 else
                 {
-                    var foundDuplicate = db.Expenses.Where(x => x.Date == expense.Date && x.Category == expense.Category).FirstOrDefault();
-                    if (foundDuplicate == null)
-                    {
-                        db.Expenses.Add(expense);
-                        db.SaveChanges();
-
-                    }
-
+                    db.Expenses.Add(expense);
+                    db.SaveChanges();
                 }
             }
         }
@@ -73,7 +66,7 @@ namespace BIMFall4.Manager
 
         public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
         {
-            using(var db = new BIMFall4Context())
+            using (var db = new BIMFall4Context())
             {
                 var exp = db.Expenses.Where(x => x.UserID == id).ToList();
 
@@ -91,7 +84,7 @@ namespace BIMFall4.Manager
 
 
                     });
-                   
+
                 }
 
                 return expenselist;
