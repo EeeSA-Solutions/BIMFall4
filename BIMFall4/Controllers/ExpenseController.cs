@@ -4,6 +4,7 @@ using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace BIMFall4.Controllers
@@ -18,6 +19,13 @@ namespace BIMFall4.Controllers
         // GET: api/Expense/5
         public IEnumerable<ExpenseDTO> Get()
         {
+            var req = Request;
+            var request = new HttpRequestMessage();
+            var x = request.Headers.Date;
+            if(Request.Headers.Date != null)
+            {
+                var currentDate = Request.Headers.Date;
+            }
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
