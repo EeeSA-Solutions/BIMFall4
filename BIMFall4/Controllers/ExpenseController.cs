@@ -39,7 +39,8 @@ namespace BIMFall4.Controllers
             
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
-                ExpenseManager.CreateExpense(value);
+                ExpenseManager expense = new ExpenseManager();
+                expense.CreateExpense(value);
                 return true;
             }
             else

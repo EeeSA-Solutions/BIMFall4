@@ -1,4 +1,6 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.Manager.Helper;
+using BIMFall4.Manager.Repeat;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
@@ -10,16 +12,25 @@ namespace BIMFall4.Manager
 {
     public class IncomeManager
     {
-        public static void CreateIncome(Income income)
+        public void CreateIncome(Income income)
         {
-                using (BIMFall4Context db = new BIMFall4Context())
+            IRepeater<Income> repeater = new IncomeRepeater();
+            using (var db = new BIMFall4Context())
+            {
+                if (income.Repeat)
+                {
+                    db.Incomes.AddRange(repeater.CreateOnRepeat(income));
+                    db.SaveChanges();
+                }
+                else
                 {
                     db.Incomes.Add(income);
                     db.SaveChanges();
                 }
+            }
         }
 
-        public static void DeleteIncome(int incomeId, int userid )
+        public static void DeleteIncome(int incomeId, int userid)
         {
             using (var db = new BIMFall4Context())
             {
@@ -59,7 +70,7 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var inc = db.Incomes.Where(x => x.ID == income.ID).FirstOrDefault();
-                if(inc != null)
+                if (inc != null)
                 {
                     inc.Name = income.Name;
                     inc.Amount = income.Amount;

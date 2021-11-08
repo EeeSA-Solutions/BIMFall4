@@ -22,6 +22,8 @@ namespace BIMFall4.Models
         
         public decimal Amount { get; set; }
 
+        public bool Repeat { get; set; }
+
         [ForeignKey("User")]
         public int UserID { get; set; }
 
