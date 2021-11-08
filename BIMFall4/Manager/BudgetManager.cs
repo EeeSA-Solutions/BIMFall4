@@ -94,12 +94,12 @@ namespace BIMFall4.Manager
         
 
 
-        public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
+        public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id, DateTime date)
         {
             
             using (var db = new BIMFall4Context())
             {
-                var bud = db.Budgets.Where(x => x.UserID == id).ToList();
+                var bud = db.Budgets.Where(x => x.UserID == id && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
 
                 var budgetlist = new List<BudgetDTO>();
 

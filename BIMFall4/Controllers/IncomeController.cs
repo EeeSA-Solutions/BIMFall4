@@ -14,12 +14,13 @@ namespace BIMFall4.Controllers
         TokenManager tokenManager = new TokenManager();
         // GET: api/Income
 
-        public IEnumerable<IncomeDTO> Get()
+        public IEnumerable<IncomeDTO> Get(string date)
         {
+            DateTime newdate = DateTime.Parse(date);
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
-                return IncomeManager.GetIncomeDtoById(Convert.ToInt32(userid));
+                return IncomeManager.GetIncomeDtoById(Convert.ToInt32(userid), newdate);
             }
             else
             {

@@ -33,11 +33,11 @@ namespace BIMFall4.Manager
         //EE tog bort getExpById och getListExp.
 
        
-        public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
+        public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id, DateTime date)
         {
             using (var db = new BIMFall4Context())
             {
-                var exp = db.Expenses.Where(x => x.UserID == id).ToList();
+                var exp = db.Expenses.Where(x => x.UserID == id && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
 
                 var expenselist = new List<ExpenseDTO>();
 

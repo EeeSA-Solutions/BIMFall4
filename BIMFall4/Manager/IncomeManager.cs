@@ -32,11 +32,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<IncomeDTO> GetIncomeDtoById(int id)
+        public static IEnumerable<IncomeDTO> GetIncomeDtoById(int id, DateTime date)
         {
             using (var db = new BIMFall4Context())
             {
-                var inc = db.Incomes.Where(x => x.UserID == id).ToList();
+                var inc = db.Incomes.Where(x => x.UserID == id && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
 
                 var incomelist = new List<IncomeDTO>();
 

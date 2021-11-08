@@ -17,19 +17,14 @@ namespace BIMFall4.Controllers
 
 
         // GET: api/Expense/5
-        public IEnumerable<ExpenseDTO> Get()
+        public IEnumerable<ExpenseDTO> Get(string date)
         {
-            var req = Request;
-            var request = new HttpRequestMessage();
-            var x = request.Headers.Date;
-            if(Request.Headers.Date != null)
-            {
-                var currentDate = Request.Headers.Date;
-            }
+            DateTime newdate = DateTime.Parse(date);
+
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
-                return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid));
+                return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid), newdate);
             }
             else
             {
