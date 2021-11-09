@@ -13,13 +13,12 @@ namespace BIMFall4.Controllers
          TokenManager tokenManager = new TokenManager();
         // GET: api/Calculate
         [HttpGet]
-        public List<List<ProgressCalculations.ProgressDTO>> Get(string date)
+        public List<List<ProgressCalculations.ProgressDTO>> Get()
         {
-            DateTime newdate = DateTime.Parse(date);
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
-                return ProgressCalculations.Calculate(Convert.ToInt32(userid), newdate);
+                return ProgressCalculations.Calculate(Convert.ToInt32(userid));
             }
             else
             {

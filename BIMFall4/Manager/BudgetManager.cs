@@ -136,11 +136,11 @@ namespace BIMFall4.Manager
                 db.SaveChanges();
             }
         }
-        public static IEnumerable<BudgetDTO> GetUserBudgetDtoSortedByCategoryAndCurrentDate(int userId, DateTime date)
+        public static IEnumerable<BudgetDTO> GetUserBudgetDtoSortedByCategoryAndCurrentDate(int userId)
         {
             using (var db = new BIMFall4Context())
             {
-                var bud = db.Budgets.Where(x => x.UserID == userId && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
+                var bud = db.Budgets.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).ToList();
 
                 var budgetlist = new List<BudgetDTO>();
 
