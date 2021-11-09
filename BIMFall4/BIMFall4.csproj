@@ -212,6 +212,10 @@
     <Compile Include="Controllers\CalculateController.cs" />
     <Compile Include="Interfaces\ICalculate.cs" />
     <Compile Include="Manager\CalculateManagers\ProgressCalculations.cs" />
+    <Compile Include="Manager\Repeat\BudgetRepeater.cs" />
+    <Compile Include="Manager\Repeat\ExpenseRepeater.cs" />
+    <Compile Include="Manager\Repeat\IncomeRepeater.cs" />
+    <Compile Include="Manager\Repeat\IRepeater.cs" />
     <Compile Include="Manager\JWTManager\TokenManager.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
@@ -240,7 +244,15 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-
+    <Compile Include="Migrations\202111081215001_init.cs" />
+    <Compile Include="Migrations\202111081215001_init.designer.cs">
+      <DependentUpon>202111081215001_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111081504062_date.cs" />
+    <Compile Include="Migrations\202111081504062_date.designer.cs">
+      <DependentUpon>202111081504062_date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
     <Compile Include="ModelDTO\FriendDTO.cs" />
@@ -339,7 +351,11 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111081504062_date.resx">
+      <DependentUpon>202111081504062_date.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

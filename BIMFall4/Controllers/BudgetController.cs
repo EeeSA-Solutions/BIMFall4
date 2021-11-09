@@ -18,12 +18,13 @@ namespace BIMFall4.Controllers
       
 
         // GET: api/Budget/5
-        public IEnumerable<BudgetDTO> Get()
+        public IEnumerable<BudgetDTO> Get(string date)
         {
+            DateTime newdate = DateTime.Parse(date);
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
-            return BudgetManager.GetBudgetDtoById(Convert.ToInt32(userid));
+            return BudgetManager.GetBudgetDtoById(Convert.ToInt32(userid), newdate);
             }
             else
             {
@@ -37,7 +38,8 @@ namespace BIMFall4.Controllers
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
-                BudgetManager.CreateBudget(value);
+                BudgetManager budgetManager = new BudgetManager();
+                budgetManager.CreateBudget(value);
                 return true;
             }
             else

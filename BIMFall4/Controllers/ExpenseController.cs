@@ -4,6 +4,7 @@ using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace BIMFall4.Controllers
@@ -16,12 +17,14 @@ namespace BIMFall4.Controllers
 
 
         // GET: api/Expense/5
-        public IEnumerable<ExpenseDTO> Get()
+        public IEnumerable<ExpenseDTO> Get(string date)
         {
+            DateTime newdate = DateTime.Parse(date);
+
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
             {
-                return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid));
+                return ExpenseManager.GetExpenseDtoById(Convert.ToInt32(userid), newdate);
             }
             else
             {
@@ -36,7 +39,8 @@ namespace BIMFall4.Controllers
             
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
-                ExpenseManager.CreateExpense(value);
+                ExpenseManager expense = new ExpenseManager();
+                expense.CreateExpense(value);
                 return true;
             }
             else
