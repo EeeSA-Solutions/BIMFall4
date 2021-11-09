@@ -92,12 +92,12 @@ namespace BIMFall4.Manager
         
 
 
-        public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id)
+        public static IEnumerable<BudgetDTO> GetBudgetDtoById(int id, DateTime date)
         {
             
             using (var db = new BIMFall4Context())
             {
-                var bud = db.Budgets.Where(x => x.UserID == id).ToList();
+                var bud = db.Budgets.Where(x => x.UserID == id && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
 
                 var budgetlist = new List<BudgetDTO>();
 
@@ -122,21 +122,40 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var db_bud = db.Budgets.Where(x => x.ID == budget.ID).FirstOrDefault();
-                var foundDuplicate = db.Budgets.Where(x => x.Date.Year == budget.Date.Year 
-                && x.Date.Month == budget.Date.Month
-                && x.Category == budget.Category).FirstOrDefault();
+             
 
-                if (db_bud != null && foundDuplicate == null)
+                if (db_bud != null)
                 {
                     db_bud.Category = budget.Category;
                     db_bud.Amount = budget.Amount;
-                    db_bud.Date = budget.Date;
                 }
                 else
                 {
                     return;
                 }
                 db.SaveChanges();
+            }
+        }
+        public static IEnumerable<BudgetDTO> GetUserBudgetDtoSortedByCategoryAndCurrentDate(int userId)
+        {
+            using (var db = new BIMFall4Context())
+            {
+                var bud = db.Budgets.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).ToList();
+
+                var budgetlist = new List<BudgetDTO>();
+
+                foreach (var item in bud)
+                {
+                    budgetlist.Add(new BudgetDTO
+                    {
+                        ID = item.ID,
+                        Category = item.Category,
+                        Date = item.Date,
+                        Amount = item.Amount
+
+                    });
+                }
+                return budgetlist;
             }
         }
     }

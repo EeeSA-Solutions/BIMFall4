@@ -25,7 +25,7 @@ namespace BIMFall4.Manager.Helper
                 };
                 using (var db = new BIMFall4Context())
                 {
-                    if (db.Budgets.Where(x => x.Date == newbudget.Date && x.Category == newbudget.Category).FirstOrDefault() == null)
+                    if (db.Budgets.Where(x => x.Date == newbudget.Date && x.Category == newbudget.Category && x.UserID == newbudget.UserID).FirstOrDefault() == null)
                     {
                         newbudgetlist.Add(newbudget);
                     }
