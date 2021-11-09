@@ -4,31 +4,17 @@ using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using BIMFall4.ModelDTO;
-using BIMFall4.Manager.Helper;
-
 
 namespace BIMFall4.Manager
 {
-    public class ExpenseManager
+    public static class ExpenseManager
     {
-        public void CreateExpense(Expense expense)
+        public static void CreateExpense(Expense expense)
         {
-            IRepeater<Expense> repeater = new ExpenseRepeater();
             using (var db = new BIMFall4Context())
             {
-                if (expense.Repeat)
-                {
-                    db.Expenses.AddRange(repeater.CreateOnRepeat(expense));
-                    db.SaveChanges();
-                }
-                else
-                {
-                    db.Expenses.Add(expense);
-                    db.SaveChanges();
-                }
+                db.Expenses.Add(expense);
+                db.SaveChanges();
             }
         }
 
@@ -47,11 +33,11 @@ namespace BIMFall4.Manager
         //EE tog bort getExpById och getListExp.
 
        
-        public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id, DateTime date)
+        public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id)
         {
             using (var db = new BIMFall4Context())
             {
-                var exp = db.Expenses.Where(x => x.UserID == id && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
+                var exp = db.Expenses.Where(x => x.UserID == id).ToList();
 
                 var expenselist = new List<ExpenseDTO>();
 
@@ -70,11 +56,11 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentDate( int userId)
+        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentDate( int userId, DateTime date)
         {
             using (var db = new BIMFall4Context())
             {
-                var exp = db.Expenses.Where(x => x.UserID == userId && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).ToList();
+                var exp = db.Expenses.Where(x => x.UserID == userId && x.Date.Month == date.Month && x.Date.Year == date.Year).ToList();
 
                 var expenselist = new List<ExpenseDTO>();
 
