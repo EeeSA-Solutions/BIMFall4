@@ -32,18 +32,18 @@ namespace BIMFall4.Controllers
         }
 
         // POST: api/Budget
-        public bool Post([FromBody] Budget value)
+        public HttpResponseMessage Post([FromBody] Budget value)
         {
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.Amount > 0 && value.UserID == Convert.ToInt32(userid))
             {
                 BudgetManager budgetManager = new BudgetManager();
-                budgetManager.CreateBudget(value);
-                return true;
+                var response = budgetManager.CreateBudget(value);
+                return response;
             }
             else
             {
-                return false;
+                return Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
         }
 
