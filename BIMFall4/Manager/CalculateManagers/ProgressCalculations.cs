@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 namespace BIMFall4.Manager.CalculateManagers
 {
@@ -26,10 +26,10 @@ namespace BIMFall4.Manager.CalculateManagers
                 Amount = amount; //totala summan
             }
         }
-        public static List<List<ProgressDTO>> Calculate(int userId)
+        public static List<List<ProgressDTO>> Calculate(int userId, DateTime date)
         {
-            var expList = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentDate(userId);
-            var budList = BudgetManager.GetUserBudgetDtoSortedByCategoryAndCurrentDate(userId);
+            var expList = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentDate(userId, date);
+            var budList = BudgetManager.GetUserBudgetDtoSortedByCategoryAndCurrentDate(userId, date);
 
             var groupedExpList = expList.GroupBy(item => item.Category)
             .Select(item => new ProgressDTO
