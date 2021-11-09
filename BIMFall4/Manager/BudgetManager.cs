@@ -5,6 +5,8 @@ using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 
 namespace BIMFall4.Manager
@@ -12,16 +14,19 @@ namespace BIMFall4.Manager
     public class BudgetManager
     {
         //private IRepeater<Budget> repeater;
-        public void CreateBudget(Budget budget)
+        public HttpResponseMessage CreateBudget(Budget budget)
         {
         IRepeater<Budget> repeater = new BudgetRepeater();
-            
+            var Request = new HttpRequestMessage();
+                   
             using(var db = new BIMFall4Context())
             {
                 if (budget.Repeat)
                 {
                     db.Budgets.AddRange(repeater.CreateOnRepeat(budget));
                     db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+
                 }
                 else
                 {
@@ -30,9 +35,22 @@ namespace BIMFall4.Manager
                     {
                     db.Budgets.Add(budget);
                     db.SaveChanges();
-
+                        return Request.CreateResponse(HttpStatusCode.OK);
                     }
-
+                    else
+                    {
+                        if (budget.Override == true)
+                        {
+                            db.Budgets.Remove(foundDuplicate);
+                            db.Budgets.Add(budget);
+                            db.SaveChanges();
+                            return Request.CreateResponse(HttpStatusCode.OK);
+                        }
+                        else 
+                        {
+                        return Request.CreateResponse(HttpStatusCode.MethodNotAllowed);
+                        }
+                    }
                 }
             }
         }
