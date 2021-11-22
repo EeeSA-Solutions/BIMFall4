@@ -30,7 +30,7 @@ namespace BIMFall4.Manager
                 }
                 else
                 {
-                    var foundDuplicate = db.Budgets.Where(x => x.Date == budget.Date && x.Category == budget.Category).FirstOrDefault();
+                    var foundDuplicate = db.Budgets.Where(x => x.Date == budget.Date && x.Category == budget.Category && x.UserID == budget.UserID).FirstOrDefault();
                     if (foundDuplicate == null)
                     {
                     db.Budgets.Add(budget);

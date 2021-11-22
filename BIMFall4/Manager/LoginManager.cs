@@ -42,6 +42,7 @@ namespace BIMFall4.Manager
             }
         }
 
+        //Kraschar vid sign in av fel email
         static public string GetUserSalt(User user)
         {
             using (var db = new BIMFall4Context())
