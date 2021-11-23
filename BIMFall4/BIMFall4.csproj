@@ -210,6 +210,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CalculateController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Interfaces\ICalculate.cs" />
     <Compile Include="Manager\CalculateManagers\ProgressCalculations.cs" />
     <Compile Include="Manager\Repeat\BudgetRepeater.cs" />
@@ -318,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
