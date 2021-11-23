@@ -27,5 +27,6 @@ namespace BIMFall4.Models
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }
         public virtual ICollection<SavingGoal> SavingGoals { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

@@ -244,6 +244,10 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Migrations\202111231423161_image.cs" />
+    <Compile Include="Migrations\202111231423161_image.designer.cs">
+      <DependentUpon>202111231423161_image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
@@ -254,6 +258,7 @@
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Friend.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Income.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SavingGoal.cs" />
@@ -342,6 +347,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111231423161_image.resx">
+      <DependentUpon>202111231423161_image.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
