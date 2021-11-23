@@ -5,7 +5,7 @@ using System;
 namespace BIMFall4.Manager.CalculateManagers
 {
 
-    public class ProgressCalculations
+    public class ProgressCalculations 
     {
         ///  <summary> 
         ///        Hämta budget per enskild kategori och deras expense.
@@ -16,13 +16,11 @@ namespace BIMFall4.Manager.CalculateManagers
         public struct ProgressDTO
         {
             public string Category { get; set; }
-            public int Count { get; set; }
             public decimal Amount { get; set; }
 
-            public ProgressDTO(string category, int count, decimal amount)
+            public ProgressDTO(string category, decimal amount)
             {
                 Category = category;
-                Count = count; // Antal element i t.ex Groceries
                 Amount = amount; //totala summan
             }
         }
@@ -35,16 +33,28 @@ namespace BIMFall4.Manager.CalculateManagers
             .Select(item => new ProgressDTO
                            (
                                item.Key,
-                               item.Count(),
                                item.Sum(ta => ta.Amount)
                            )).ToList();
             var groupedBudList = budList.GroupBy(item => item.Category)
             .Select(item => new ProgressDTO
                            (
                                item.Key,
-                               item.Count(), // kan kommas att ta bort då tanken är att inte kunna ha fler än en budget av varje typ.
                                item.Sum(ta => ta.Amount) // när ovan blir aktuellt behöver vi ej summera heller.
                            )).ToList();
+
+            List<ProgressDTO> Remaining = new List<ProgressDTO>();
+          foreach (ProgressDTO Exp in groupedExpList)
+            {
+                foreach (ProgressDTO Bud in groupedBudList)
+                {
+                    if (Exp.Category == Bud.Category)
+                    {
+                        var remain = Bud.Amount - Exp.Amount;
+                        Remaining.Add(new ProgressDTO(Exp.Category, remain));
+                    }
+                }
+            }
+
 
             List<List<ProgressDTO>> expBudList = new List<List<ProgressDTO>> { groupedExpList, groupedBudList };
 
@@ -52,3 +62,5 @@ namespace BIMFall4.Manager.CalculateManagers
         }
     }
 }
+
+//TODO: Vad händer om expenses är av mindre antal än budget. tex det finns 4 exp men fem budgetar?? vi måste ju ha alla exp och alla budgetar. 
