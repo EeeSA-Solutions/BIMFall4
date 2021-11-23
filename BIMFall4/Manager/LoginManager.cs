@@ -48,7 +48,14 @@ namespace BIMFall4.Manager
             using (var db = new BIMFall4Context())
             {
                 var u = db.Users.Where(x => x.Email == user.Email).FirstOrDefault();
-                return u.Salt;
+                if(u == null)
+                {
+                    return "Invalid Email";
+                }
+                else
+                {
+                    return u.Salt;
+                }
             }
         }
     }
