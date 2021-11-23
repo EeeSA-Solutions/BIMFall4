@@ -1,13 +1,10 @@
 ﻿using BIMFall4.Data;
+using BIMFall4.Manager.Helper;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using BIMFall4.ModelDTO;
-using BIMFall4.Manager.Helper;
 
 
 namespace BIMFall4.Manager
@@ -46,7 +43,7 @@ namespace BIMFall4.Manager
         }
         //EE tog bort getExpById och getListExp.
 
-       
+
         public static IEnumerable<ExpenseDTO> GetExpenseDtoById(int id, DateTime date)
         {
             using (var db = new BIMFall4Context())
@@ -70,7 +67,7 @@ namespace BIMFall4.Manager
             }
         }
 
-        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentDate( int userId, DateTime date)
+        public static IEnumerable<ExpenseDTO> GetUserExpenseDtoSortedByCategoryAndCurrentDate(int userId, DateTime date)
         {
             using (var db = new BIMFall4Context())
             {
@@ -87,7 +84,7 @@ namespace BIMFall4.Manager
                         Category = item.Category,
                         Date = item.Date,
                         Amount = item.Amount
-                                             
+
                     });
                 }
                 return expenselist;

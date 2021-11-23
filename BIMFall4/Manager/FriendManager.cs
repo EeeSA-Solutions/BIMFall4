@@ -19,10 +19,17 @@ namespace BIMFall4.Manager
 
                     var checkforduplicateU1 = db.Users.Find(value.ID);
                     var checkforduplicateU2 = UserManager.GetUserByEmail(value.Email, db);
-
+                    if (checkforduplicateU2 == null) 
+                    { 
+                        return new Response { Status = "Failed", Message = "That user email does not exsist. Did u spell it right?" }; 
+                    }
+                    else if (checkforduplicateU1.Email == checkforduplicateU2.Email)
+                    {
+                        return new Response { Status = "Failed", Message = "You are already friends with yourself. (We hope)" };
+                    }
                     var check1 = db.Friends.Where(x => x.User1.ID.Equals(checkforduplicateU1.ID) && x.User2.ID.Equals(checkforduplicateU2.ID)).FirstOrDefault();
                     var check2 = db.Friends.Where(x => x.User1.ID.Equals(checkforduplicateU2.ID) && x.User2.ID.Equals(checkforduplicateU1.ID)).FirstOrDefault();
-                    if (check1 == null && check2 == null) 
+                    if (check1 == null && check2 == null)
                     {
                         Friend added = new Friend();
                         added.Status = 0;
@@ -31,7 +38,7 @@ namespace BIMFall4.Manager
 
                         db.Friends.Add(added);
                         db.SaveChanges();
-                        return  new Response { Status = "Success", Message = "Success" };
+                        return new Response { Status = "Success", Message = "Success" };
                     }
                     else
                     {
@@ -62,14 +69,14 @@ namespace BIMFall4.Manager
         {
             using (var db = new BIMFall4Context())
             {
-                
+
                 var newStatus = db.Friends.Find(id);
-                
-                    newStatus.Status = wantedstatus;
-                
-                    db.SaveChanges();
+
+                newStatus.Status = wantedstatus;
+
+                db.SaveChanges();
             }
-                return new Response { Status = "Success" , Message = "Success"};
+            return new Response { Status = "Success", Message = "Success" };
         }
         static public IEnumerable<FriendDTO> GetPendingSentFriendsList(int id)
         {
@@ -137,4 +144,3 @@ namespace BIMFall4.Manager
 
 
 
-   

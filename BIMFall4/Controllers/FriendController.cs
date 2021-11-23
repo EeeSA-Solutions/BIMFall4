@@ -38,7 +38,8 @@ namespace BIMFall4.Controllers
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null && value.ID.ToString() == userid)
             {
-                return FriendManager.AddFriend(value);
+                var res =FriendManager.AddFriend(value);
+                return res;
             }
             else
             {
