@@ -43,6 +43,9 @@ namespace BIMFall4.Manager.CalculateManagers
                            )).ToList();
 
             List<ProgressDTO> Remaining = new List<ProgressDTO>();
+
+
+
           foreach (ProgressDTO Exp in groupedExpList)
             {
                 foreach (ProgressDTO Bud in groupedBudList)
