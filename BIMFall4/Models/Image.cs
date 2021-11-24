@@ -14,7 +14,7 @@ namespace BIMFall4.Models
 
         public string Name { get; set; }
 
-        public byte[] image { get; set; }
+        public string ImageURL { get; set; }
 
         [ForeignKey("User")]
         public int UserID { get; set; }

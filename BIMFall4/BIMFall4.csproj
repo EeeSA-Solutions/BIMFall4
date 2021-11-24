@@ -215,6 +215,7 @@
     <Compile Include="Manager\CalculateManagers\ProgressCalculations.cs" />
     <Compile Include="Manager\Repeat\BudgetRepeater.cs" />
     <Compile Include="Manager\Repeat\ExpenseRepeater.cs" />
+    <Compile Include="Manager\ImageManager.cs" />
     <Compile Include="Manager\Repeat\IncomeRepeater.cs" />
     <Compile Include="Manager\Repeat\IRepeater.cs" />
     <Compile Include="Manager\JWTManager\TokenManager.cs" />
@@ -249,10 +250,15 @@
     <Compile Include="Migrations\202111231423161_image.designer.cs">
       <DependentUpon>202111231423161_image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111240926378_newImgModel.cs" />
+    <Compile Include="Migrations\202111240926378_newImgModel.designer.cs">
+      <DependentUpon>202111240926378_newImgModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
     <Compile Include="ModelDTO\FriendDTO.cs" />
+    <Compile Include="ModelDTO\ImageDTO.cs" />
     <Compile Include="ModelDTO\IncomeDTO.cs" />
     <Compile Include="ModelDTO\SavingGoalDTO.cs" />
     <Compile Include="ModelDTO\UserDTO.cs" />
@@ -353,6 +359,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111231423161_image.resx">
       <DependentUpon>202111231423161_image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111240926378_newImgModel.resx">
+      <DependentUpon>202111240926378_newImgModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
