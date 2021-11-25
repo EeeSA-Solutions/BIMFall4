@@ -246,13 +246,9 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
-    <Compile Include="Migrations\202111231423161_image.cs" />
-    <Compile Include="Migrations\202111231423161_image.designer.cs">
-      <DependentUpon>202111231423161_image.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111240926378_newImgModel.cs" />
-    <Compile Include="Migrations\202111240926378_newImgModel.designer.cs">
-      <DependentUpon>202111240926378_newImgModel.cs</DependentUpon>
+    <Compile Include="Migrations\202111250958042_inital.cs" />
+    <Compile Include="Migrations\202111250958042_inital.designer.cs">
+      <DependentUpon>202111250958042_inital.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
@@ -357,11 +353,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111231423161_image.resx">
-      <DependentUpon>202111231423161_image.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111240926378_newImgModel.resx">
-      <DependentUpon>202111240926378_newImgModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111250958042_inital.resx">
+      <DependentUpon>202111250958042_inital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
