@@ -17,6 +17,7 @@ namespace BIMFall4.Data
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<SavingGoal> SavingGoals { get; set; }
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelbuilder)
         {

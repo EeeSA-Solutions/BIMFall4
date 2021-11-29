@@ -210,10 +210,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CalculateController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Interfaces\ICalculate.cs" />
     <Compile Include="Manager\CalculateManagers\ProgressCalculations.cs" />
     <Compile Include="Manager\Repeat\BudgetRepeater.cs" />
     <Compile Include="Manager\Repeat\ExpenseRepeater.cs" />
+    <Compile Include="Manager\ImageManager.cs" />
     <Compile Include="Manager\Repeat\IncomeRepeater.cs" />
     <Compile Include="Manager\Repeat\IRepeater.cs" />
     <Compile Include="Manager\JWTManager\TokenManager.cs" />
@@ -244,16 +246,22 @@
     <Compile Include="Manager\LoginManager.cs" />
     <Compile Include="Manager\SavingGoalManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Migrations\202111250958042_inital.cs" />
+    <Compile Include="Migrations\202111250958042_inital.designer.cs">
+      <DependentUpon>202111250958042_inital.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDTO\BudgetDTO.cs" />
     <Compile Include="ModelDTO\ExpenseDTO.cs" />
     <Compile Include="ModelDTO\FriendDTO.cs" />
+    <Compile Include="ModelDTO\ImageDTO.cs" />
     <Compile Include="ModelDTO\IncomeDTO.cs" />
     <Compile Include="ModelDTO\SavingGoalDTO.cs" />
     <Compile Include="ModelDTO\UserDTO.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Friend.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Income.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SavingGoal.cs" />
@@ -313,6 +321,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -342,6 +351,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111250958042_inital.resx">
+      <DependentUpon>202111250958042_inital.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
