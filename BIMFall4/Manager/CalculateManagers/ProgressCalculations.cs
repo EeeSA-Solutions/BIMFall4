@@ -5,7 +5,7 @@ using System;
 namespace BIMFall4.Manager.CalculateManagers
 {
 
-    public class ProgressCalculations 
+    public  class ProgressCalculations 
     {
         ///  <summary> 
         ///        Hämta budget per enskild kategori och deras expense.
@@ -24,6 +24,8 @@ namespace BIMFall4.Manager.CalculateManagers
                 Amount = amount; //totala summan
             }
         }
+        List<ProgressDTO> prutt = new List<ProgressDTO>();
+        
         public static List<List<ProgressDTO>> Calculate(int userId, DateTime date)
         {
             var expList = ExpenseManager.GetUserExpenseDtoSortedByCategoryAndCurrentDate(userId, date);
@@ -42,9 +44,9 @@ namespace BIMFall4.Manager.CalculateManagers
                                item.Sum(ta => ta.Amount) // när ovan blir aktuellt behöver vi ej summera heller.
                            )).ToList();
 
-            List<ProgressDTO> Remaining = new List<ProgressDTO>();
+           
 
-
+            
 
           
 
@@ -53,6 +55,10 @@ namespace BIMFall4.Manager.CalculateManagers
 
             return expBudList;
         }
+        public List<ProgressDTO> ik { get => ik; set => new List<ProgressDTO>(); }
+
+        private static List<string> tobbe;
+       
     }
 }
 

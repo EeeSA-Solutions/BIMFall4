@@ -13,8 +13,12 @@ namespace BIMFall4.Manager.CalculateManagers
         /// 
 
         // vi behöver ett interface med metod som skapar en instans. Sen kalla på factory i nästa steg. Kanske lyfta ut logik till egen klass
+       
+      
+        
         public static void RemainLoop(List<ProgressDTO> list1, List<ProgressDTO> list2)
         {
+            
                 foreach (ProgressDTO element1 in list1)
                 {
                     foreach (ProgressDTO element2 in list2)
@@ -22,8 +26,9 @@ namespace BIMFall4.Manager.CalculateManagers
                         if (element1.Category == element2.Category)
                         {
                             var remain = element2.Amount - element1.Amount;
-                            Remaining.Add(new ProgressDTO(Exp.Category, remain));
+                          //  Remaining.Add(new ProgressDTO(Exp.Category, remain));
                         }
+                        
                     }
                 }
         }
@@ -39,7 +44,7 @@ namespace BIMFall4.Manager.CalculateManagers
             {
                 RemainLoop(calcList[1], calcList[0]);
             }
-
+            return new ProgressDTO( "ds", 1 ); // ta bort sen
         }
     }
 }
