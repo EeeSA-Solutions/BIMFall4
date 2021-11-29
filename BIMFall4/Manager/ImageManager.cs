@@ -20,14 +20,19 @@ namespace BIMFall4.Manager.Repeat
                 var image = db.Images.Where(x => x.UserID == id).FirstOrDefault();
 
 
-                var newimage = new ImageDTO()
+                if (image != null)
                 {
-                    ID = image.ID,
-                    ImageURL = image.ImageURL,
-                    Name = image.Name
-                };
+                    var newimage = new ImageDTO()
+                    {
+                        ID = image.ID,
+                        ImageURL = image.ImageURL,
+                        Name = image.Name
+                    };
 
-                return newimage;
+                    return newimage;
+
+                }
+                else return null;
                 
             }
         }
