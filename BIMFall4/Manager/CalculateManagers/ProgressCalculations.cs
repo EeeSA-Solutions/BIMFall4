@@ -46,17 +46,7 @@ namespace BIMFall4.Manager.CalculateManagers
 
 
 
-          foreach (ProgressDTO Exp in groupedExpList)
-            {
-                foreach (ProgressDTO Bud in groupedBudList)
-                {
-                    if (Exp.Category == Bud.Category)
-                    {
-                        var remain = Bud.Amount - Exp.Amount;
-                        Remaining.Add(new ProgressDTO(Exp.Category, remain));
-                    }
-                }
-            }
+          
 
 
             List<List<ProgressDTO>> expBudList = new List<List<ProgressDTO>> { groupedExpList, groupedBudList };
