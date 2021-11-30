@@ -16,34 +16,32 @@ namespace BIMFall4.Manager.CalculateManagers
        
       
         
-        public static void RemainLoop(List<ProgressDTO> list1, List<ProgressDTO> list2)
+        public void RemainLoop(List<ProgressDTO> expenses, List<ProgressDTO> budgets)
         {
             
-                foreach (ProgressDTO element1 in list1)
+                    foreach (ProgressDTO bud in budgets)
                 {
-                    foreach (ProgressDTO element2 in list2)
+                foreach (ProgressDTO exp in expenses)
                     {
-                        if (element1.Category == element2.Category)
+                        if (exp.Category == bud.Category)
                         {
-                            var remain = element2.Amount - element1.Amount;
+                            var remain = bud.Amount - exp.Amount;
+
                           //  Remaining.Add(new ProgressDTO(Exp.Category, remain));
                         }
-                        
                     }
                 }
         }
-        public static ProgressDTO SummaryCalc(int userId, DateTime date)
+        public ProgressDTO SummaryCalc(int userId, DateTime date)
         {
             var calcList = Calculate(userId, date);
-
-            if (calcList[0].Count > calcList[1].Count)
-            {
-                RemainLoop(calcList[0], calcList[1]);
-            }
-            else
-            {
-                RemainLoop(calcList[1], calcList[0]);
-            }
+            var totalExpensesList = calcList[0];
+            var totalBudgetList = calcList[1];
+          
+            
+                RemainLoop(totalExpensesList, totalBudgetList);
+            
+        
             return new ProgressDTO( "ds", 1 ); // ta bort sen
         }
     }

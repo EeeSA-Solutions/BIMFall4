@@ -24,7 +24,6 @@ namespace BIMFall4.Manager.CalculateManagers
                 Amount = amount; //totala summan
             }
         }
-        List<ProgressDTO> prutt = new List<ProgressDTO>();
         
         public static List<List<ProgressDTO>> Calculate(int userId, DateTime date)
         {
@@ -55,9 +54,7 @@ namespace BIMFall4.Manager.CalculateManagers
 
             return expBudList;
         }
-        public List<ProgressDTO> ik { get => ik; set => new List<ProgressDTO>(); }
 
-        private static List<string> tobbe;
        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BIMFall4.Authenticator;
 using BIMFall4.Manager;
+using BIMFall4.Manager.CalculateManagers;
 using BIMFall4.ModelDTO;
 using BIMFall4.Models;
 using System;
@@ -19,7 +20,9 @@ namespace BIMFall4.Controllers
         // GET: api/Expense/5
         public IEnumerable<ExpenseDTO> Get(string date)
         {
+            var summaryCalc = new SummaryCalculations();
             DateTime newdate = DateTime.Parse(date);
+            //summaryCalc.SummaryCalc(Convert.ToInt32(tokenManager.ValidateToken(Request)), newdate);
 
             string userid = tokenManager.ValidateToken(Request);
             if (userid != null)
